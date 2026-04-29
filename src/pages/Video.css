@@ -1,13 +1,10 @@
-.grid-video {
-  grid-template-columns: repeat(1, 1fr);
-}
-
 .video-tile {
   position: relative;
-  aspect-ratio: 16 / 9;
   display: block;
   overflow: hidden;
   background: #000;
+  width: 100%;
+  height: 100%;
 }
 
 .video-tile img {
@@ -19,7 +16,7 @@
 
 .video-tile:hover img {
   opacity: 0.85;
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 
 .play-icon {
@@ -27,32 +24,20 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.55);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-  padding-left: 4px;
+  font-size: 18px;
+  padding-left: 3px;
   pointer-events: none;
   transition: background 0.15s;
 }
 
 .video-tile:hover .play-icon {
   background: rgba(0, 0, 0, 0.75);
-}
-
-@media (min-width: 560px) {
-  .grid-video {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 900px) {
-  .grid-video {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }

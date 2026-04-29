@@ -9,26 +9,39 @@ type Job = {
   bullets: string[]
 }
 
-const jobs: Job[] = [
+const work: Job[] = [
   {
-    company: 'Shelton School',
-    location: 'Dallas',
-    role: 'Substitute Teacher',
-    start: 'Nov 2023',
-    end: 'Jan 2026',
+    company: 'Shamoun & Norman',
+    location: 'Dallas, TX',
+    role: 'Legal Assistant',
+    start: 'Jan 2026',
+    end: 'Present',
     bullets: [
-      'Work with neurodivergent students; manage instruction and behavior across grade levels.',
+      'Analyze legal documents, draft case summaries, and review testimony for inconsistencies to support attorneys in case preparation.',
+      'Synthesize large volumes of complex information into clear, actionable briefs for senior stakeholders.',
     ],
   },
   {
-    company: 'Meta',
-    location: 'San Francisco',
+    company: 'Meta (WhatsApp)',
+    location: 'San Francisco, CA',
     role: 'Content Strategist',
     start: 'Aug 2021',
     end: 'Nov 2022',
     bullets: [
-      'Led WhatsApp Help Center redesign.',
-      'Published 30+ articles reaching ~15M views per month, translated into 33 languages.',
+      'Conducted competitive analyses of help-center platforms across leading tech companies; delivered weekly research presentations to product and engineering stakeholders.',
+      'Analyzed user behavior data and support-ticket patterns to redesign Help Center information architecture; reduced support volume across a 2B+ user base.',
+      'Published 30+ feature-launch articles reaching ~15M views/month across 33 languages; coordinated cross-functionally with product, engineering, legal, and localization teams.',
+      'Tracked content performance metrics across 33 markets to prioritize strategy and inform product decisions; promoted within first 6 months.',
+    ],
+  },
+  {
+    company: 'Shelton School',
+    location: 'Dallas, TX',
+    role: 'Substitute Teacher',
+    start: 'Nov 2023',
+    end: 'Jan 2026',
+    bullets: [
+      'Taught students with neurological learning differences (autism, ADHD, OCD); adapted lessons and classroom structure to individual needs.',
     ],
   },
   {
@@ -38,23 +51,71 @@ const jobs: Job[] = [
     start: 'Aug 2019',
     end: 'Aug 2021',
     bullets: [
-      'Managed a 10-day program with 36 participants on a $12K budget.',
-    ],
-  },
-  {
-    company: 'Academy of Model Aeronautics',
-    location: 'Durham, NC',
-    role: 'Vice President',
-    start: 'Jan 2018',
-    end: 'May 2021',
-    bullets: [
-      'Organized the Pro Pilots Invitational on a $7K budget.',
-      'Taught flying courses; managed a $15K club budget.',
+      'Managed end-to-end logistics for a 10-day program (36 participants, 24 staff, $12K budget); achieved 100% participant satisfaction.',
     ],
   },
 ]
 
-const skills = ['Figma', 'GitHub', 'Claude Code', 'GSuite']
+const technical: Job[] = [
+  {
+    company: 'Duke University',
+    location: '',
+    role: 'Immersive Virtual Worlds',
+    start: 'Jan 2020',
+    end: 'May 2020',
+    bullets: [
+      'Designed and built 6 interactive 3D environments in Unreal Engine 5; implemented gameplay systems with Blueprint visual scripting including event-driven triggers, state management, and real-time input mapping.',
+    ],
+  },
+  {
+    company: 'XPRIZE Shell Ocean Discovery Competition',
+    location: 'Duke University',
+    role: 'Pilot & Engineer',
+    start: 'Aug 2018',
+    end: 'Dec 2018',
+    bullets: [
+      'Built and piloted a 7-foot, 12-rotor drone for ocean mapping; placed 9th globally and received a $100K prize.',
+      'Presented research on manual PID control of large-scale multirotors at the Duke engineering poster competition.',
+    ],
+  },
+  {
+    company: 'TikTok, YouTube, Instagram',
+    location: '',
+    role: 'Content Creator',
+    start: '2013',
+    end: 'Present',
+    bullets: [
+      '4.1M+ views and 535K likes on TikTok; 370+ videos across three platforms with hands-on understanding of creator incentives, platform dynamics, discoverability, and audience engagement.',
+    ],
+  },
+]
+
+const skillGroups = [
+  { label: 'research & analysis', items: 'Competitive analysis, market research, user-behavior analytics, content performance metrics, data synthesis' },
+  { label: 'tools', items: 'Unreal Engine 5 (Blueprint), Tableau, Figma, Google Workspace, Microsoft Office, CMS platforms' },
+  { label: 'content & platforms', items: 'Short-form video production, social-media strategy (TikTok, YouTube, Instagram), creator-platform dynamics' },
+  { label: 'interests', items: 'FPV drone racing, improv comedy, short-form video, chess' },
+]
+
+function JobBlock({ job }: { job: Job }) {
+  return (
+    <li className="job">
+      <div className="job-head">
+        <div>
+          <div className="job-company">{job.company}</div>
+          <div className="job-role">{job.role}</div>
+        </div>
+        <div className="job-meta">
+          {job.location && <div>{job.location}</div>}
+          <div>{job.start} — {job.end}</div>
+        </div>
+      </div>
+      <ul className="job-bullets">
+        {job.bullets.map((b, i) => <li key={i}>{b}</li>)}
+      </ul>
+    </li>
+  )
+}
 
 export default function Experience() {
   return (
@@ -69,44 +130,49 @@ export default function Experience() {
         <a href="https://linkedin.com/in/shailenparmar" target="_blank" rel="noreferrer">
           linkedin.com/in/shailenparmar
         </a>
+        <span className="dot" aria-hidden="true">·</span>
+        <span>Dallas, TX</span>
       </div>
-
-      <h2 className="section-heading">work</h2>
-      <ul className="job-list">
-        {jobs.map((job) => (
-          <li key={job.company} className="job">
-            <div className="job-head">
-              <div>
-                <div className="job-company">{job.company}</div>
-                <div className="job-role">{job.role}</div>
-              </div>
-              <div className="job-meta">
-                <div>{job.location}</div>
-                <div>{job.start} — {job.end}</div>
-              </div>
-            </div>
-            <ul className="job-bullets">
-              {job.bullets.map((b, i) => (
-                <li key={i}>{b}</li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul>
 
       <h2 className="section-heading">education</h2>
       <div className="edu">
-        <div className="job-company">Duke University</div>
-        <div className="job-role">Trinity College of Arts and Sciences · Class of 2021</div>
-        <div className="job-meta-inline">B.S. in Neuroscience and Visual &amp; Media Studies · GPA 3.802</div>
+        <div className="job-head">
+          <div>
+            <div className="job-company">Duke University</div>
+            <div className="job-role">Trinity College of Arts and Sciences</div>
+          </div>
+          <div className="job-meta">
+            <div>Aug 2017 — May 2021</div>
+          </div>
+        </div>
+        <div className="edu-body">
+          B.A., Interdepartmental Major in Neuroscience and Visual &amp; Media Studies · GPA 3.80
+        </div>
+        <div className="edu-coursework">
+          <span className="coursework-label">relevant coursework: </span>
+          Immersive Virtual Worlds (Unreal Engine 5), Computer Science (Python), Data Visualization (Tableau), Cognitive Neuroscience
+        </div>
       </div>
 
-      <h2 className="section-heading">skills</h2>
-      <ul className="skills">
-        {skills.map((s) => (
-          <li key={s}>{s}</li>
-        ))}
+      <h2 className="section-heading">professional experience</h2>
+      <ul className="job-list">
+        {work.map((j) => <JobBlock key={j.company} job={j} />)}
       </ul>
+
+      <h2 className="section-heading">technical &amp; creator experience</h2>
+      <ul className="job-list">
+        {technical.map((j) => <JobBlock key={j.company + j.role} job={j} />)}
+      </ul>
+
+      <h2 className="section-heading">skills &amp; interests</h2>
+      <dl className="skill-groups">
+        {skillGroups.map((g) => (
+          <div className="skill-row" key={g.label}>
+            <dt>{g.label}</dt>
+            <dd>{g.items}</dd>
+          </div>
+        ))}
+      </dl>
     </section>
   )
 }

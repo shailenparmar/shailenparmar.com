@@ -1,11 +1,11 @@
 .resume {
-  max-width: 720px;
+  max-width: 760px;
 }
 
 .contact {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 12px;
+  gap: 8px 12px;
   align-items: center;
   font-size: 14px;
   color: var(--muted);
@@ -17,16 +17,16 @@
 }
 
 .contact .dot {
-  color: var(--line);
+  color: rgba(255, 255, 255, 0.25);
 }
 
 .section-heading {
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
+  letter-spacing: 1.4px;
   color: var(--muted);
-  margin: 40px 0 16px;
+  margin: 48px 0 16px;
 }
 
 .job-list {
@@ -63,67 +63,67 @@
   white-space: nowrap;
 }
 
-.job-meta-inline {
-  font-size: 14px;
-  color: var(--muted);
-  margin-top: 4px;
-}
-
 .job-bullets {
   margin: 8px 0 0;
   padding-left: 18px;
   font-size: 15px;
+  font-weight: 300;
   color: var(--fg);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
-.edu {
+.edu-body {
   font-size: 15px;
+  margin-top: 4px;
 }
 
-.skills {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 0;
+.edu-coursework {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.coursework-label {
+  font-style: italic;
+}
+
+.skill-groups {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.skills li {
+.skill-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 16px;
   font-size: 14px;
-  border: 1px solid var(--line);
-  padding: 4px 12px;
-  border-radius: 999px;
 }
 
-.resume-intro {
-  font-size: 16px;
-  color: var(--muted);
-  margin-bottom: 24px;
+.skill-row dt {
+  font-weight: 500;
+  text-transform: lowercase;
 }
 
-.inline-link {
+.skill-row dd {
+  margin: 0;
   color: var(--fg);
-  border-bottom: 1px solid var(--fg);
+  font-weight: 300;
 }
 
-.resume-placeholder {
-  border: 1px dashed var(--line);
-  padding: 40px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-@media (max-width: 560px) {
+@media (max-width: 640px) {
   .job-head {
     flex-direction: column;
     gap: 4px;
   }
   .job-meta {
     text-align: left;
+  }
+  .skill-row {
+    grid-template-columns: 1fr;
+    gap: 2px;
   }
 }

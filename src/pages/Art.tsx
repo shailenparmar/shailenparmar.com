@@ -1,12 +1,24 @@
 import { useState } from 'react'
 import Lightbox from '../components/Lightbox'
 import './Gallery.css'
+import './Video.css'
 
-const files = Array.from({ length: 36 }, (_, i) =>
+const videos = [
+  'COIyoqTVJyY',
+  'H_vwtr82L9o',
+  'krkoyhJsbvw',
+  'lW11LgNkEn8',
+  'NMlATq3UmqI',
+  'sExiObXlMnQ',
+  'NzsuVV1sIoQ',
+  'SqfzNoavjzg',
+]
+
+const photos = Array.from({ length: 36 }, (_, i) =>
   `art-${String(i + 1).padStart(2, '0')}.jpg`
 )
 
-const sources = files.map((f) => `/art/${f}`)
+const photoSources = photos.map((f) => `/art/${f}`)
 
 export default function Art() {
   const [open, setOpen] = useState<number | null>(null)
@@ -14,8 +26,23 @@ export default function Art() {
   return (
     <section>
       <h1 className="page-title">art</h1>
+
       <div className="grid">
-        {files.map((file, i) => (
+        {videos.map((id) => (
+          <a
+            key={id}
+            href={`https://www.youtube.com/watch?v=${id}`}
+            target="_blank"
+            rel="noreferrer"
+            className="tile video-tile"
+            aria-label="play video"
+          >
+            <img src={`/video/thumbs/${id}.jpg`} alt="" loading="lazy" />
+            <span className="play-icon" aria-hidden="true">▸</span>
+          </a>
+        ))}
+
+        {photos.map((file, i) => (
           <button
             type="button"
             key={file}
@@ -27,9 +54,10 @@ export default function Art() {
           </button>
         ))}
       </div>
+
       {open !== null && (
         <Lightbox
-          images={sources}
+          images={photoSources}
           index={open}
           onClose={() => setOpen(null)}
           onNavigate={(next) => setOpen(next)}
