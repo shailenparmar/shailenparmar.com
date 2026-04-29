@@ -1,0 +1,129 @@
+.resume {
+  max-width: 720px;
+}
+
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  align-items: center;
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+.contact a {
+  color: var(--fg);
+}
+
+.contact .dot {
+  color: var(--line);
+}
+
+.section-heading {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--muted);
+  margin: 40px 0 16px;
+}
+
+.job-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.job-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.job-company {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.job-role {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.job-meta {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.job-meta-inline {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.job-bullets {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  font-size: 15px;
+  color: var(--fg);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.edu {
+  font-size: 15px;
+}
+
+.skills {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+}
+
+.skills li {
+  font-size: 14px;
+  border: 1px solid var(--line);
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.resume-intro {
+  font-size: 16px;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.inline-link {
+  color: var(--fg);
+  border-bottom: 1px solid var(--fg);
+}
+
+.resume-placeholder {
+  border: 1px dashed var(--line);
+  padding: 40px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+@media (max-width: 560px) {
+  .job-head {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .job-meta {
+    text-align: left;
+  }
+}
