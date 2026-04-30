@@ -35,6 +35,7 @@ const projects: Project[] = [
     body: 'if you need to choose a text and background color with one hand.',
     links: [
       { label: 'gdays.day (mobile only)', href: 'https://gdays.day' },
+      { label: 'github', href: 'https://github.com/shailenparmar/good-days' },
     ],
   },
   {
