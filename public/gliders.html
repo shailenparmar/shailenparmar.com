@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>glider favicon options</title>
+    <style>
+      :root { color-scheme: dark; }
+      body {
+        margin: 0;
+        background: #000;
+        color: #fff;
+        font-family: 'Menlo', monospace;
+        padding: 48px 24px;
+      }
+      h1 { font-size: 16px; font-weight: 400; margin: 0 0 32px; opacity: 0.6; text-transform: uppercase; letter-spacing: 1.5px; }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .cell {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+      .preview {
+        width: 144px;
+        height: 96px;
+        background: #000;
+        border: 1px solid rgba(255,255,255,0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .preview img { max-width: 128px; max-height: 80px; }
+      .small { width: 24px; height: 16px; opacity: 0.95; }
+      .label { font-size: 12px; opacity: 0.7; text-align: center; }
+    </style>
+  </head>
+  <body>
+    <h1>symmetric oval wings + oval horizontal stabilizer</h1>
+    <div class="grid">
+      <div class="cell"><div class="preview"><img src="/glider-s1-oval.svg"></div><img class="small" src="/glider-s1-oval.svg"><div class="label">s1 · oval (rx 40, ry 4)</div></div>
+      <div class="cell"><div class="preview"><img src="/glider-s2-oval-rounder.svg"></div><img class="small" src="/glider-s2-oval-rounder.svg"><div class="label">s2 · rounder (rx 38, ry 5)</div></div>
+      <div class="cell"><div class="preview"><img src="/glider-s3-oval-thinner.svg"></div><img class="small" src="/glider-s3-oval-thinner.svg"><div class="label">s3 · thinner (rx 42, ry 3)</div></div>
+      <div class="cell"><div class="preview"><img src="/glider-s4-oval-filled.svg"></div><img class="small" src="/glider-s4-oval-filled.svg"><div class="label">s4 · s1 filled</div></div>
+    </div>
+  </body>
+</html>

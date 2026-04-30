@@ -1,7 +1,8 @@
+import { useState } from 'react'
 import './Resume.css'
 
 type Job = {
-  company: string
+  company: React.ReactNode
   location: string
   role: string
   start: string
@@ -56,6 +57,69 @@ const work: Job[] = [
   },
 ]
 
+const designProjects: Job[] = [
+  {
+    company: 'good days pro',
+    location: '',
+    role: 'Designer & Builder',
+    start: '2024',
+    end: 'Present',
+    bullets: [
+      'Designed and built a precision daily editor — every color hex, scratch-made UX, encrypted on device. Shipped to the App Store.',
+    ],
+  },
+  {
+    company: 'lanternlibrary.org',
+    location: '',
+    role: 'Designer & Builder',
+    start: '2026',
+    end: 'Present',
+    bullets: [
+      'An archive of identity-reconstruction recovery stories. Designed the contributor reflection flow (warm AI-guided voice + text) and the reader semantic-match experience.',
+    ],
+  },
+  {
+    company: 'pivarshev.com',
+    location: '',
+    role: 'Designer',
+    start: '2024',
+    end: '2025',
+    bullets: [
+      "Built artist Pavel Pivarshev's portfolio site. Immersive image-first UX, dark mode, and a full mobile experience with click-to-zoom artwork viewer.",
+    ],
+  },
+  {
+    company: 'good dos',
+    location: '',
+    role: 'Designer & Builder',
+    start: '2024',
+    end: 'Present',
+    bullets: [
+      'A type-first calendar tasker, tuned to its functional limit. Pure functionalism: function becomes form.',
+    ],
+  },
+  {
+    company: 'colorways',
+    location: '',
+    role: 'Designer & Builder',
+    start: '2024',
+    end: 'Present',
+    bullets: [
+      'A one-handed mobile color picker for choosing text + background color via a 2D plane (light/dark × muted/vivid). Ships inside good days pro.',
+    ],
+  },
+  {
+    company: 'Syndicate',
+    location: '',
+    role: 'Product Designer',
+    start: 'Jan 2022',
+    end: 'Feb 2022',
+    bullets: [
+      'Group NFT auctions. Designed the proportional bid bar and live presence flow; shipped against every Holaplex auction in February 2022.',
+    ],
+  },
+]
+
 const technical: Job[] = [
   {
     company: 'Duke University',
@@ -79,7 +143,15 @@ const technical: Job[] = [
     ],
   },
   {
-    company: 'TikTok, YouTube, Instagram',
+    company: (
+      <>
+        <a href="https://www.tiktok.com/@shailentok" target="_blank" rel="noreferrer">TikTok</a>
+        {', '}
+        <a href="https://www.youtube.com/@shailen" target="_blank" rel="noreferrer">YouTube</a>
+        {', '}
+        <a href="https://www.instagram.com/shailenstagram" target="_blank" rel="noreferrer">Instagram</a>
+      </>
+    ),
     location: '',
     role: 'Content Creator',
     start: '2013',
@@ -118,20 +190,34 @@ function JobBlock({ job }: { job: Job }) {
 }
 
 export default function Experience() {
+  const [copied, setCopied] = useState(false)
+  const email = 'shailenparmar@gmail.com'
+
+  function copyEmail(e: React.MouseEvent) {
+    e.preventDefault()
+    navigator.clipboard.writeText(email).then(() => {
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 1600)
+    }).catch(() => {})
+  }
+
   return (
     <section className="resume">
-      <h1 className="page-title">experience</h1>
-
       <div className="contact">
-        <a href="mailto:shailenparmar@gmail.com">shailenparmar@gmail.com</a>
+        <a
+          href={`mailto:${email}`}
+          onClick={copyEmail}
+          className="email-link"
+        >
+          {copied ? 'copied' : email}
+        </a>
         <span className="dot" aria-hidden="true">·</span>
         <a href="tel:+12146738233">214.673.8233</a>
         <span className="dot" aria-hidden="true">·</span>
         <a href="https://linkedin.com/in/shailenparmar" target="_blank" rel="noreferrer">
           linkedin.com/in/shailenparmar
         </a>
-        <span className="dot" aria-hidden="true">·</span>
-        <span>Dallas, TX</span>
+        <span className="contact-location">Dallas · SF · NYC</span>
       </div>
 
       <h2 className="section-heading">education</h2>
@@ -156,12 +242,17 @@ export default function Experience() {
 
       <h2 className="section-heading">professional experience</h2>
       <ul className="job-list">
-        {work.map((j) => <JobBlock key={j.company} job={j} />)}
+        {work.map((j) => <JobBlock key={String(j.company)} job={j} />)}
+      </ul>
+
+      <h2 className="section-heading">design projects</h2>
+      <ul className="job-list">
+        {designProjects.map((j) => <JobBlock key={String(j.company)} job={j} />)}
       </ul>
 
       <h2 className="section-heading">technical &amp; creator experience</h2>
       <ul className="job-list">
-        {technical.map((j) => <JobBlock key={j.company + j.role} job={j} />)}
+        {technical.map((j, i) => <JobBlock key={i} job={j} />)}
       </ul>
 
       <h2 className="section-heading">skills &amp; interests</h2>

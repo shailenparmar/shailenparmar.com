@@ -1,32 +1,43 @@
 .resume {
-  max-width: 760px;
+  max-width: 100%;
+  font-family: var(--font-sans);
 }
 
 .contact {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 12px;
+  gap: 8px 14px;
   align-items: center;
-  font-size: 14px;
+  font-size: var(--fs-2);
   color: var(--muted);
-  margin-bottom: 40px;
+  margin-bottom: 48px;
 }
 
 .contact a {
   color: var(--fg);
 }
 
+.email-link {
+  display: inline-block;
+  min-width: 12ch;
+}
+
 .contact .dot {
   color: rgba(255, 255, 255, 0.25);
 }
 
+.contact-location {
+  margin-left: auto;
+}
+
 .section-heading {
-  font-size: 12px;
-  font-weight: 400;
+  font-family: var(--font-sans);
+  font-size: var(--fs-1);
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 1.4px;
+  letter-spacing: 1.6px;
   color: var(--muted);
-  margin: 48px 0 16px;
+  margin: 56px 0 20px;
 }
 
 .job-list {
@@ -35,7 +46,7 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 32px;
 }
 
 .job-head {
@@ -47,42 +58,57 @@
 }
 
 .job-company {
-  font-size: 16px;
-  font-weight: 500;
+  font-family: var(--font-serif);
+  font-size: var(--fs-4);
+  font-weight: 600;
+  letter-spacing: -0.1px;
+}
+
+.job-company a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+}
+
+.job-company a:hover {
+  text-decoration-color: var(--fg);
 }
 
 .job-role {
-  font-size: 15px;
+  font-size: var(--fs-3);
   color: var(--muted);
 }
 
 .job-meta {
-  font-size: 13px;
+  font-size: var(--fs-2);
   color: var(--muted);
   text-align: right;
   white-space: nowrap;
+  line-height: var(--lh-snug);
 }
 
 .job-bullets {
   margin: 8px 0 0;
   padding-left: 18px;
-  font-size: 15px;
-  font-weight: 300;
-  color: var(--fg);
+  font-size: var(--fs-3);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.88);
   display: flex;
   flex-direction: column;
   gap: 6px;
+  line-height: var(--lh-relaxed);
 }
 
 .edu-body {
-  font-size: 15px;
+  font-size: var(--fs-3);
   margin-top: 4px;
 }
 
 .edu-coursework {
-  font-size: 14px;
+  font-size: var(--fs-2);
   color: var(--muted);
   margin-top: 6px;
+  line-height: var(--lh-relaxed);
 }
 
 .coursework-label {
@@ -93,28 +119,49 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .skill-row {
   display: grid;
-  grid-template-columns: 180px 1fr;
-  gap: 16px;
-  font-size: 14px;
+  grid-template-columns: 200px 1fr;
+  gap: 18px;
+  font-size: var(--fs-2);
+  line-height: var(--lh-relaxed);
 }
 
 .skill-row dt {
   font-weight: 500;
   text-transform: lowercase;
+  color: var(--fg);
 }
 
 .skill-row dd {
   margin: 0;
-  color: var(--fg);
-  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
 }
 
 @media (max-width: 640px) {
+  .contact {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .contact .dot {
+    display: none;
+  }
+  .contact-location {
+    order: -1;
+    margin-left: 0;
+    margin-bottom: 6px;
+  }
+
+  .job-company a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
   .job-head {
     flex-direction: column;
     gap: 4px;
