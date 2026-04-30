@@ -16,7 +16,7 @@ const projects: Project[] = [
     body: 'inspired by the snap of a terminal and the proportional control of an oscilloscope, good days is a precision daily editor tuned to its functional limit.',
     links: [
       { label: 'app store', href: 'https://apps.apple.com/us/app/good-days-pro/id6759430252?mt=12' },
-      { label: 'gdays.day', href: 'https://gdays.day' },
+      { label: 'gdays.day (desktop only)', href: 'https://gdays.day' },
       { label: 'github', href: 'https://github.com/shailenparmar/good-days' },
     ],
   },
