@@ -64,23 +64,69 @@ export default function Layout() {
 
     const tryPlay = () => {
       if (stopped) return
-      // Don't fight the browser mid-seek or before it has frames — that
-      // causes AbortError loops and visible black flickers.
-      if (v.seeking || v.readyState < 3) return
+      // Don't fight a seek — that causes AbortError loops and black flickers.
+      if (v.seeking) return
       if (v.paused) {
         const p = v.play()
         if (p && typeof p.catch === 'function') p.catch(() => {})
       }
     }
 
-    // 2s watchdog — long enough to not collide with a seek, short enough
-    // to recover from a stray pause within a frame budget the eye won't catch.
-    const interval = window.setInterval(tryPlay, 2000)
+    // Nudge a stalled decoder by writing currentTime to itself + replaying.
+    // Cheaper than v.load() and usually wakes Safari's GPU pipeline after
+    // backgrounding, low-power-mode resume, or a buffer underrun.
+    const nudge = () => {
+      if (stopped || v.seeking) return
+      try { v.currentTime = v.currentTime } catch { /* noop */ }
+      tryPlay()
+    }
+
+    // Hard recovery: if currentTime hasn't advanced in N seconds while the
+    // page is visible and we expect playback, reset the source. Catches the
+    // rare case where the element enters an undefined state with no events.
+    let lastSeenTime = -1
+    let stuckTicks = 0
+    const STUCK_LIMIT = 3 // 3 ticks * 2s = 6s of no progress
+    const watchdog = () => {
+      if (stopped) return
+      if (document.hidden) { stuckTicks = 0; lastSeenTime = -1; return }
+      tryPlay()
+      if (v.paused || v.seeking || v.readyState < 2) {
+        stuckTicks = 0
+        lastSeenTime = v.currentTime
+        return
+      }
+      if (v.currentTime === lastSeenTime) {
+        stuckTicks++
+        if (stuckTicks === 1) nudge()
+        else if (stuckTicks >= STUCK_LIMIT) {
+          // Last resort — reload the source. Resets buffer state entirely.
+          stuckTicks = 0
+          try {
+            const t = v.currentTime
+            v.load()
+            const onReady = () => { try { v.currentTime = t } catch { /* noop */ }; tryPlay() }
+            v.addEventListener('loadeddata', onReady, { once: true })
+          } catch { /* noop */ }
+        }
+      } else {
+        stuckTicks = 0
+        lastSeenTime = v.currentTime
+      }
+    }
+    const interval = window.setInterval(watchdog, 2000)
 
     const onPause = () => tryPlay()
     const onCanPlay = () => tryPlay()
     const onLoadedData = () => tryPlay()
-    const onVisibility = () => { if (!document.hidden) tryPlay() }
+    const onWaiting = () => { /* let it buffer; watchdog will nudge if stuck */ }
+    const onStalled = () => nudge()
+    const onError = () => {
+      // Element entered error state — full reset.
+      try { v.load() } catch { /* noop */ }
+      tryPlay()
+    }
+    const onVisibility = () => { if (!document.hidden) nudge() }
     const onUserInteract = () => tryPlay()
     const onEnded = () => {
       // Belt-and-suspenders loop: native `loop` attr should handle it, but
@@ -94,9 +140,13 @@ export default function Layout() {
     v.addEventListener('canplay', onCanPlay)
     v.addEventListener('loadeddata', onLoadedData)
     v.addEventListener('pause', onPause)
+    v.addEventListener('waiting', onWaiting)
+    v.addEventListener('stalled', onStalled)
+    v.addEventListener('error', onError)
     v.addEventListener('ended', onEnded)
     document.addEventListener('visibilitychange', onVisibility)
-    window.addEventListener('focus', tryPlay)
+    window.addEventListener('focus', nudge)
+    window.addEventListener('pageshow', nudge)
     document.addEventListener('click', onUserInteract, true)
     document.addEventListener('keydown', onUserInteract, true)
     document.addEventListener('touchstart', onUserInteract, { capture: true, passive: true })
@@ -113,9 +163,13 @@ export default function Layout() {
       v.removeEventListener('canplay', onCanPlay)
       v.removeEventListener('loadeddata', onLoadedData)
       v.removeEventListener('pause', onPause)
+      v.removeEventListener('waiting', onWaiting)
+      v.removeEventListener('stalled', onStalled)
+      v.removeEventListener('error', onError)
       v.removeEventListener('ended', onEnded)
       document.removeEventListener('visibilitychange', onVisibility)
-      window.removeEventListener('focus', tryPlay)
+      window.removeEventListener('focus', nudge)
+      window.removeEventListener('pageshow', nudge)
       document.removeEventListener('click', onUserInteract, true)
       document.removeEventListener('keydown', onUserInteract, true)
       document.removeEventListener('touchstart', onUserInteract, true)
