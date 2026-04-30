@@ -13,7 +13,6 @@ const projects: Project[] = [
   {
     title: 'good days',
     image: '/design/good-days.jpg',
-    imageFit: 'contain',
     body: 'inspired by the snap of a terminal and the proportional control of an oscilloscope, good days is a precision daily editor tuned to its functional limit.',
     links: [
       { label: 'app store', href: 'https://apps.apple.com/us/app/good-days-pro/id6759430252?mt=12' },
