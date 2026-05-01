@@ -59,7 +59,7 @@
 
 .job-company {
   font-family: var(--font-serif);
-  font-size: var(--fs-4);
+  font-size: var(--fs-3);
   font-weight: 600;
   letter-spacing: -0.1px;
 }
@@ -75,7 +75,7 @@
 }
 
 .job-role {
-  font-size: var(--fs-3);
+  font-size: var(--fs-2);
   color: var(--muted);
 }
 
@@ -90,7 +90,7 @@
 .job-bullets {
   margin: 8px 0 0;
   padding-left: 18px;
-  font-size: var(--fs-3);
+  font-size: var(--fs-2);
   font-weight: 400;
   color: rgba(255, 255, 255, 0.88);
   display: flex;
@@ -100,7 +100,7 @@
 }
 
 .edu-body {
-  font-size: var(--fs-3);
+  font-size: var(--fs-2);
   margin-top: 4px;
 }
 
