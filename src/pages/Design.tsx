@@ -67,7 +67,7 @@ const projects: Project[] = [
   {
     title: ‘quickchat’,
     image: ‘/design/quickchat.png’,
-    body: ‘i led a team of 9 designers and engineers to build a functional mvp at facebook’s 2020 summer hackathon — first place in remote presence and quality of work; assigned to full-time production after the win.’,
+    body: "i led a team of 9 designers and engineers to build a functional mvp at facebook’s 2020 summer hackathon — first place in remote presence and quality of work; assigned to full-time production after the win.",
   },
   {
     title: 'syndicate',
