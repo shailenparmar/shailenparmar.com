@@ -57,68 +57,6 @@ const work: Job[] = [
   },
 ]
 
-const designProjects: Job[] = [
-  {
-    company: 'good days pro',
-    location: '',
-    role: 'Designer & Builder',
-    start: '2024',
-    end: 'Present',
-    bullets: [
-      'Designed and built a precision daily editor — every color hex, scratch-made UX, encrypted on device. Shipped to the App Store.',
-    ],
-  },
-  {
-    company: 'lanternlibrary.org',
-    location: '',
-    role: 'Designer & Builder',
-    start: '2026',
-    end: 'Present',
-    bullets: [
-      'An archive of identity-reconstruction recovery stories. Designed the contributor reflection flow (warm AI-guided voice + text) and the reader semantic-match experience.',
-    ],
-  },
-  {
-    company: 'pivarshev.com',
-    location: '',
-    role: 'Designer',
-    start: '2024',
-    end: '2025',
-    bullets: [
-      "Built artist Pavel Pivarshev's portfolio site. Immersive image-first UX, dark mode, and a full mobile experience with click-to-zoom artwork viewer.",
-    ],
-  },
-  {
-    company: 'good dos',
-    location: '',
-    role: 'Designer & Builder',
-    start: '2024',
-    end: 'Present',
-    bullets: [
-      'A type-first calendar tasker, tuned to its functional limit. Pure functionalism: function becomes form.',
-    ],
-  },
-  {
-    company: 'colorways',
-    location: '',
-    role: 'Designer & Builder',
-    start: '2024',
-    end: 'Present',
-    bullets: [
-      'A one-handed mobile color picker for choosing text + background color via a 2D plane (light/dark × muted/vivid). Ships inside good days pro.',
-    ],
-  },
-  {
-    company: 'Syndicate',
-    location: '',
-    role: 'Product Designer',
-    start: 'Jan 2022',
-    end: 'Feb 2022',
-    bullets: [
-      'Group NFT auctions. Designed the proportional bid bar and live presence flow; shipped against every Holaplex auction in February 2022.',
-    ],
-  },
-]
 
 const technical: Job[] = [
   {
@@ -243,11 +181,6 @@ export default function Experience() {
       <h2 className="section-heading">professional experience</h2>
       <ul className="job-list">
         {work.map((j) => <JobBlock key={String(j.company)} job={j} />)}
-      </ul>
-
-      <h2 className="section-heading">design projects</h2>
-      <ul className="job-list">
-        {designProjects.map((j) => <JobBlock key={String(j.company)} job={j} />)}
       </ul>
 
       <h2 className="section-heading">technical &amp; creator experience</h2>
