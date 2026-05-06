@@ -1,3 +1,4 @@
+import TopButton from '../components/TopButton'
 import './Gallery.css'
 import './Design.css'
 
@@ -159,6 +160,8 @@ export default function Design() {
           )
         })}
       </div>
+
+      <TopButton />
     </section>
   )
 }

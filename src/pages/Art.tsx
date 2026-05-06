@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Lightbox from '../components/Lightbox'
+import TopButton from '../components/TopButton'
 import './Gallery.css'
 import './Video.css'
 
@@ -74,6 +75,8 @@ export default function Art() {
           onNavigate={(next) => setOpen(next)}
         />
       )}
+
+      <TopButton />
     </section>
   )
 }

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import TopButton from '../components/TopButton'
 import './Resume.css'
 
 type Job = {
@@ -197,6 +198,8 @@ export default function Experience() {
           </div>
         ))}
       </dl>
+
+      <TopButton />
     </section>
   )
 }

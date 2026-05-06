@@ -49,6 +49,33 @@ body {
   color: var(--fg);
 }
 
+body.home-active {
+  overflow: hidden;
+}
+
+.top-btn-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 64px 0 0;
+}
+
+.top-btn {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2);
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: color 0.15s;
+}
+
+.top-btn:hover {
+  color: var(--fg);
+}
+
 a {
   color: inherit;
   text-decoration: none;
