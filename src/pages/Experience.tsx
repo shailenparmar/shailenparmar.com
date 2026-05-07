@@ -14,17 +14,6 @@ type Job = {
 
 const work: Job[] = [
   {
-    company: 'Shamoun & Norman',
-    location: 'Dallas, TX',
-    role: 'Legal Assistant',
-    start: 'Jan 2026',
-    end: 'Present',
-    bullets: [
-      'Analyze legal documents, draft case summaries, and review testimony for inconsistencies to support attorneys in case preparation.',
-      'Synthesize large volumes of complex information into clear, actionable briefs for senior stakeholders.',
-    ],
-  },
-  {
     company: 'Meta (WhatsApp)',
     location: 'San Francisco, CA',
     role: 'Content Strategist',
@@ -38,16 +27,6 @@ const work: Job[] = [
     ],
   },
   {
-    company: 'Shelton School',
-    location: 'Dallas, TX',
-    role: 'Substitute Teacher',
-    start: 'Nov 2023',
-    end: 'Jan 2026',
-    bullets: [
-      'Taught students with neurological learning differences (autism, ADHD, OCD); adapted lessons and classroom structure to individual needs.',
-    ],
-  },
-  {
     company: 'San Francisco Zen Center',
     location: 'San Francisco, CA',
     role: 'Work Practice Apprentice',
@@ -56,7 +35,7 @@ const work: Job[] = [
     bullets: [
       'Two-month residential apprenticeship at SFZC City Center, one of the longest-running Zen training communities in the West.',
       'Full daily schedule of zazen, services, study, and work practice alongside the kitchen and guest crews.',
-      'Work as practice: every task — cooking, cleaning, hosting — done with the same attention as meditation. Living and working closely with a community of ~60 residents.',
+      'Work as practice: every task — cooking, cleaning, hosting — done with the same attention as meditation. Living and working closely with a community of ~40 residents.',
     ],
   },
   {
@@ -68,6 +47,26 @@ const work: Job[] = [
     bullets: [
       'Two-week residential stay in the daily life of the temple — zazen, services, and work practice with the farm, garden, and guest crews.',
       'Prerequisite for the Work Practice Apprenticeship at City Center.',
+    ],
+  },
+  {
+    company: 'Shelton School',
+    location: 'Dallas, TX',
+    role: 'Substitute Teacher',
+    start: 'Nov 2023 — Jan 2025; May 2025',
+    end: 'Jan 2026',
+    bullets: [
+      'Taught students with neurological learning differences (autism, ADHD, OCD); adapted lessons and classroom structure to individual needs.',
+    ],
+  },
+  {
+    company: 'Shamoun & Norman',
+    location: 'Dallas, TX',
+    role: 'Legal Assistant',
+    start: 'Jan 2026',
+    end: 'Present',
+    bullets: [
+      'Drafting case summaries, reviewing testimony, and synthesizing case files for attorneys in trial preparation.',
     ],
   },
   {
@@ -142,7 +141,7 @@ function JobBlock({ job }: { job: Job }) {
         </div>
         <div className="job-meta">
           {job.location && <div>{job.location}</div>}
-          <div>{job.start} — {job.end}</div>
+          <div>{job.start === job.end ? job.start : `${job.start} — ${job.end}`}</div>
         </div>
       </div>
       <ul className="job-bullets">
