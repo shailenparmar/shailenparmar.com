@@ -117,7 +117,8 @@ export default function Layout() {
           // Last resort — reload the source. Resets buffer state entirely.
           stuckTicks = 0
           try {
-            const t = v.currentTime
+            const atEnd = v.duration && v.currentTime >= v.duration - 0.5
+            const t = atEnd ? 0 : v.currentTime
             v.load()
             const onReady = () => { try { v.currentTime = t } catch { /* noop */ }; tryPlay() }
             v.addEventListener('loadeddata', onReady, { once: true })
@@ -198,7 +199,6 @@ export default function Layout() {
         src="/video/home-bg.mp4"
         poster="/video/home-poster.jpg"
         autoPlay
-        loop
         muted
         playsInline
         preload="auto"
