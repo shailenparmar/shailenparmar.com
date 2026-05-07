@@ -166,7 +166,7 @@ export default function Experience() {
   return (
     <section className="resume">
       <div className="design-statement">
-        <p>at duke, i studied neuroscience and visual design. since then, i've worked in big tech, taught middle school, and lived in a buddhist monastery. i'm looking for my next job to go deep in.</p>
+        <p>at duke, i studied neuroscience and visual design. since then, i've worked in big tech, taught middle school, and lived in a buddhist monastery. now i'm looking for my next job to go deep in.</p>
       </div>
 
       <div className="contact">
