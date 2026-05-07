@@ -50,6 +50,7 @@ body {
   color: var(--fg);
 }
 
+html.home-active,
 body.home-active {
   overflow: hidden;
 }

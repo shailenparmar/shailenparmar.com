@@ -15,7 +15,11 @@ export default function Layout() {
 
   useEffect(() => {
     document.body.classList.toggle('home-active', isHome)
-    return () => document.body.classList.remove('home-active')
+    document.documentElement.classList.toggle('home-active', isHome)
+    return () => {
+      document.body.classList.remove('home-active')
+      document.documentElement.classList.remove('home-active')
+    }
   }, [isHome])
 
   useEffect(() => {
