@@ -69,7 +69,6 @@ body.home-active {
   background: none;
   border: none;
   padding: 0;
-  transition: color 0.15s;
 }
 
 .top-btn:hover {

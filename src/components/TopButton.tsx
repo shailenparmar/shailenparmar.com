@@ -4,7 +4,7 @@ export default function TopButton() {
       <button
         type="button"
         className="top-btn"
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
       >
         ↑ top
       </button>
