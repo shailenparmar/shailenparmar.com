@@ -28,5 +28,7 @@
   }
   .tagline {
     margin: 0 auto;
+    max-width: none;
+    white-space: nowrap;
   }
 }
