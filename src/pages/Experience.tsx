@@ -20,9 +20,9 @@ const work: Job[] = [
     start: 'Aug 2021',
     end: 'Nov 2022',
     bullets: [
-      'Conducted competitive analyses of help-center platforms across leading tech companies; delivered weekly research presentations to product and engineering stakeholders.',
-      'Analyzed user behavior data and support-ticket patterns to redesign Help Center information architecture; reduced support volume across a 2B+ user base.',
       'Published 30+ feature-launch articles reaching ~15M views/month across 33 languages; coordinated cross-functionally with product, engineering, legal, and localization teams.',
+      'Analyzed user behavior data and support-ticket patterns to redesign Help Center information architecture; reduced support volume across a 2B+ user base.',
+      'Conducted competitive analyses of help-center platforms across leading tech companies; delivered weekly research presentations to product and engineering stakeholders.',
       'Tracked content performance metrics across 33 markets to prioritize strategy and inform product decisions; promoted within first 6 months.',
     ],
   },
