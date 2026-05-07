@@ -19,6 +19,16 @@ export default function Layout() {
   }, [isHome])
 
   useEffect(() => {
+    if (!isHome) return
+    const v = videoRef.current
+    if (!v) return
+    if (v.paused && !v.seeking) {
+      const p = v.play()
+      if (p && typeof p.catch === 'function') p.catch(() => {})
+    }
+  }, [isHome])
+
+  useEffect(() => {
     const v = videoRef.current
     if (!v) return
 
