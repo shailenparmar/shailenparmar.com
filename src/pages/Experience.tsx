@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import TopButton from '../components/TopButton'
 import './Resume.css'
+import './Design.css'
 
 type Job = {
   company: React.ReactNode
@@ -157,6 +158,10 @@ export default function Experience() {
           linkedin.com/in/shailenparmar
         </a>
         <span className="contact-location">Dallas · SF · NYC</span>
+      </div>
+
+      <div className="design-statement">
+        <p>at duke, i studied neuroscience and visual design. since then, i've worked in big tech, taught middle school, and lived in a buddhist monastery. i'm looking for my next job to go deep in.</p>
       </div>
 
       <h2 className="section-heading">education</h2>
