@@ -41,7 +41,9 @@ export default function Art() {
   return (
     <section>
       <div className="design-statement">
-        <p>i trained in classical drawing and painting for ten years. i've written and produced over a 100 short films. here are some of my favorite pieces:</p>
+        <p>a decade of classical visual arts training taught me how to see detail.</p>
+        <p>logging thousands of hours flying racing drones taught me how to dance with a camera.</p>
+        <p>contemplative buddhist practice opened my heart to the collective human story.</p>
       </div>
       <div className="grid">
         {videos.map((v) => (
