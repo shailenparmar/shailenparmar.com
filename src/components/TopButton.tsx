@@ -6,7 +6,8 @@ export default function TopButton() {
         className="top-btn"
         onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
       >
-        top<br />↑
+        <span>top</span>
+        <span className="top-btn-arrow">↑</span>
       </button>
     </div>
   )

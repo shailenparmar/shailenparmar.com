@@ -61,9 +61,9 @@ body.home-active {
 
 .top-btn {
   font-family: var(--font-sans);
-  font-size: var(--fs-2);
+  font-size: var(--fs-3);
   font-weight: 600;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.6);
   letter-spacing: 0.2px;
   cursor: pointer;
   background: none;
@@ -72,7 +72,16 @@ body.home-active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
+}
+
+.top-btn-arrow {
+  font-size: var(--fs-5);
+  line-height: 1;
+}
+
+.top-btn:hover {
+  color: var(--fg);
 }
 
 .top-btn:hover {
