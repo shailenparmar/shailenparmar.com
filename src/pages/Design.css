@@ -47,17 +47,14 @@
 
 .project-image {
   width: 100%;
-  aspect-ratio: 4 / 3;
   background: #0d0d0d;
-  overflow: hidden;
   display: block;
 }
 
 .project-image img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
+  display: block;
 }
 
 .project-image img.project-img-contain {
