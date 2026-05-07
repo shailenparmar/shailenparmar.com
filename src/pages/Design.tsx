@@ -82,7 +82,7 @@ export default function Design() {
     <section>
       <div className="design-statement">
         <p>i design fun interfaces for everyday products.</p>
-        <p>my style has been refined by two decades of world-class fpv drone racing.</p>
+        <p>my style has been refined by a decade of world-class fpv drone racing.</p>
         <p>
           i know what it feels like for my body's kinesthetics to merge with a machine's, and i try to create software that meets this standard of fluency.{' '}
           <a
