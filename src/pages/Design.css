@@ -53,20 +53,19 @@
 
 .project-image {
   width: 100%;
+  aspect-ratio: 3 / 2;
   background: #0d0d0d;
+  overflow: hidden;
   display: block;
 }
 
 .project-image img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
-.project-image img.project-img-contain {
-  object-fit: contain;
-  background: #000;
-}
 
 .project-image-link {
   cursor: pointer;
