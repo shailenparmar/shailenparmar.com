@@ -48,6 +48,29 @@ const work: Job[] = [
     ],
   },
   {
+    company: 'San Francisco Zen Center',
+    location: 'San Francisco, CA',
+    role: 'Work Practice Apprentice',
+    start: 'Feb 2025',
+    end: 'May 2025',
+    bullets: [
+      'Two-month residential apprenticeship at SFZC City Center, one of the longest-running Zen training communities in the West.',
+      'Full daily schedule of zazen, services, study, and work practice alongside the kitchen and guest crews.',
+      'Work as practice: every task — cooking, cleaning, hosting — done with the same attention as meditation. Living and working closely with a community of ~60 residents.',
+    ],
+  },
+  {
+    company: 'Green Gulch Farm Zen Center',
+    location: 'Marin, CA',
+    role: 'Guest Student',
+    start: 'Oct 2024',
+    end: 'Oct 2024',
+    bullets: [
+      'Two-week residential stay in the daily life of the temple — zazen, services, and work practice with the farm, garden, and guest crews.',
+      'Prerequisite for the Work Practice Apprenticeship at City Center.',
+    ],
+  },
+  {
     company: 'Project Arts',
     location: 'Durham, NC',
     role: 'Program Director',
