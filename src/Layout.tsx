@@ -19,12 +19,15 @@ export default function Layout() {
   }, [isHome])
 
   useEffect(() => {
-    if (!isHome) return
     const v = videoRef.current
     if (!v) return
-    if (v.paused && !v.seeking) {
-      const p = v.play()
-      if (p && typeof p.catch === 'function') p.catch(() => {})
+    if (isHome) {
+      if (v.paused && !v.seeking) {
+        const p = v.play()
+        if (p && typeof p.catch === 'function') p.catch(() => {})
+      }
+    } else {
+      v.pause()
     }
   }, [isHome])
 
@@ -71,9 +74,10 @@ export default function Layout() {
     window.addEventListener('beforeunload', saveTime)
 
     let stopped = false
+    const isOnHome = () => window.location.pathname === '/'
 
     const tryPlay = () => {
-      if (stopped) return
+      if (stopped || !isOnHome()) return
       // Don't fight a seek — that causes AbortError loops and black flickers.
       if (v.seeking) return
       if (v.paused) {
@@ -86,7 +90,7 @@ export default function Layout() {
     // Cheaper than v.load() and usually wakes Safari's GPU pipeline after
     // backgrounding, low-power-mode resume, or a buffer underrun.
     const nudge = () => {
-      if (stopped || v.seeking) return
+      if (stopped || !isOnHome() || v.seeking) return
       try { v.currentTime = v.currentTime } catch { /* noop */ }
       tryPlay()
     }
