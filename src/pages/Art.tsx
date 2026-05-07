@@ -41,7 +41,7 @@ export default function Art() {
   return (
     <section>
       <div className="design-statement">
-        <p>drone racing taught me how to dance with a camera at 70 miles per hour. drawing and painting trained my eye. studying neuroscience ignited my intellectual curiosity.</p>
+        <p>drone racing taught me how to dance with a camera at 70 miles per hour. drawing and painting trained my eye. contemplative buddhist practice opened my heart.</p>
         <p>filmmaking is where it all came together.</p>
       </div>
       <div className="grid">
