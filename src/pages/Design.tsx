@@ -6,6 +6,7 @@ type Project = {
   title: string
   image?: string
   imageFit?: 'cover' | 'contain'
+  imagePosition?: string
   body: string
   links?: { label: string; href: string }[]
 }
@@ -33,7 +34,7 @@ const projects: Project[] = [
   {
     title: 'colorways',
     image: '/design/good-days-color-picker.jpg',
-    imageFit: 'contain',
+    imagePosition: 'center 22%',
     body: 'novel interface for selecting hexcodes. control 3 axes across 2 parameters with 1 hand. slight learning curve, very handy. try it out.',
     links: [
       { label: 'gdays.day (mobile only)', href: 'https://gdays.day' },
@@ -118,6 +119,7 @@ export default function Design() {
                   alt={p.title}
                   loading="lazy"
                   className={p.imageFit === 'contain' ? 'project-img-contain' : ''}
+                  style={p.imagePosition ? { objectPosition: p.imagePosition } : undefined}
                 />
               ) : (
                 <div className="project-image-empty" aria-hidden="true">
