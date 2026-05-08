@@ -53,7 +53,7 @@ const work: Job[] = [
     company: 'Shelton School',
     location: 'Dallas, TX',
     role: 'Substitute Teacher',
-    start: 'Nov 2023',
+    start: 'Nov 2023 — Jan 2025; May 2025',
     end: 'Jan 2026',
     bullets: [
       'Taught students with neurological learning differences (autism, ADHD, OCD); adapted lessons and classroom structure to individual needs.',
