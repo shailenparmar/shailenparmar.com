@@ -44,6 +44,10 @@ body,
   overflow-x: hidden;
 }
 
+html {
+  zoom: 0.9;
+}
+
 body {
   font-size: 16px;
   line-height: 1.55;
