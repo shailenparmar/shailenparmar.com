@@ -4,7 +4,7 @@ import './Layout.css'
 
 const navItems = [
   { to: '/art', label: 'art' },
-  { to: '/design', label: 'design' },
+  { to: '/projects', label: 'projects' },
   { to: '/experience', label: 'experience' },
 ]
 
