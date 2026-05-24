@@ -216,6 +216,7 @@ export default function Experience() {
             </>
           )}
         </a>
+        <span className="dot" aria-hidden="true">·</span>
         <button
           type="button"
           className="resume-toggle"
@@ -241,6 +242,7 @@ export default function Experience() {
             </>
           )}
         </button>
+        <span className="dot" aria-hidden="true">·</span>
         <a
           href="https://linkedin.com/in/shailenparmar"
           target="_blank"

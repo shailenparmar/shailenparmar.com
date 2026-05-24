@@ -9,9 +9,8 @@
 
 .contact {
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  gap: 14px;
+  flex-wrap: wrap;
+  gap: 8px 14px;
   align-items: center;
   font-size: var(--fs-2);
   color: var(--muted);
@@ -210,12 +209,9 @@
     max-width: 420px;
   }
   .contact {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
-  .contact .dot {
-    display: none;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 8px;
   }
   .job-company a {
     text-decoration: underline;
