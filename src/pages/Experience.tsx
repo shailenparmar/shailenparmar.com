@@ -276,7 +276,7 @@ export default function Experience() {
       </>
       )}
 
-      <TopButton />
+      {showResume && <TopButton />}
     </section>
   )
 }
