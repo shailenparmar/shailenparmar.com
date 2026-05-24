@@ -23,6 +23,12 @@
   gap: 6px;
 }
 
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .contact .dot {
   color: rgba(255, 255, 255, 0.25);
 }

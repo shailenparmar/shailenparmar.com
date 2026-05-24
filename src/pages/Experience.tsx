@@ -196,8 +196,22 @@ export default function Experience() {
           )}
         </a>
         <span className="dot" aria-hidden="true">·</span>
-        <a href="https://linkedin.com/in/shailenparmar" target="_blank" rel="noreferrer">
-          linkedin.com/in/shailenparmar
+        <a
+          href="https://linkedin.com/in/shailenparmar"
+          target="_blank"
+          rel="noreferrer"
+          className="contact-link"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+            <rect x="2" y="9" width="4" height="12" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+          linkedin
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <line x1="7" y1="17" x2="17" y2="7" />
+            <polyline points="7 7 17 7 17 17" />
+          </svg>
         </a>
         <span className="contact-location">San Francisco, California</span>
       </div>
