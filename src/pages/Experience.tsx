@@ -183,14 +183,6 @@ export default function Experience() {
         <p>if you like my website, let's chat. i check my email!</p>
       </div>
 
-      <figure className="portrait">
-        <img src="/portrait.jpeg" alt="portrait of shailen" loading="lazy" />
-        <figcaption>
-          portrait by my artist friend{' '}
-          <a href="https://pivarshev.com/index.html" target="_blank" rel="noreferrer" className="inspiration-link">pj pivarshev</a>
-        </figcaption>
-      </figure>
-
       <div className="contact">
         <a
           href="#"
@@ -258,6 +250,14 @@ export default function Experience() {
           <span className="contact-location">San Francisco, California</span>
         )}
       </div>
+
+      <figure className="portrait">
+        <img src="/portrait.jpeg" alt="portrait of shailen" loading="lazy" />
+        <figcaption>
+          portrait by my artist friend{' '}
+          <a href="https://pivarshev.com/index.html" target="_blank" rel="noreferrer" className="inspiration-link">pj pivarshev</a>
+        </figcaption>
+      </figure>
 
       {showResume && (
       <>

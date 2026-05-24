@@ -3,6 +3,10 @@
   font-family: var(--font-sans);
 }
 
+.resume .design-statement {
+  margin-bottom: 24px;
+}
+
 .contact {
   display: flex;
   flex-wrap: wrap;
