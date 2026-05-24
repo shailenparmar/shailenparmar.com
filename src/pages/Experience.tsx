@@ -177,7 +177,22 @@ export default function Experience() {
           className="email-link"
           aria-label="copy email address"
         >
-          {copied ? 'copied' : 'shailenparmar at gmail'}
+          {copied ? (
+            <>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              copied
+            </>
+          ) : (
+            <>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+              </svg>
+              copy email
+            </>
+          )}
         </a>
         <span className="dot" aria-hidden="true">·</span>
         <a href="https://linkedin.com/in/shailenparmar" target="_blank" rel="noreferrer">
