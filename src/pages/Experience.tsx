@@ -153,7 +153,8 @@ function JobBlock({ job }: { job: Job }) {
 
 export default function Experience() {
   const [copied, setCopied] = useState(false)
-  const email = 'shailenparmar@gmail.com'
+  // Assembled at runtime so the raw address never sits in the page source (scraper avoidance).
+  const email = 'shailenparmar' + '@' + 'gmail.com'
 
   function copyEmail(e: React.MouseEvent) {
     e.preventDefault()
@@ -171,14 +172,13 @@ export default function Experience() {
 
       <div className="contact">
         <a
-          href={`mailto:${email}`}
+          href="#"
           onClick={copyEmail}
           className="email-link"
+          aria-label="copy email address"
         >
-          {copied ? 'copied' : email}
+          {copied ? 'copied' : 'shailenparmar at gmail'}
         </a>
-        <span className="dot" aria-hidden="true">·</span>
-        <a href="tel:+12146738233">214.673.8233</a>
         <span className="dot" aria-hidden="true">·</span>
         <a href="https://linkedin.com/in/shailenparmar" target="_blank" rel="noreferrer">
           linkedin.com/in/shailenparmar
