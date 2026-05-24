@@ -24,6 +24,8 @@ const projects: Project[] = [
   },
   {
     title: 'drones',
+    image: '/design/drones.png',
+    imagePosition: 'center 30%',
     body: "i've been building and flying radio control airplanes and drones for 15 years.\n\ni'm an expert pilot with thousands of hours logged in simulation and actual flying.",
     links: [
       { label: 'flight videos', href: 'https://photos.app.goo.gl/PqFfXuQA5yGj4hxR7' },
