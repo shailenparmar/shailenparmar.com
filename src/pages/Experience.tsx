@@ -168,7 +168,17 @@ export default function Experience() {
   return (
     <section className="resume">
       <div className="design-statement">
-        <p>at duke, i studied neuroscience and visual design. since then, i've worked in big tech, taught middle school, and lived in a buddhist monastery. now i'm looking for my next job to go deep in.</p>
+        <p>at duke, i studied neuroscience and visual design. since then, i've worked in big tech, taught middle school, and lived in a buddhist monastery. i'm looking for my next job to go deep in.</p>
+        <p>
+          here are some people that have inspired me:{' '}
+          <a href="https://en.wikipedia.org/wiki/Marshall_Rosenberg" target="_blank" rel="noreferrer" className="inspiration-link">marshall rosenberg</a>,{' '}
+          <a href="https://www.youtube.com/watch?v=kvfrVrh76Mk" target="_blank" rel="noreferrer" className="inspiration-link">steve jobs</a>,{' '}
+          <a href="https://www.youtube.com/watch?v=pFioOF8b3u4" target="_blank" rel="noreferrer" className="inspiration-link">lorde</a>,{' '}
+          <a href="https://www.youtube.com/user/rcsuperpowers" target="_blank" rel="noreferrer" className="inspiration-link">dave powers</a>,{' '}
+          <a href="https://hermesamara.org/rob-burbea" target="_blank" rel="noreferrer" className="inspiration-link">rob burbea</a>,{' '}
+          <a href="https://www.youtube.com/channel/UCuWsua1_gQ0inbBTqxmYuIQ" target="_blank" rel="noreferrer" className="inspiration-link">frank yang</a>, and{' '}
+          <a href="https://www.youtube.com/channel/UCEhrqktws4X8qRaAr-JJwPQ" target="_blank" rel="noreferrer" className="inspiration-link">beth upton</a>.
+        </p>
       </div>
 
       <div className="contact">
@@ -195,14 +205,22 @@ export default function Experience() {
             </>
           )}
         </a>
-        {!showResume && (
-          <>
-            <span className="dot" aria-hidden="true">·</span>
-            <button
-              type="button"
-              className="resume-toggle"
-              onClick={() => setShowResume(true)}
-            >
+        <span className="dot" aria-hidden="true">·</span>
+        <button
+          type="button"
+          className="resume-toggle"
+          onClick={() => setShowResume((v) => !v)}
+        >
+          {showResume ? (
+            <>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+              close resume
+            </>
+          ) : (
+            <>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14 2 14 8 20 8" />
@@ -210,9 +228,9 @@ export default function Experience() {
                 <line x1="8" y1="17" x2="16" y2="17" />
               </svg>
               open resume
-            </button>
-          </>
-        )}
+            </>
+          )}
+        </button>
         <span className="dot" aria-hidden="true">·</span>
         <a
           href="https://linkedin.com/in/shailenparmar"
