@@ -34,7 +34,8 @@
 }
 
 .contact-location {
-  margin-left: auto;
+  flex-basis: 100%;
+  margin-top: 2px;
 }
 
 .resume-toggle {
@@ -172,12 +173,6 @@
   .contact .dot {
     display: none;
   }
-  .contact-location {
-    order: -1;
-    margin-left: 0;
-    margin-bottom: 6px;
-  }
-
   .job-company a {
     text-decoration: underline;
     text-underline-offset: 3px;
