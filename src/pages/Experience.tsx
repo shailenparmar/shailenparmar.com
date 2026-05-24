@@ -172,7 +172,7 @@ export default function Experience() {
         <p>
           some people who have inspired me:{' '}
           <a href="https://en.wikipedia.org/wiki/Marshall_Rosenberg" target="_blank" rel="noreferrer" className="inspiration-link">marshall rosenberg</a>,{' '}
-          <a href="https://www.youtube.com/results?search_query=steve+jobs+the+iphone" target="_blank" rel="noreferrer" className="inspiration-link">steve jobs</a>,{' '}
+          <a href="https://www.youtube.com/watch?v=MnrJzXM7a6o" target="_blank" rel="noreferrer" className="inspiration-link">steve jobs</a>,{' '}
           <a href="https://rosalewis.co.uk/" target="_blank" rel="noreferrer" className="inspiration-link">rosa lewis</a>,{' '}
           <a href="https://www.youtube.com/watch?v=brjQ_mVO0Dc" target="_blank" rel="noreferrer" className="inspiration-link">dave powers</a>,{' '}
           <a href="https://hermesamara.org/rob-burbea" target="_blank" rel="noreferrer" className="inspiration-link">rob burbea</a>,{' '}
