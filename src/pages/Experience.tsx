@@ -183,7 +183,7 @@ export default function Experience() {
         <a href="https://linkedin.com/in/shailenparmar" target="_blank" rel="noreferrer">
           linkedin.com/in/shailenparmar
         </a>
-        <span className="contact-location">Dallas · SF</span>
+        <span className="contact-location">San Francisco, California</span>
       </div>
 
       <h2 className="section-heading">education</h2>
