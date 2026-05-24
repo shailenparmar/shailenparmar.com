@@ -170,7 +170,7 @@ export default function Experience() {
       <div className="design-statement">
         <p>at duke, i studied neuroscience and visual design. since then, i've worked in big tech, taught middle school, and lived in a buddhist monastery. i'm looking for my next job to go deep in.</p>
         <p>
-          some people who have inspired me:{' '}
+          some people whose work i admire:{' '}
           <a href="https://en.wikipedia.org/wiki/Marshall_Rosenberg" target="_blank" rel="noreferrer" className="inspiration-link">marshall rosenberg</a>,{' '}
           <a href="https://www.youtube.com/watch?v=MnrJzXM7a6o" target="_blank" rel="noreferrer" className="inspiration-link">steve jobs</a>,{' '}
           <a href="https://rosalewis.co.uk/" target="_blank" rel="noreferrer" className="inspiration-link">rosa lewis</a>,{' '}
