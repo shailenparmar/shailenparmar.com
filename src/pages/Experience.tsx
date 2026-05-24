@@ -177,7 +177,7 @@ export default function Experience() {
       </figure>
       <div className="hero-text">
       <div className="design-statement">
-        <p>at duke, i studied neuroscience and visual design. since then, i've worked in big tech, taught middle school, and lived in a buddhist monastery. i'm in san francisco looking for my next job to go deep in.</p>
+        <p>at duke, i studied neuroscience and visual design. since then, i've worked in big tech, taught middle school, and lived in a buddhist monastery. i'm in the bay looking for my next job to go deep in.</p>
         <p>
           dream dinner party guests:{' '}
           <a href="https://hermesamara.org/rob-burbea" target="_blank" rel="noreferrer" className="inspiration-link">rob burbea</a>,{' '}
