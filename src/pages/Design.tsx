@@ -34,7 +34,7 @@ const projects: Project[] = [
   {
     title: 'lanternlibrary.org',
     image: '/design/lanternlibrary.png',
-    body: 'an archive of mental health recovery stories focused on ocd, body image, and physical disability. warm reflector aid with llm assisted prompting to help you dig deep.',
+    body: 'an archive of mental health recovery stories focused on ocd, body image, and physical disability. warm reflector aid with llm assisted prompting to help users dig deep.',
     links: [
       { label: 'lanternlibrary.org', href: 'https://lanternlibrary.org' },
     ],
