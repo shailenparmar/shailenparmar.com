@@ -5,7 +5,7 @@ import './Layout.css'
 const navItems = [
   { to: '/art', label: 'art' },
   { to: '/projects', label: 'projects' },
-  { to: '/experience', label: 'experience' },
+  { to: '/experience', label: 'connect' },
 ]
 
 export default function Layout() {
