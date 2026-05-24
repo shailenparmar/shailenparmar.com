@@ -23,6 +23,13 @@ const projects: Project[] = [
     ],
   },
   {
+    title: 'drones',
+    body: "i've been building and flying radio control airplanes and drones for 15 years.\n\ni'm an expert pilot with thousands of hours logged in simulation and actual flying.",
+    links: [
+      { label: 'flight videos', href: 'https://photos.app.goo.gl/PqFfXuQA5yGj4hxR7' },
+    ],
+  },
+  {
     title: 'lanternlibrary.org',
     image: '/design/lanternlibrary.png',
     body: 'an archive of mental health recovery stories focused on ocd, body image, and physical disability. warm reflector aid with llm assisted prompting to help you dig deep.',
