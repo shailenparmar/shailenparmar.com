@@ -180,6 +180,7 @@ export default function Experience() {
           <a href="https://www.youtube.com/watch?v=MGQ8fGrrBeU" target="_blank" rel="noreferrer" className="inspiration-link">frank yang</a>, and{' '}
           <a href="https://www.youtube.com/watch?v=cSv_zalJLTQ" target="_blank" rel="noreferrer" className="inspiration-link">beth upton</a>.
         </p>
+        <p>if you like my website, let's chat. i check my email!</p>
       </div>
 
       <div className="contact">
