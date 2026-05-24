@@ -31,6 +31,27 @@
   margin-left: auto;
 }
 
+.resume-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 11px 20px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-2);
+  color: var(--fg);
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.resume-toggle:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+}
+
 .section-heading {
   font-family: var(--font-sans);
   font-size: var(--fs-1);
