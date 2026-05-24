@@ -167,8 +167,17 @@ export default function Experience() {
 
   return (
     <section className="resume">
+      <div className="hero-split">
+      <figure className="portrait">
+        <img src="/portrait.jpeg" alt="portrait of shailen" loading="lazy" />
+        <figcaption>
+          portrait by my artist friend{' '}
+          <a href="https://pivarshev.com/index.html" target="_blank" rel="noreferrer" className="inspiration-link">pj pivarshev</a>
+        </figcaption>
+      </figure>
+      <div className="hero-text">
       <div className="design-statement">
-        <p>at duke, i studied neuroscience and visual design. since then, i've worked in big tech, taught middle school, and lived in a buddhist monastery. i'm looking for my next job to go deep in.</p>
+        <p>at duke, i studied neuroscience and visual design. since then, i've worked in big tech, taught middle school, and lived in a buddhist monastery. i'm in san francisco looking for my next job to go deep in.</p>
         <p>
           dream dinner party guests:{' '}
           <a href="https://hermesamara.org/rob-burbea" target="_blank" rel="noreferrer" className="inspiration-link">rob burbea</a>,{' '}
@@ -246,18 +255,9 @@ export default function Experience() {
             <polyline points="7 7 17 7 17 17" />
           </svg>
         </a>
-        {showResume && (
-          <span className="contact-location">San Francisco, California</span>
-        )}
       </div>
-
-      <figure className="portrait">
-        <img src="/portrait.jpeg" alt="portrait of shailen" loading="lazy" />
-        <figcaption>
-          portrait by my artist friend{' '}
-          <a href="https://pivarshev.com/index.html" target="_blank" rel="noreferrer" className="inspiration-link">pj pivarshev</a>
-        </figcaption>
-      </figure>
+      </div>
+      </div>
 
       {showResume && (
       <>
