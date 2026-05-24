@@ -170,12 +170,12 @@ export default function Experience() {
       <div className="design-statement">
         <p>at duke, i studied neuroscience and visual design. since then, i've worked in big tech, taught middle school, and lived in a buddhist monastery. i'm looking for my next job to go deep in.</p>
         <p>
-          some people whose work i admire:{' '}
-          <a href="https://en.wikipedia.org/wiki/Marshall_Rosenberg" target="_blank" rel="noreferrer" className="inspiration-link">marshall rosenberg</a>,{' '}
+          dream dinner party:{' '}
+          <a href="https://hermesamara.org/rob-burbea" target="_blank" rel="noreferrer" className="inspiration-link">rob burbea</a>,{' '}
           <a href="https://www.youtube.com/watch?v=MnrJzXM7a6o" target="_blank" rel="noreferrer" className="inspiration-link">steve jobs</a>,{' '}
           <a href="https://rosalewis.co.uk/" target="_blank" rel="noreferrer" className="inspiration-link">rosa lewis</a>,{' '}
+          <a href="https://en.wikipedia.org/wiki/Marshall_Rosenberg" target="_blank" rel="noreferrer" className="inspiration-link">marshall rosenberg</a>,{' '}
           <a href="https://www.youtube.com/watch?v=brjQ_mVO0Dc" target="_blank" rel="noreferrer" className="inspiration-link">dave powers</a>,{' '}
-          <a href="https://hermesamara.org/rob-burbea" target="_blank" rel="noreferrer" className="inspiration-link">rob burbea</a>,{' '}
           <a href="https://www.youtube.com/watch?v=2JA9dE52Myg&list=RD2JA9dE52Myg&start_radio=1" target="_blank" rel="noreferrer" className="inspiration-link">lorde</a>,{' '}
           <a href="https://www.youtube.com/watch?v=MGQ8fGrrBeU" target="_blank" rel="noreferrer" className="inspiration-link">frank yang</a>, and{' '}
           <a href="https://www.youtube.com/watch?v=cSv_zalJLTQ" target="_blank" rel="noreferrer" className="inspiration-link">beth upton</a>.
