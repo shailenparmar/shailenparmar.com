@@ -38,6 +38,24 @@
   margin-top: 2px;
 }
 
+.portrait {
+  margin: 0 0 48px;
+  max-width: 560px;
+}
+
+.portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.portrait figcaption {
+  margin-top: 10px;
+  font-size: var(--fs-1);
+  color: var(--muted);
+}
+
 .resume-toggle {
   display: inline-flex;
   align-items: center;
