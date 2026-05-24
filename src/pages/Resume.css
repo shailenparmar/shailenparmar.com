@@ -9,8 +9,9 @@
 
 .contact {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px 14px;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  gap: 14px;
   align-items: center;
   font-size: var(--fs-2);
   color: var(--muted);
