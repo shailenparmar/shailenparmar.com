@@ -46,6 +46,13 @@ body,
   overflow-x: hidden;
 }
 
+/* Home is always black behind the video, regardless of the chosen colorway. */
+html.home-active,
+body.home-active,
+html.home-active #root {
+  background: #000;
+}
+
 html {
   zoom: 0.9;
 }

@@ -28,7 +28,7 @@
   height: 48px;
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.55);
-  color: var(--fg);
+  color: #fff; /* play button stays white regardless of the site colorway */
   display: flex;
   align-items: center;
   justify-content: center;

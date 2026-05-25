@@ -10,7 +10,7 @@
   /* Scale the preset column up to match the larger squares. Presets stay in
      the squares' grid row with flex:1, so their total height still matches. */
   .cw-body {
-    grid-template-columns: 1fr 44px;
+    grid-template-columns: 1fr 48px;
   }
   .cw-preset {
     font-size: 15px;
@@ -19,8 +19,8 @@
 
 .cw-body {
   display: grid;
-  grid-template-columns: 1fr 32px;
-  column-gap: 10px;
+  grid-template-columns: 1fr 36px;
+  column-gap: 8px;
   row-gap: 8px;
   align-items: stretch;
 }
