@@ -22,6 +22,22 @@ export default function Layout() {
     }
   }, [isHome])
 
+  // Tag the route so mobile can hardcode per-page colors (picker is desktop-only).
+  useEffect(() => {
+    const map: Record<string, string> = {
+      '/': 'page-home',
+      '/art': 'page-art',
+      '/projects': 'page-projects',
+      '/experience': 'page-connect',
+    }
+    const cls = map[location.pathname]
+    const el = document.documentElement
+    if (cls) el.classList.add(cls)
+    return () => {
+      if (cls) el.classList.remove(cls)
+    }
+  }, [location.pathname])
+
   useEffect(() => {
     const v = videoRef.current
     if (!v) return
