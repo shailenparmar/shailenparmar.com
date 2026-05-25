@@ -7,10 +7,10 @@
   .colorways {
     max-width: none;
   }
-  /* Scale the preset column up to match the larger squares. Presets stay in
-     the squares' grid row with flex:1, so their total height still matches. */
+  /* Preset column scales with screen width so the square swatches grow to fill
+     the tall full-width grid; space-between then keeps a tight, even gap. */
   .cw-body {
-    grid-template-columns: 1fr 48px;
+    grid-template-columns: 1fr 15%;
   }
   .cw-preset {
     font-size: 15px;
@@ -19,7 +19,7 @@
 
 .cw-body {
   display: grid;
-  grid-template-columns: 1fr 38px;
+  grid-template-columns: 1fr 37px;
   column-gap: 8px;
   row-gap: 8px;
   align-items: stretch;
@@ -85,7 +85,9 @@
   grid-row: 2;
   display: flex;
   flex-direction: column;
-  gap: 8px; /* same as the grid gaps — even spacing throughout */
+  /* Pins the first preset to the grid's top and the last to its bottom
+     (height match), with even gaps between — at any screen width. */
+  justify-content: space-between;
 }
 
 .cw-preset {
