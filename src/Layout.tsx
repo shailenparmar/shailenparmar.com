@@ -51,18 +51,11 @@ export default function Layout() {
       }
     }
 
-    const onEnded = () => {
-      v.currentTime = 0
-      v.play().catch(() => {})
-    }
-
     sync()
     document.addEventListener('visibilitychange', sync)
-    v.addEventListener('ended', onEnded)
 
     return () => {
       document.removeEventListener('visibilitychange', sync)
-      v.removeEventListener('ended', onEnded)
     }
   }, [isHome])
 
@@ -74,6 +67,7 @@ export default function Layout() {
         src="/video/home-bg.mp4"
         poster="/video/home-poster.jpg"
         autoPlay
+        loop
         muted
         playsInline
         preload="auto"
