@@ -56,10 +56,13 @@ html.home-active #root {
 /* Mobile has no colorways picker, so each page gets a fixed colorway.
    !important overrides the inline vars set by the picker/persistence script. */
 @media (max-width: 640px) {
-  html.page-art,
-  html.page-projects {
+  html.page-art {
     --fg: hsl(0, 0%, 100%) !important; /* white */
     --bg: hsl(0, 0%, 0%) !important; /* black */
+  }
+  html.page-projects {
+    --fg: hsl(221, 82%, 15%) !important; /* navy #071b46 */
+    --bg: hsl(161, 70%, 85%) !important; /* mint #bef4e3 */
   }
   html.page-connect {
     --fg: hsl(63, 100%, 12%) !important; /* olive (preset 5 text) */
