@@ -61,8 +61,8 @@ html.home-active #root {
     --bg: hsl(0, 0%, 0%) !important; /* black */
   }
   html.page-projects {
-    --fg: hsl(221, 82%, 15%) !important; /* navy #071b46 */
-    --bg: hsl(161, 70%, 85%) !important; /* mint #bef4e3 */
+    --fg: hsl(124, 25%, 100%) !important; /* white #ffffff */
+    --bg: hsl(152, 70%, 19%) !important; /* deep green #0f5233 */
   }
   html.page-connect {
     --fg: hsl(63, 100%, 12%) !important; /* olive (preset 5 text) */
