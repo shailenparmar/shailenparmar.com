@@ -7,6 +7,14 @@
   .colorways {
     max-width: none;
   }
+  /* Scale the preset column up to match the larger squares. Presets stay in
+     the squares' grid row with flex:1, so their total height still matches. */
+  .cw-body {
+    grid-template-columns: 1fr 64px;
+  }
+  .cw-preset {
+    font-size: 15px;
+  }
 }
 
 .cw-body {
