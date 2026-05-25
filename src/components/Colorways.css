@@ -3,6 +3,12 @@
   max-width: 260px;
 }
 
+@media (max-width: 640px) {
+  .colorways {
+    max-width: none;
+  }
+}
+
 .cw-body {
   display: grid;
   grid-template-columns: 1fr 32px;
