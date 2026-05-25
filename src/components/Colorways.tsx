@@ -12,9 +12,9 @@ const hsl = ({ h, s, l }: HSL) => `hsl(${h}, ${s}%, ${l}%)`
 // The 5 standard good days presets (text / background).
 const PRESETS: { text: HSL; bg: HSL }[] = [
   { text: { h: 0, s: 0, l: 100 }, bg: { h: 0, s: 0, l: 0 } },
-  { text: { h: 242, s: 83, l: 43 }, bg: { h: 271, s: 100, l: 71 } },
-  { text: { h: 210, s: 61, l: 14 }, bg: { h: 21, s: 70, l: 55 } },
   { text: { h: 210, s: 100, l: 43 }, bg: { h: 132, s: 100, l: 79 } },
+  { text: { h: 210, s: 61, l: 14 }, bg: { h: 21, s: 70, l: 55 } },
+  { text: { h: 242, s: 83, l: 43 }, bg: { h: 271, s: 100, l: 71 } },
   { text: { h: 63, s: 100, l: 12 }, bg: { h: 52, s: 100, l: 91 } },
 ]
 
