@@ -181,10 +181,10 @@ export default function Colorways() {
           <span>background</span>
         </div>
         <div className="cw-grid">
-          <PickerSquare part="hue" value={text} dotColor={bgColor} onChange={changeText} />
-          <PickerSquare part="hue" value={bg} dotColor={textColor} onChange={changeBg} />
           <PickerSquare part="sl" value={text} dotColor={bgColor} onChange={changeText} />
           <PickerSquare part="sl" value={bg} dotColor={textColor} onChange={changeBg} />
+          <PickerSquare part="hue" value={text} dotColor={bgColor} onChange={changeText} />
+          <PickerSquare part="hue" value={bg} dotColor={textColor} onChange={changeBg} />
         </div>
         <div className="cw-presets">
           {PRESETS.map((p, i) => {
