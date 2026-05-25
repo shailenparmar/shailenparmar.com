@@ -39,8 +39,8 @@
 .lightbox-close,
 .lightbox-nav {
   position: fixed;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
+  color: var(--fg);
+  background: color-mix(in srgb, var(--fg) 8%, transparent);
   border-radius: 999px;
   display: flex;
   align-items: center;
@@ -51,7 +51,7 @@
 
 .lightbox-close:hover,
 .lightbox-nav:hover {
-  background: rgba(255, 255, 255, 0.18);
+  background: color-mix(in srgb, var(--fg) 18%, transparent);
 }
 
 .lightbox-close {
@@ -80,7 +80,7 @@
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  color: rgba(255, 255, 255, 0.7);
+  color: color-mix(in srgb, var(--fg) 70%, transparent);
   font-size: 13px;
   letter-spacing: 0.5px;
   z-index: 110;

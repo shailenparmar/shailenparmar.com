@@ -13,7 +13,7 @@
   font-size: var(--fs-5);
   font-weight: 600;
   line-height: var(--lh-snug);
-  color: #fff;
+  color: #fff; /* home is always white, independent of the site colorway */
   max-width: 720px;
   margin: 0;
   letter-spacing: 0.2px;

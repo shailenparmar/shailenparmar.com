@@ -1,0 +1,105 @@
+.colorways {
+  width: 100%;
+  max-width: 260px;
+}
+
+.cw-body {
+  display: grid;
+  grid-template-columns: 1fr 32px;
+  column-gap: 10px;
+  row-gap: 8px;
+  align-items: stretch;
+}
+
+.cw-grid {
+  grid-column: 1;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.cw-square {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+/* SL square lets the indicator dot extend slightly past the edge */
+.cw-square-sl {
+  overflow: visible;
+}
+
+.cw-needle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+.cw-dot {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.cw-labels {
+  grid-column: 1;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-1);
+  color: var(--muted);
+  text-align: center;
+}
+
+.cw-presets {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cw-preset {
+  flex: 1;
+  width: 100%;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 6px;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+/* Pulse an INSET shadow (painted, no reflow) so the inner border thickens
+   while the button's outer outline/size stays perfectly fixed. */
+@keyframes cw-flicker {
+  0% { box-shadow: inset 0 0 0 3px currentColor; }
+  50% { box-shadow: inset 0 0 0 1px currentColor; }
+  100% { box-shadow: inset 0 0 0 3px currentColor; }
+}
+
+.cw-preset-active {
+  animation: cw-flicker 1s steps(12) infinite;
+}

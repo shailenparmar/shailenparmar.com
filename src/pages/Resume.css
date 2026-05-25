@@ -34,7 +34,7 @@
 }
 
 .contact .dot {
-  color: rgba(255, 255, 255, 0.25);
+  color: color-mix(in srgb, var(--fg) 25%, transparent);
 }
 
 .hero-split {
@@ -129,7 +129,7 @@
 .job-company a {
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: rgba(255, 255, 255, 0.3);
+  text-decoration-color: color-mix(in srgb, var(--fg) 30%, transparent);
 }
 
 .job-company a:hover {
@@ -154,7 +154,7 @@
   padding-left: 18px;
   font-size: var(--fs-2);
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.88);
+  color: color-mix(in srgb, var(--fg) 88%, transparent);
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -200,7 +200,7 @@
 
 .skill-row dd {
   margin: 0;
-  color: rgba(255, 255, 255, 0.85);
+  color: color-mix(in srgb, var(--fg) 85%, transparent);
   font-weight: 400;
 }
 

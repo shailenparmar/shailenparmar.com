@@ -1,8 +1,10 @@
 :root {
-  --bg: #000000;
+  --bg: #022531;
   --fg: #ffffff;
-  --muted: #999999;
-  --line: rgba(255, 255, 255, 0.14);
+  /* All text/line variants derive from the base --fg via opacity, so changing
+     --fg recolors everything (muted text, dividers, underlines) with it. */
+  --muted: color-mix(in srgb, var(--fg) 58%, transparent);
+  --line: color-mix(in srgb, var(--fg) 14%, transparent);
   --max-width: 1040px;
 
   --font-serif: 'Menlo', 'Monaco', 'Courier New', monospace;
@@ -69,7 +71,7 @@ body.home-active {
   font-family: var(--font-sans);
   font-size: var(--fs-3);
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--muted);
   letter-spacing: 0.2px;
   cursor: pointer;
   background: none;

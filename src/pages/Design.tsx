@@ -1,4 +1,5 @@
 import TopButton from '../components/TopButton'
+import Colorways from '../components/Colorways'
 import './Gallery.css'
 import './Design.css'
 
@@ -89,6 +90,7 @@ const projects: Project[] = [
 export default function Design() {
   return (
     <section>
+      <div className="design-hero">
       <div className="design-statement">
         <p>i design responsive, intimate interfaces.</p>
         <p>my style has been refined by a decade of world-class fpv drone racing.</p>
@@ -103,6 +105,8 @@ export default function Design() {
             github ↗
           </a>
         </p>
+      </div>
+      <Colorways />
       </div>
       <div className="design-grid">
         {projects.map((p) => {

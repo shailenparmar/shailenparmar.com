@@ -71,6 +71,7 @@
 .header-home .wordmark,
 .header-home .nav-link {
   text-shadow: none;
+  color: #fff; /* home header stays white regardless of the site colorway */
 }
 
 @media (min-width: 720px) {

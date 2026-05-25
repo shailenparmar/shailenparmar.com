@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>shailen parmar</title>
     <meta name="description" content="shailen parmar — visual storyteller." />
+    <script>
+      // Apply colorway picked via the projects-page colorways tool before React
+      // mounts, so the chosen --fg/--bg apply on every page with no flash.
+      (function () {
+        try {
+          var c = JSON.parse(localStorage.getItem('siteColors') || 'null');
+          if (c && c.text && c.bg) {
+            var d = document.documentElement.style;
+            d.setProperty('--fg', 'hsl(' + c.text.h + ', ' + c.text.s + '%, ' + c.text.l + '%)');
+            d.setProperty('--bg', 'hsl(' + c.bg.h + ', ' + c.bg.s + '%, ' + c.bg.l + '%)');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

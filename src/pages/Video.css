@@ -15,7 +15,7 @@
 }
 
 .video-tile:hover {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--fg);
   outline-offset: -2px;
 }
 
@@ -28,7 +28,7 @@
   height: 48px;
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.55);
-  color: #fff;
+  color: var(--fg);
   display: flex;
   align-items: center;
   justify-content: center;
