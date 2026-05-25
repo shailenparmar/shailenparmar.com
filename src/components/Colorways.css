@@ -10,7 +10,7 @@
   /* Preset column scales with screen width so the square swatches grow to fill
      the tall full-width grid; space-between then keeps a tight, even gap. */
   .cw-body {
-    grid-template-columns: 1fr 15%;
+    grid-template-columns: 1fr 16%;
   }
   .cw-preset {
     font-size: 15px;
