@@ -14,7 +14,9 @@
   align-items: center;
   font-size: var(--fs-2);
   color: var(--muted);
-  margin-bottom: 48px;
+  /* No bottom margin: the hero block's 28px margin governs the gap to the
+     resume body (consistent on desktop and mobile). */
+  margin-bottom: 0;
 }
 
 .contact a {
