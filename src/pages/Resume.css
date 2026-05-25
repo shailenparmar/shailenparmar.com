@@ -101,7 +101,7 @@
   text-transform: uppercase;
   letter-spacing: 1.6px;
   color: var(--muted);
-  margin: 56px 0 20px;
+  margin: 28px 0 16px;
 }
 
 .job-list {
@@ -110,7 +110,7 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
 }
 
 .job-head {
