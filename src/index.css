@@ -1,5 +1,5 @@
 :root {
-  --bg: #022531;
+  --bg: #000000;
   --fg: #ffffff;
   /* All text/line variants derive from the base --fg via opacity, so changing
      --fg recolors everything (muted text, dividers, underlines) with it. */

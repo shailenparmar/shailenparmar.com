@@ -137,7 +137,7 @@ function loadSaved(): Saved | null {
 
 export default function Colorways() {
   const [text, setText] = useState<HSL>(() => loadSaved()?.text ?? { h: 0, s: 0, l: 100 })
-  const [bg, setBg] = useState<HSL>(() => loadSaved()?.bg ?? { h: 195, s: 94, l: 10 })
+  const [bg, setBg] = useState<HSL>(() => loadSaved()?.bg ?? { h: 0, s: 0, l: 0 })
   const [active, setActive] = useState<number | null>(() => loadSaved()?.active ?? null)
 
   // Apply to the whole site + persist so the choice propagates across every
