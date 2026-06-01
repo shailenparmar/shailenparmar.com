@@ -26,6 +26,8 @@ const videos: VideoItem[] = [
   { href: 'https://www.youtube.com/watch?v=lW11LgNkEn8', thumb: '/video/thumbs/lW11LgNkEn8.jpg' },
   { href: 'https://www.youtube.com/watch?v=NMlATq3UmqI', thumb: '/video/thumbs/NMlATq3UmqI.jpg' },
   { href: 'https://www.youtube.com/watch?v=SqfzNoavjzg', thumb: '/video/thumbs/SqfzNoavjzg.jpg' },
+  { href: 'https://www.youtube.com/watch?v=dcWxZ0gV7dw&t=14s', thumb: '/video/thumbs/dcWxZ0gV7dw.jpg' },
+  { href: 'https://www.youtube.com/watch?v=IUGy4zm0T0w', thumb: '/video/thumbs/IUGy4zm0T0w.jpg' },
   { href: '/video/the-iphone.mp4', thumb: '/art/art-09.jpg' },
 ]
 
