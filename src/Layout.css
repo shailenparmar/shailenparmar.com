@@ -51,7 +51,7 @@
   font-weight: 600;
   color: var(--fg);
   padding-bottom: 3px;
-  border-bottom: 1px solid transparent;
+  border-bottom: 3px solid transparent;
   letter-spacing: 0.2px;
   line-height: 1;
 }
