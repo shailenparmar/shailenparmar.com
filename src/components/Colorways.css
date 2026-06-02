@@ -71,6 +71,8 @@
   font-size: var(--fs-1);
   color: var(--muted);
   text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .cw-presets {
@@ -99,6 +101,8 @@
   font-weight: 700;
   line-height: 1;
   box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* Pulse an INSET shadow (painted, no reflow) so the inner border thickens
