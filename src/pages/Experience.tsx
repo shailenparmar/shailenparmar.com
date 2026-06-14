@@ -30,7 +30,7 @@ const work: Job[] = [
     company: 'San Francisco Zen Center',
     location: 'San Francisco, CA',
     role: 'Work Practice Apprentice',
-    start: 'Feb 2025',
+    start: 'Mar 2025',
     end: 'May 2025',
     bullets: [
       'Three-month residential apprenticeship at SFZC City Center, one of the longest-running Zen training communities in the West.',
@@ -76,7 +76,7 @@ const work: Job[] = [
     start: 'Sep 2018',
     end: 'Sep 2019',
     bullets: [
-      'Managed end-to-end logistics for a 10-day program (36 participants, 24 staff, $12K budget); achieved 100% participant satisfaction.',
+      'Managed end-to-end logistics for a week-long program (72 students, 24 staff, $12K budget); achieved 100% participant satisfaction.',
     ],
   },
 ]
