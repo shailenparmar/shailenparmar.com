@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shailen Parmar — Writing Samples</title>
+<style>
+  :root{
+    --ink:#1a1a1a;
+    --muted:#6b6b6b;
+    --line:#e7e7e4;
+    --bg:#fbfbfa;
+    --card:#ffffff;
+    --accent:#1fa855;        /* muted WhatsApp green */
+    --accent-ink:#157d3f;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:40px 24px 72px}
+
+  /* top contact bar */
+  .topbar{
+    display:flex;justify-content:flex-end;gap:18px;
+    font-size:14px;margin-bottom:40px;
+  }
+  .topbar a{color:var(--muted);text-decoration:none}
+  .topbar a:hover{color:var(--accent-ink)}
+
+  header h1{
+    font-size:34px;line-height:1.15;font-weight:700;
+    letter-spacing:-0.02em;margin:0 0 16px;
+  }
+  header .lede{font-size:17px;color:#3a3a3a;margin:0;max-width:60ch}
+
+  section.sample{margin-top:48px}
+  section.sample h2{
+    font-size:20px;font-weight:650;letter-spacing:-0.01em;
+    margin:0 0 14px;
+  }
+  section.sample p.desc{font-size:16px;color:#333;margin:16px 2px 0}
+
+  /* browser-frame card */
+  .frame{
+    display:block;border:1px solid var(--line);border-radius:12px;
+    overflow:hidden;background:var(--card);text-decoration:none;color:inherit;
+    box-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .frame:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(0,0,0,.05),0 14px 34px rgba(0,0,0,.10)}
+  .frame .chrome{
+    display:flex;align-items:center;gap:8px;
+    height:40px;padding:0 14px;background:#f4f4f2;border-bottom:1px solid var(--line);
+  }
+  .dots{display:flex;gap:6px}
+  .dots i{width:11px;height:11px;border-radius:50%;display:block}
+  .dots i:nth-child(1){background:#ff5f57}
+  .dots i:nth-child(2){background:#febc2e}
+  .dots i:nth-child(3){background:#28c840}
+  .addr{
+    flex:1;height:24px;border-radius:6px;background:#fff;border:1px solid #e3e3e0;
+    display:flex;align-items:center;padding:0 12px;
+    font-size:12.5px;color:#5a5a5a;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  .shot{width:100%;display:block;height:360px;object-fit:cover;object-position:top center}
+
+  /* video card */
+  .video{position:relative}
+  .video .shot{height:380px;object-position:center}
+  .video .play{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    background:rgba(0,0,0,.18);
+  }
+  .video .play span{
+    width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.92);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 20px rgba(0,0,0,.25);
+  }
+  .video .play span::after{
+    content:"";display:block;margin-left:5px;
+    border-left:24px solid var(--accent);
+    border-top:15px solid transparent;border-bottom:15px solid transparent;
+  }
+
+  .cta{
+    display:inline-flex;align-items:center;gap:6px;margin:14px 2px 0;
+    font-size:15px;font-weight:550;color:var(--accent-ink);text-decoration:none;
+  }
+  .cta .label{text-decoration:none}
+  .cta:hover .label{text-decoration:underline;text-underline-offset:2px}
+  .cta .arrow{transition:transform .15s ease}
+  .cta:hover .arrow{transform:translateX(3px)}
+
+  @media (max-width:560px){
+    header h1{font-size:28px}
+    .shot,.video .shot{height:240px}
+    .topbar{justify-content:flex-start;flex-wrap:wrap}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topbar">
+      <a href="mailto:shailenparmar@gmail.com">shailenparmar@gmail.com</a>
+      <a href="https://linkedin.com/in/shailenparmar" target="_blank" rel="noopener">linkedin.com/in/shailenparmar</a>
+    </div>
+
+    <header>
+      <h1>Writing samples</h1>
+      <p class="lede">I spent a year as a content strategist writing support content for the WhatsApp Help Center, reaching an audience of 15M people a month across 33 languages. I specialize in making complex processes easy to understand. Here are a few pieces I wrote.</p>
+    </header>
+
+    <!-- Sample 1 -->
+    <section class="sample">
+      <h2>A help center article — “About linked devices”</h2>
+      <a class="frame" href="https://faq.whatsapp.com/378279804439436/" target="_blank" rel="noopener">
+        <div class="chrome">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <div class="addr">faq.whatsapp.com/378279804439436</div>
+        </div>
+        <img class="shot" src="assets/shot-linked-devices.png" alt="WhatsApp Help Center article: About linked devices">
+      </a>
+      <p class="desc">I worked with product managers, video contractors, and localization teams to write this article. Users can learn how to use this feature without opening tickets. Internally, I’m well-versed in content management systems and XML editing.</p>
+      <a class="cta" href="https://faq.whatsapp.com/378279804439436/" target="_blank" rel="noopener"><span class="label">Read the article</span> <span class="arrow">→</span></a>
+    </section>
+
+    <!-- Sample 2 -->
+    <section class="sample">
+      <h2>About end-to-end encrypted backup</h2>
+      <a class="frame" href="https://faq.whatsapp.com/490592613091019/" target="_blank" rel="noopener">
+        <div class="chrome">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <div class="addr">faq.whatsapp.com/490592613091019</div>
+        </div>
+        <img class="shot" src="assets/shot-e2e-backup.png" alt="WhatsApp Help Center article: About end-to-end encrypted backup">
+      </a>
+      <p class="desc">For these pieces, I worked with the product manager, engineers, and legal teams to precisely describe the technical aspects of how this feature works and deliver accurate instructions. After launch, we consulted our data dashboards to assess CSAT and make content adjustments as needed in response to user feedback.</p>
+      <a class="cta" href="https://faq.whatsapp.com/490592613091019/" target="_blank" rel="noopener"><span class="label">Read the article</span> <span class="arrow">→</span></a>
+    </section>
+
+    <!-- Sample 3 -->
+    <section class="sample">
+      <h2>A how-to video I directed for WhatsApp</h2>
+      <a class="frame video" href="https://www.youtube.com/watch?v=FFiQ569fu1E" target="_blank" rel="noopener">
+        <div class="chrome">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <div class="addr">youtube.com/watch?v=FFiQ569fu1E</div>
+        </div>
+        <img class="shot" src="assets/shot-video.jpg" alt="How-to video directed for WhatsApp">
+        <div class="play"><span></span></div>
+      </a>
+      <p class="desc">I worked with a video contractor to script and draft this video to address a recurring ticket need. We developed a simple video to explain this concept and localized it across 33 languages. The video has received 25M views across global markets.</p>
+      <a class="cta" href="https://www.youtube.com/watch?v=FFiQ569fu1E" target="_blank" rel="noopener"><span class="label">Watch the video</span> <span class="arrow">→</span></a>
+    </section>
+
+  </div>
+</body>
+</html>

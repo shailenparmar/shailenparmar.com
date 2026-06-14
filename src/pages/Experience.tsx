@@ -15,7 +15,7 @@ type Job = {
 const work: Job[] = [
   {
     company: 'Meta (WhatsApp)',
-    location: 'San Francisco, CA',
+    location: 'Menlo Park & San Francisco, CA',
     role: 'Content Strategist',
     start: 'Aug 2021',
     end: 'Nov 2022',
@@ -33,7 +33,7 @@ const work: Job[] = [
     start: 'Feb 2025',
     end: 'May 2025',
     bullets: [
-      'Two-month residential apprenticeship at SFZC City Center, one of the longest-running Zen training communities in the West.',
+      'Three-month residential apprenticeship at SFZC City Center, one of the longest-running Zen training communities in the West.',
       'Full daily schedule of zazen, services, study, and work practice alongside the kitchen and guest crews.',
       'Work as practice: every task — cooking, cleaning, hosting — done with the same attention as meditation. Living and working closely with a community of ~40 residents.',
     ],
@@ -53,7 +53,7 @@ const work: Job[] = [
     company: 'Shelton School',
     location: 'Dallas, TX',
     role: 'Substitute Teacher',
-    start: 'Nov 2023 — Jan 2025; May 2025',
+    start: 'Nov 2023',
     end: 'Jan 2026',
     bullets: [
       'Taught students with neurological learning differences (autism, ADHD, OCD); adapted lessons and classroom structure to individual needs.',
@@ -64,7 +64,7 @@ const work: Job[] = [
     location: 'Dallas, TX',
     role: 'Legal Assistant',
     start: 'Jan 2026',
-    end: 'Present',
+    end: 'May 2026',
     bullets: [
       'Drafting case summaries, reviewing testimony, and synthesizing case files for attorneys in trial preparation.',
     ],
@@ -73,8 +73,8 @@ const work: Job[] = [
     company: 'Project Arts',
     location: 'Durham, NC',
     role: 'Program Director',
-    start: 'Aug 2019',
-    end: 'Aug 2021',
+    start: 'Sep 2018',
+    end: 'Sep 2019',
     bullets: [
       'Managed end-to-end logistics for a 10-day program (36 participants, 24 staff, $12K budget); achieved 100% participant satisfaction.',
     ],
