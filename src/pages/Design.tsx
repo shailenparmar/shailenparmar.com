@@ -14,6 +14,15 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: 'colorways (mobile only)',
+    image: '/design/good-days-color-picker.jpg',
+    body: 'novel interface for selecting hexcodes. control 3 axes across 2 parameters with 1 hand. slight learning curve, very handy. try it out.',
+    links: [
+      { label: 'gdays.day (mobile)', href: 'https://gdays.day' },
+      { label: 'github', href: 'https://github.com/shailenparmar/good-days' },
+    ],
+  },
+  {
     title: 'good days',
     image: '/design/good-days.jpg',
     body: 'inspired by the snap of a terminal and the proportional control of an oscilloscope, good days is a precision daily editor tuned to its functional limit.',
@@ -38,15 +47,6 @@ const projects: Project[] = [
     body: 'an archive of mental health recovery stories focused on ocd, body image, and physical disability. warm reflector aid with llm assisted prompting to help users dig deep.',
     links: [
       { label: 'lanternlibrary.org', href: 'https://lanternlibrary.org' },
-    ],
-  },
-  {
-    title: 'colorways',
-    image: '/design/good-days-color-picker.jpg',
-    body: 'novel interface for selecting hexcodes. control 3 axes across 2 parameters with 1 hand. slight learning curve, very handy. try it out.',
-    links: [
-      { label: 'gdays.day (mobile)', href: 'https://gdays.day' },
-      { label: 'github', href: 'https://github.com/shailenparmar/good-days' },
     ],
   },
   {
@@ -79,6 +79,9 @@ const projects: Project[] = [
     title: 'quickchat',
     image: '/design/quickchat.png',
     body: "i led a team of 9 designers and engineers to build a functional mvp at facebook's 2020 summer hackathon — first place in remote presence and quality of work; assigned to full-time production after the win.",
+    links: [
+      { label: 'demo video', href: 'https://www.youtube.com/watch?v=G-aT4cshq0c' },
+    ],
   },
   {
     title: 'syndicate',
