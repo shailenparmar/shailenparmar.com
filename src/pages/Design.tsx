@@ -16,7 +16,7 @@ const projects: Project[] = [
   {
     title: 'colorways (mobile only)',
     image: '/design/good-days-color-picker.jpg',
-    body: 'novel interface for selecting hexcodes. control 3 axes across 2 parameters with 1 hand. slight learning curve, very handy. try it out.',
+    body: 'novel interface for selecting background and text colors within design tools. control 3 axes across 2 parameters with 1 hand. an experiment in redesigning a common function from first principles, making full use of the hardware available.',
     links: [
       { label: 'gdays.day (mobile)', href: 'https://gdays.day' },
       { label: 'github', href: 'https://github.com/shailenparmar/good-days' },
