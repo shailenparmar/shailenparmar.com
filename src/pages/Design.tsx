@@ -23,7 +23,7 @@ const projects: Project[] = [
     ],
   },
   {
-    title: 'good days',
+    title: 'good days (desktop only)',
     image: '/design/good-days.jpg',
     body: 'inspired by the snap of a terminal and the proportional control of an oscilloscope, good days is a precision daily editor tuned to its functional limit.',
     links: [
@@ -123,7 +123,7 @@ export default function Design() {
               <div className="project-image">{children}</div>
             )
           const titleHref =
-            p.title === 'good days' ? 'https://gdays.day' : primary
+            p.title === 'good days (desktop only)' ? 'https://gdays.day' : primary
           return (
           <article key={p.title} className="project-card">
             <ImageWrap>
