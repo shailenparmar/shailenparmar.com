@@ -82,6 +82,20 @@ const work: Job[] = [
 ]
 
 
+const research: Job[] = [
+  {
+    company: 'OptiLab (PI: Greg Appelbaum), Duke University',
+    location: 'Durham, NC',
+    role: 'Research Assistant',
+    start: 'Aug 2019',
+    end: 'May 2020',
+    bullets: [
+      'Assisted a VR-based study using the WIN Reality pitching simulator to assess the efficacy of VR pitch-recognition training for Duke varsity baseball players.',
+      'Ran research subjects through experimental protocols; work formalized as a research practicum for academic credit.',
+    ],
+  },
+]
+
 const technical: Job[] = [
   {
     company: 'Duke University',
@@ -177,19 +191,18 @@ export default function Experience() {
       </figure>
       <div className="hero-text">
       <div className="design-statement">
-        <p>at duke, i studied neuroscience and visual design. since then, i've worked in big tech, taught middle school, and lived in a buddhist monastery. i'm in the bay looking for my next job to go deep in.</p>
-        <p>
-          dream dinner party guests:{' '}
-          <a href="https://hermesamara.org/rob-burbea" target="_blank" rel="noreferrer" className="inspiration-link">rob burbea</a>,{' '}
-          <a href="https://www.youtube.com/watch?v=MnrJzXM7a6o" target="_blank" rel="noreferrer" className="inspiration-link">steve jobs</a>,{' '}
-          <a href="https://rosalewis.co.uk/about-me/" target="_blank" rel="noreferrer" className="inspiration-link">rosa lewis</a>,{' '}
-          <a href="https://en.wikipedia.org/wiki/Marshall_Rosenberg" target="_blank" rel="noreferrer" className="inspiration-link">marshall rosenberg</a>,{' '}
-          <a href="https://www.youtube.com/watch?v=brjQ_mVO0Dc" target="_blank" rel="noreferrer" className="inspiration-link">dave powers</a>,{' '}
-          <a href="https://www.youtube.com/watch?v=2JA9dE52Myg&list=RD2JA9dE52Myg&start_radio=1" target="_blank" rel="noreferrer" className="inspiration-link">lorde</a>,{' '}
-          <a href="https://www.youtube.com/watch?v=MGQ8fGrrBeU" target="_blank" rel="noreferrer" className="inspiration-link">frank yang</a>, and{' '}
-          <a href="https://www.youtube.com/watch?v=cSv_zalJLTQ" target="_blank" rel="noreferrer" className="inspiration-link">beth upton</a>.
-        </p>
-        <p>there's a seat for you at the table; let's talk.</p>
+        <p>i'm mesmerized by immersive, low-latency control systems. in middle school, i built radio control airplanes and fpv drones. at duke, i studied neuroscience and visual design. since then, i've worked in big tech, taught neurodivergent middle schoolers, and lived in a zen monastery. now i want to build novel bci design paradigms.</p>
+        <p className="inspired-intro">things that have inspired me:</p>
+        <ul className="inspirations">
+          <li><a className="inspiration-link" href="https://www.amazon.com/dp/0061339202" target="_blank" rel="noreferrer">Flow: The Psychology of Optimal Experience</a> — Mihály Csíkszentmihályi</li>
+          <li><a className="inspiration-link" href="https://www.amazon.com/dp/0465050654" target="_blank" rel="noreferrer">The Design of Everyday Things</a> — Don Norman</li>
+          <li><a className="inspiration-link" href="https://www.youtube.com/watch?v=MnrJzXM7a6o" target="_blank" rel="noreferrer">Steve Jobs introducing the iPhone</a></li>
+          <li><a className="inspiration-link" href="https://www.sfzc.org/files/daily_sutras_Song_of_the_Jewel_Mirror_Samadhi" target="_blank" rel="noreferrer">Song of the Jewel Mirror Samadhi</a></li>
+          <li><a className="inspiration-link" href="https://www.youtube.com/watch?v=brjQ_mVO0Dc" target="_blank" rel="noreferrer">Dave Powers</a></li>
+        </ul>
+        <a className="inspiration-figure" href="https://www.amazon.com/dp/0061339202" target="_blank" rel="noreferrer" aria-label="Flow by Mihály Csíkszentmihályi">
+          <img src="/inspirations/flow.png" alt="Csíkszentmihályi's flow diagram — flow lives between anxiety and boredom, where challenge meets skill" loading="lazy" />
+        </a>
       </div>
 
       <div className="contact">
@@ -284,6 +297,11 @@ export default function Experience() {
       <h2 className="section-heading">professional experience</h2>
       <ul className="job-list">
         {work.map((j) => <JobBlock key={String(j.company)} job={j} />)}
+      </ul>
+
+      <h2 className="section-heading">research experience</h2>
+      <ul className="job-list">
+        {research.map((j, i) => <JobBlock key={i} job={j} />)}
       </ul>
 
       <h2 className="section-heading">technical &amp; creator experience</h2>
