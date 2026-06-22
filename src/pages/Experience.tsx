@@ -191,7 +191,7 @@ export default function Experience() {
       </figure>
       <div className="hero-text">
       <div className="design-statement">
-        <p>i'm mesmerized by immersive, low-latency control systems. in middle school, i built radio control airplanes and fpv drones. at duke, i studied neuroscience and visual design. since then, i've worked in big tech, taught neurodivergent middle schoolers, and lived in a zen monastery. now i want to build novel bci design paradigms.</p>
+        <p>i'm mesmerized by immersive, low-latency control systems. in middle school, i built radio control airplanes and fpv drones. at duke, i studied neuroscience and visual design. since then, i've worked in big tech, taught neurodivergent middle schoolers, and lived in a zen monastery. now i want to build novel bci design paradigms to make full use of high-dimensional inputs.</p>
         <p className="inspired-intro">things that have inspired me:</p>
         <ul className="inspirations">
           <li><a className="inspiration-link" href="https://www.amazon.com/dp/0061339202" target="_blank" rel="noreferrer">Flow: The Psychology of Optimal Experience</a> — Mihály Csíkszentmihályi</li>
