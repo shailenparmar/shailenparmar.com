@@ -200,9 +200,6 @@ export default function Experience() {
           <li><a className="inspiration-link" href="https://www.sfzc.org/files/daily_sutras_Song_of_the_Jewel_Mirror_Samadhi" target="_blank" rel="noreferrer">Song of the Jewel Mirror Samadhi</a></li>
           <li><a className="inspiration-link" href="https://www.youtube.com/watch?v=brjQ_mVO0Dc" target="_blank" rel="noreferrer">Dave Powers</a></li>
         </ul>
-        <a className="inspiration-figure" href="https://www.amazon.com/dp/0061339202" target="_blank" rel="noreferrer" aria-label="Flow by Mihály Csíkszentmihályi">
-          <img src="/inspirations/flow.png" alt="Csíkszentmihályi's flow diagram — flow lives between anxiety and boredom, where challenge meets skill" loading="lazy" />
-        </a>
       </div>
 
       <div className="contact">

@@ -27,20 +27,6 @@
   white-space: normal;
 }
 
-.inspiration-figure {
-  display: block;
-  max-width: 380px;
-  border: none;
-}
-
-.inspiration-figure img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  border: 1px solid color-mix(in srgb, var(--fg) 12%, transparent);
-}
-
 .contact {
   display: flex;
   flex-wrap: wrap;
