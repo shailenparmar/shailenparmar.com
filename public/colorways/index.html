@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shailen Parmar — colorways</title>
+<style>
+  :root{
+    --ink:#1a1a1a; --muted:#6b6b6b; --line:#e7e7e4; --bg:#fbfbfa; --card:#ffffff;
+    --accent:#1fa855; --accent-ink:#157d3f;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:780px;margin:0 auto;padding:40px 24px 96px}
+
+  .hero{display:flex;gap:22px;justify-content:center;align-items:flex-start;margin:30px 0 10px;flex-wrap:wrap}
+  .herocap{text-align:center;font-size:13.5px;color:var(--muted);margin:0 0 8px}
+  .refimg{border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px;box-shadow:0 10px 26px rgba(0,0,0,.10)}
+  .refimg img{width:100%;display:block;border-radius:6px}
+
+  header h1{font-size:38px;line-height:1.1;font-weight:700;letter-spacing:-0.02em;margin:0 0 16px;padding-top:8px}
+  header .lede{font-size:18px;color:#333;margin:0 0 14px;max-width:64ch}
+  header .lede.big{font-size:19px;color:#222}
+  .thesis{margin:26px 0 0;padding:18px 20px;border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:10px;background:#fff;font-size:15.5px;color:#2a2a2a}
+  .thesis b{color:var(--accent-ink)}
+
+  .rule{height:1px;background:var(--line);border:0;margin:54px 0}
+
+  section.phase{margin-top:60px}
+  .eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;color:var(--accent-ink);margin:0 0 8px}
+  section.phase h2{font-size:25px;font-weight:680;letter-spacing:-0.01em;margin:0 0 6px}
+  section.phase .sub{font-size:16px;color:var(--muted);margin:0 0 20px}
+  section.phase p{font-size:16px;color:#2c2c2c;margin:15px 0 0}
+  section.phase p .k{font-weight:600;color:#111}
+  code{font-family:var(--mono);font-size:.88em;background:#f0f0ee;padding:1px 5px;border-radius:4px}
+
+  .row{display:grid;grid-template-columns:300px 1fr;gap:40px;align-items:start}
+  .row.reverse{grid-template-columns:1fr 300px}
+  .row.reverse .stage{order:2}
+  .stage{}
+  .stage.duo{display:flex;gap:20px;justify-content:center}
+
+  /* real-screenshot phone */
+  .phone{width:280px;flex:0 0 280px;background:#0c0c0e;border-radius:44px;padding:11px;position:relative;
+    box-shadow:0 2px 6px rgba(0,0,0,.18),0 22px 50px rgba(0,0,0,.22)}
+  .phone.sm{width:228px;flex-basis:228px;border-radius:38px;padding:9px}
+  .phone img{width:100%;display:block;border-radius:34px}
+  .phone.sm img{border-radius:30px}
+  .phone .notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);
+    width:86px;height:26px;background:#0c0c0e;border-radius:0 0 16px 16px;z-index:5}
+  .phone.sm .notch{width:72px;height:22px}
+  .caption{font-family:var(--mono);font-size:11.5px;color:var(--muted);text-align:center;margin-top:14px;line-height:1.55}
+  .caption .v{color:var(--accent-ink)}
+
+  .commit{margin-top:18px;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fdfdfc}
+  .commit .h{display:flex;gap:9px;align-items:center;padding:8px 13px;background:#f5f5f3;border-bottom:1px solid var(--line);
+    font-family:var(--mono);font-size:12px;color:#555}
+  .commit .h .sha{color:var(--accent-ink)}
+  .commit pre{margin:0;padding:11px 14px;font-family:var(--mono);font-size:12.5px;color:#333;white-space:pre-wrap;line-height:1.5}
+
+  .decision{margin-top:20px;border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}
+  .decision .head{display:flex;gap:10px;align-items:center;padding:11px 16px;background:#f5f5f3;
+    border-bottom:1px solid var(--line);font-size:13px;font-weight:650;color:#333}
+  .decision .head .dot{width:9px;height:9px;border-radius:50%;background:var(--accent)}
+  .decision .body{padding:4px 16px 15px}
+
+  /* annotated full screenshot — highlight a region without cropping */
+  .annot{position:relative;width:280px;flex:0 0 280px}
+  .annot .hl{position:absolute;left:11px;right:11px;border:3px solid var(--accent);border-radius:6px;
+    pointer-events:none;box-shadow:0 0 0 3px rgba(31,168,85,.18)}
+  .annot .hl .tag{position:absolute;top:-12px;left:50%;transform:translate(-50%,-100%);
+    background:var(--accent);color:#fff;font-family:var(--mono);font-size:11px;font-weight:700;
+    padding:3px 9px;border-radius:7px;white-space:nowrap}
+  .annot .hl .tag::after{content:"";position:absolute;left:50%;bottom:-5px;transform:translateX(-50%);
+    border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid var(--accent)}
+
+  .diagram{margin:30px 0 8px;padding:18px 16px 10px;border:1px solid var(--line);border-radius:12px;background:#fff}
+  .diagram svg{display:block;width:100%;height:auto;max-width:680px;margin:0 auto}
+  .diagram .dlab{font-family:var(--mono);font-size:13px;font-weight:700;fill:#444}
+  .diagram .dpill{font-family:var(--mono);font-size:12px;font-weight:700;fill:#fff}
+  .diagram .dsub{font-family:var(--mono);font-size:12.5px;fill:#6b6b6b}
+  .diagram .dchip{font-family:var(--mono);font-size:12px;font-weight:700;fill:#157d3f}
+  .diagram figcaption{margin-top:8px;font-size:13.5px;color:#555;text-align:center;line-height:1.5}
+
+  .pulls{margin-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .pull{border:1px solid var(--line);border-radius:10px;padding:14px 15px;background:#fff}
+  .pull .n{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--accent-ink);letter-spacing:-.02em}
+  .pull .t{font-size:13px;color:#555;margin-top:3px}
+
+  footer{margin-top:78px;padding-top:28px;border-top:1px solid var(--line);font-size:15px;color:#444}
+  footer .cta{display:inline-flex;gap:6px;color:var(--accent-ink);text-decoration:none;font-weight:600;margin-top:8px}
+  footer .cta:hover .label{text-decoration:underline;text-underline-offset:2px}
+  footer .cta .arrow{transition:transform .15s ease}
+  footer .cta:hover .arrow{transform:translateX(3px)}
+  .note{font-size:13px;color:#8a8a8a;font-style:italic}
+
+  @media (max-width:700px){
+    .row,.row.reverse{grid-template-columns:1fr;gap:10px}
+    .row.reverse .stage{order:0}
+    .stage{position:static}
+    .stage,.stage.duo{margin:0 auto 8px;justify-content:center;flex-wrap:wrap}
+    header h1{font-size:30px}
+    .pulls{grid-template-columns:1fr 1fr}
+    .crop{margin:0 auto}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>colorways</h1>
+    <p class="lede big">An exercise in first-principles interface design: rebuilding the color picker to run on a phone's tilt and touch sensors instead of a mouse.</p>
+
+    <div class="hero">
+      <div class="phone sm"><div class="notch"></div><img src="shots/01-home.png" alt="good days mobile home screen"></div>
+      <div class="phone sm"><div class="notch"></div><img src="shots/02-picker.png" alt="good days mobile color picker"></div>
+    </div>
+    <p class="herocap">the finished picker — controlled by tilt and touch on an iPhone</p>
+
+    <p class="lede">From <a href="https://gdays.day" target="_blank" rel="noopener" style="color:var(--accent-ink);text-decoration:none">good days</a>, a journaling app I build where you compose your own colorway. The color picker — set a hue, a saturation, a lightness — has barely changed in decades, which makes it the perfect thing to rebuild: a familiar target, redrawn from the inputs a phone actually has.</p>
+    <div class="thesis">
+      <b>The real point:</b> practice for designing interfaces in a control space that has no established conventions — like a brain–computer interface, where the only inputs are the signals the hardware can decode. Rebuilding a familiar widget for a phone's sensors is the same problem at a smaller scale.
+      <br><br>Every screen below is a real screenshot of the shipping build; every milestone a real commit (~150, February 2026).
+    </div>
+  </header>
+
+  <hr class="rule">
+
+  <!-- 0. THE CANONICAL WIDGET -->
+  <section class="phase">
+    <p class="eyebrow">start from the canonical widget</p>
+    <div class="row">
+      <div class="stage">
+        <figure class="refimg" style="margin:0">
+          <img src="shots/canonical-picker.png" alt="A typical web color picker: a 2D saturation/lightness square, a vertical hue slider, an opacity slider, and a hex field">
+          <figcaption style="margin-top:10px;font-size:13px;color:#555;text-align:center;line-height:1.5">the same shape for decades: a 2-D saturation/lightness square, a hue slider, a hex field — Photoshop, Chrome DevTools, Figma, every OS picker.</figcaption>
+        </figure>
+      </div>
+      <div>
+        <h2>Start from the most settled widget there is.</h2>
+        <p class="sub">Pick a color almost anywhere and you get the same thing — shaped, top to bottom, by one assumption.</p>
+        <p>A 2-D square for saturation and lightness, a strip for hue, a hex field. It's a good design, and it assumes one thing throughout: <span class="k">you have a precise pointer</span>, a mouse.</p>
+        <p>Delete that assumption. A color is three continuous numbers; picking one is just setting three values with live feedback — no mouse required. So the question isn't "how do I shrink this onto a phone," it's: <span class="k">what inputs does this device actually have, and what's the best way to map three numbers onto them?</span> Everything below is the answer.</p>
+      </div>
+    </div>
+    <div class="decision">
+      <div class="head"><span class="dot"></span> How the result departs from the canonical picker</div>
+      <div class="body">
+        <p>· <b>hue</b> — canonical: a precise pointer on a slider. here: your <b>thumb</b> on a bar — a precise 1-D input for the one axis that genuinely needs precision.<br>
+        · <b>saturation + lightness</b> — canonical: drag a cursor around a 2-D box, one careful pointer motion. here: <b>wrist tilt</b> on two axes at once — coarse, embodied, and running <em>in parallel</em> with the thumb instead of after it.<br>
+        · <b>one color → two</b> — canonical pickers set a single color at a time. here: <b>text and background together</b> (two fingers), because in a journal a color only matters against its pair.<br>
+        · <b>preview</b> — canonical: a swatch. here: the <b>live document itself</b>, recoloring under your hands.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- 1. REFRAME -->
+  <section class="phase">
+    <p class="eyebrow">the reframe · v1.8.2</p>
+    <div class="row">
+      <div class="stage">
+        <div class="phone"><div class="notch"></div><img src="shots/01-home.png" alt="good days mobile home screen — title, framed tilt square with a single dot, copy/paste/rand row, and text/background buttons"></div>
+        <div class="caption">home screen — the dot tracks your tilt live<br><span class="v">shipping build</span></div>
+      </div>
+      <div>
+        <h2>The phone is already a controller.</h2>
+        <p class="sub">A color is three continuous numbers. A phone has three continuous inputs nobody uses for UI.</p>
+        <p>Three smooth dials — <span class="k">hue, saturation, lightness</span>. A phone has three smooth inputs normal apps ignore: tilt left/right (<em>gamma</em>), tilt forward/back (<em>beta</em>), and your thumb on the glass. v1.8.2 mapped them straight across, replacing the old "not supported on mobile" screen:</p>
+        <div class="commit">
+          <div class="h"><span class="sha">d6c0ddd</span> · v1.8.2 · feb 2</div>
+          <pre>Mobile redesign with accelerometer color picker
+- Replace "not supported on mobile" with interactive color picker
+- Press and hold text/background button to edit colors
+- Vertical drag controls hue (0-360°)
+- Phone tilt controls saturation (left-right) and lightness (forward-back)</pre>
+        </div>
+        <p>The L-bracketed square is the saturation/lightness plane; the dot is your live tilt. Flat = dead center, <span class="k">50/50</span>. You stop poking at a gradient and steer the color with your wrist.</p>
+        <div class="decision">
+          <div class="head"><span class="dot"></span> Sensitivity: how far is "all the way"? (45° → 20° → 15° → 10°)</div>
+          <div class="body">
+            <p>How many degrees should it take to go 0→100%? Pure trial and error over four versions. The first build needed a <span class="k">45°</span> tilt to hit an extreme — too coarse, you'd wave the phone around. It tightened each release: 45° → <span class="k">20°</span> (v1.8.6) → <span class="k">15°</span> (v1.9.12) → <span class="k">10°</span> (v1.10.7).</p>
+            <p>So each axis reaches its extreme at just <span class="k">±10° from your calibrated flat</span> — saturation in a 20°-wide left-right window, lightness forward-back. A small wrist movement covers the whole plane; that's what makes it feel precise instead of floppy. Smaller felt twitchy — 10° was the floor.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. HOLD -->
+  <section class="phase">
+    <p class="eyebrow">the core gesture · v1.10.61</p>
+    <div class="row">
+      <div class="stage">
+        <div class="phone"><div class="notch"></div><img src="shots/02-picker.png" alt="good days picker — title in the live text color, the square with light/dark/muted/vivid edge labels, a filled dot and a hollow circle, live hex/HSL, and two ROYGBIV hue spectra"></div>
+        <div class="caption">holding "text": the title turns the color you're editing<br><span class="v">picker screen, shipping build</span></div>
+      </div>
+      <div>
+        <h2>What happens when you hold "text" or "background".</h2>
+        <p class="sub">Press, and you're already adjusting — no setup, no mode to enter.</p>
+        <p>The moment your thumb lands on <span class="k">text</span> or <span class="k">background</span>: a <span class="k">10 ms haptic tick</span>, the picker takes over, the hue spectra slide up. The whole UI — title included — recolors to the color you're holding, so you always know what you're editing without a label.</p>
+        <p>And the color jumps to your current tilt the instant you press — deliberately, to keep calibration honest: <span class="k">center always means center</span>. Lift off and a <code>[5, 30, 5]</code> haptic locks it; back to home.</p>
+        <div class="decision">
+          <div class="head"><span class="dot"></span> The ball, and the two markers</div>
+          <div class="body">
+            <p>A big <span class="k">~40px dot</span> — oversized so it reads with your thumb on the glass and the phone moving. <span class="k">Filled</span> = the color you're steering; <span class="k">hollow</span> = the other color, parked at its own sat/light so you see both at once. Home shows one dot: pure tilt feedback.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SEEK/DOCK DEAD END (whiplash) -->
+  <section class="phase">
+    <p class="eyebrow">the dead end · built to stop whiplash, then deleted</p>
+    <h2>The two markers that fused to solid — and why they're gone.</h2>
+    <p class="sub">A whole control scheme — "seek and dock" — was built to prevent the sudden color jump when you start picking. It shipped for a week, then I deleted it.</p>
+    <p>The problem: press a color and your phone is already at <em>some</em> tilt. If tilt took over immediately, the color would lurch to wherever the phone was pointing — whiplash, every time.</p>
+    <p>The first fix was a docking ritual: tilt did <span class="k">nothing</span> until you steered a free-moving cursor onto the color's current spot. The markers carried the state in their <em>shapes</em>:</p>
+    <div class="commit">
+      <div class="h"><span class="sha">6a165bd</span> · v1.10.26 · feb 5</div>
+      <pre>Two-dot seeking/docking system for mobile color picker
+Mobile tilt square now uses a seek-then-adjust mechanic: tilt only
+controls sat/light after deliberately docking with the target. Three
+marker shapes (square=cursor/target, X=locked, dot=LIVE).</pre>
+    </div>
+    <div class="commit">
+      <div class="h"><span class="sha">c90bb61</span> · v1.10.42 · feb 5</div>
+      <pre>New marker logic - hollow + hollow = filled
+- Home: Two X's + hollow circle (cursor, nothing happens)
+- Seeking: Hollow circle (cursor) + hollow circle (target) + X (other)
+- Adjusting: Filled circle (LIVE) + X (other)
+Two hollow circles collide → one filled circle.</pre>
+    </div>
+    <p>That's the moment: a <span class="k">hollow ○ cursor</span> and a <span class="k">hollow ○ target</span>, with the <span class="k">✕</span> marking the <em>other</em> color. Drag the circles together — they snap on collision (v1.10.52) and <span class="k">fuse into one filled ● dot</span>. Only then did tilt engage. Because you'd arrived at the color's real position first, there was no jump.</p>
+
+    <div class="stage duo" style="margin:26px 0 6px">
+      <div style="text-align:center">
+        <div class="phone sm"><div class="notch"></div><img src="shots/07-seek-seeking.png" alt="seeking state — hollow circle cursor, hollow circle target, and an X for the locked other color"></div>
+        <div class="caption">seeking — two hollow ○ + the ✕<br>(hunting for the dock)</div>
+      </div>
+      <div style="text-align:center">
+        <div class="phone sm"><div class="notch"></div><img src="shots/08-seek-docked.png" alt="docked state — the two hollow circles have merged into one filled dot, with the X for the locked other color"></div>
+        <div class="caption">docked — fused to one filled ●<br>(tilt now drives the color)</div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:10px">Real screenshots, reconstructed by checking out the actual v1.10.53 commit, building it, and driving the live old code with synthetic tilt — not mockups.</p>
+    <p>It was clever and wrong: a ritual — <em>find it, dock it, watch the shape change</em> — before you could pick a color. Six days later it was deleted:</p>
+    <div class="commit">
+      <div class="h"><span class="sha">e230ab8</span> · v1.10.61 · feb 6</div>
+      <pre>Mobile UX overhaul — button width, markers, spacing, WS sync
+- Remove seek phase from color picker — go directly to adjusting
+- Simplify markers: filled dot (active), hollow circle (inactive), single dot on home</pre>
+    </div>
+    <p>The trade: <span class="k">accept the whiplash to kill the ritual.</span> Now pressing a color jumps it straight to your tilt — on purpose, because it keeps the mapping honest (<span class="k">center = center</span>), and hold-to-recalibrate makes the jump a non-issue. Zero modes beat zero whiplash.</p>
+  </section>
+
+  <hr class="rule">
+
+  <!-- 3b. RAW ACCELEROMETER -->
+  <section class="phase">
+    <p class="eyebrow">raw vs. filtered · v1.10.32 → v1.10.35</p>
+    <h2>Raw sensor data, on purpose.</h2>
+    <p class="sub">The accelerometer is noisy. The obvious move is to smooth it. I tried that, and took it back out.</p>
+    <p>Reading device tilt gives you a jittery signal — your hand is never perfectly still. The first instinct was to filter it: add a short easing transition so the dot glides instead of trembling.</p>
+    <div class="commit">
+      <div class="h"><span class="sha">1391bf0</span> · v1.10.32 · feb 5</div>
+      <pre>Smoother tilt marker movement
+Add 50ms CSS transitions to square, X, and dot markers for
+smoother accelerometer-driven animation.</pre>
+    </div>
+    <p>It looked calmer and felt worse. Any smoothing is a low-pass filter, and a low-pass filter is just <span class="k">latency</span> — the dot lagged behind the phone, so the color trailed your wrist. I tightened it (33ms + GPU compositing), then pulled the filter out entirely:</p>
+    <div class="commit">
+      <div class="h"><span class="sha">1edc78c</span> · v1.10.35 · feb 5</div>
+      <pre>Remove transition for instant marker response
+Pure GPU-accelerated transforms with no transition delay.
+Testing if sensor jitter is acceptable.</pre>
+    </div>
+    <p>The jitter was acceptable; the lag wasn't. The shipping build feeds <span class="k">raw orientation straight through every frame</span>, positioned with GPU <code>transform</code>s for 60fps. For a control you're <em>steering</em>, a tremor that tracks you instantly beats a smooth value that arrives late. Feel gets tuned elsewhere — the ±10° range and hold-to-recalibrate — not the signal.</p>
+  </section>
+
+  <hr class="rule">
+
+  <!-- 3c. CALIBRATION -->
+  <section class="phase">
+    <p class="eyebrow">calibration · v2.5.29 → v2.6.75 → v2.7.19</p>
+    <h2>You decide which tilt counts as "flat."</h2>
+    <p class="sub">The center of the square has to map to some real phone angle. Recalibrate lets you set that angle to however you're actually holding the phone — instead of forcing you to hold it level.</p>
+    <p>Same tilt always means the same color, so the picker needs a baseline — but a phone in your hand sits at some random angle. So recalibrate re-zeros the baseline to your current posture, and v2.5.29 made it <span class="k">live</span>: hold and it re-zeros every frame (~60fps), so you settle the phone while holding, then release to lock it.</p>
+    <div class="commit">
+      <div class="h"><span class="sha">ffe9a31</span> · v2.5.29 · feb 16</div>
+      <pre>Live continuous calibration on recalibrate hold
+Re-zeroing the tilt baseline every orientation frame (~60fps).
+Drag off to stop early; last zero-point sticks.</pre>
+    </div>
+
+    <div class="stage duo" style="margin:26px 0 6px">
+      <div style="text-align:center">
+        <div class="phone sm"><div class="notch"></div><img src="shots/06-seek-home.png" alt="old home screen with a labelled 'recalibrate tilt' button"></div>
+        <div class="caption">before — a labelled <span class="v">"recalibrate tilt"</span> button<br>(its own row, its own words)</div>
+      </div>
+      <div style="text-align:center">
+        <div class="phone sm"><div class="notch"></div><img src="shots/09-home-hint.png" alt="current home screen — no recalibrate button; a self-dismissing 'hold here to recalibrate' hint inside the square"></div>
+        <div class="caption">after — no button; you <span class="v">hold the square itself</span>,<br>and a hint teaches it once</div>
+      </div>
+    </div>
+
+    <p><span class="k">The decision: delete the button.</span> Recalibrate started as a labelled button taking a whole row (left). But the tilt square <em>is</em> the thing you're already touching — so the button went away and calibration became a gesture on the square itself: <span class="k">hold anywhere in it to re-zero</span>. One fewer button, one fewer word.</p>
+    <div class="commit">
+      <div class="h"><span class="sha">9dfd21c</span> · v2.6.75 · feb 26</div>
+      <pre>Move calibration to square segment, add rand button
+(randomize, which used to live here, moved to its own "rand" button)</pre>
+    </div>
+    <p><span class="k">But an invisible gesture is undiscoverable</span> — so it teaches itself, then leaves. A bold-sweep <span class="k">"hold here to recalibrate"</span> fades in inside the square (right), but only <em>after</em> your first pick, when it first matters. It disappears the first time you calibrate and stays gone for the rest of the session.</p>
+    <div class="commit">
+      <div class="h"><span class="sha">3aa547a</span> · v2.6.78 → v2.6.79 → v2.7.19 · feb 26</div>
+      <pre>Show hint after first picker return, not on first visit
+→ wording "hold here to recalibrate" → session-based dismiss
+(reappears next visit; never permanently gone)</pre>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- 4. TWO FINGER -->
+  <section class="phase">
+    <p class="eyebrow">two hands, two colors · v1.10.64</p>
+    <div class="row">
+      <div class="stage">
+        <div class="phone"><div class="notch"></div><img src="shots/03-twofinger.png" alt="good days picker with two fingers down — the background hue changed independently while the text color held; both hue bars show active needles"></div>
+        <div class="caption">second finger dragged the background hue on its own bar —<br>the page recolored while text stayed put <span class="v">(real two-finger capture)</span></div>
+      </div>
+      <div>
+        <h2>Two hands, two colors.</h2>
+        <p class="sub">You're never picking one color — you're balancing text against background.</p>
+        <p>So the picker reads both bars at once. This is a genuine two-finger capture: the second finger dragged the <em>background</em> hue on the right bar while the text color held — you can see the whole screen has recolored to the new pale background, and both bars carry live needles.</p>
+        <div class="commit">
+          <div class="h"><span class="sha">7bde9e1</span> · v1.10.64 · feb 6</div>
+          <pre>Multitouch alpha/beta hue control
+Two-finger simultaneous control: alpha finger claims tilt for S/L
+while beta independently drags the other hue bar. Releasing alpha
+promotes beta (tilt switches). Needle sizes: alpha 16px, beta 8px, idle 4px.</pre>
+        </div>
+        <p>The first finger down is <span class="k">alpha</span> — it owns tilt (the active color's saturation + lightness) and its own hue bar. A second finger on the opposite bar becomes <span class="k">beta</span> and drives that hue alone. Lift alpha and beta is promoted instantly: its needle thickens, tilt transfers to it, no mode switch. A mouse can't set two colors at once; two fingers on a touchscreen can.</p>
+        <div class="decision">
+          <div class="head"><span class="dot"></span> Why it's worth the complexity</div>
+          <div class="body">
+            <p>A journal's text color only matters <em>against</em> its background. Single-color pickers force you to set one, switch, set the other, switch back to compare. Two-finger control collapses that loop — you watch the contrast resolve under your hands in real time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. NEEDLES -->
+  <section class="phase">
+    <p class="eyebrow">the details that took the most versions</p>
+    <div class="row">
+      <div class="stage">
+        <div class="annot">
+          <div class="phone"><div class="notch"></div><img src="shots/02-picker.png" alt="full picker screenshot; the two hue spectra and needles are at the bottom"></div>
+          <div class="hl" style="bottom:13px;height:24%"><span class="tag">needles · spectra · 4px divider</span></div>
+        </div>
+        <div class="caption">full picker capture — the highlighted band<br>is what this section is about</div>
+      </div>
+      <div>
+        <h2>Needles, thickness, transparency.</h2>
+        <p class="sub">The hue markers got more commits than almost anything else. Here's why each value is what it is.</p>
+        <p><span class="k">Thickness encodes who's in control.</span> A hue needle is <span class="k">4px when idle</span>, doubles to <span class="k">8px</span> on the bar you're actively dragging, and grows to <span class="k">16px for the alpha finger</span> in two-finger mode. The growth is symmetric around the true hue centerline, so the thin midpoint always marks the exact hue — the needle gets bolder without lying about its position.</p>
+        <p><span class="k">Transparency, so the needle never hides the color.</span> The needles went through a whole sweep of opacity tuning — white at 50%, then 75%, then finally a black needle at <span class="k">~60% opacity</span> — landing semi-transparent on purpose: you can see the exact hue <em>through</em> the marker that points at it. Earlier versions even cut a transparent slit through the needle's center for the same reason.</p>
+        <p><span class="k">Flush with the divider.</span> The two bars are split by a 4px black divider at 60% opacity; each needle is inset 2px on its inner edge so it meets the divider cleanly instead of sliding behind it. And the spectrum runs <span class="k">ROYGBIV bottom-to-top</span> (red at the bottom, violet at the top, no duplicate red) so "up" is consistently "toward violet."</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- 7. PAIRING -->
+  <section class="phase">
+    <p class="eyebrow">closing the loop · v2.0</p>
+    <div class="row">
+      <div class="stage">
+        <div class="phone"><div class="notch"></div><img src="shots/04-codeentry.png" alt="good days pairing screen — title, an empty framed square, a pairing code input, and a skip button"></div>
+        <div class="caption">pairing: auto when it can, a 3-digit code when it can't<br><span class="v">code-entry screen, shipping build</span></div>
+      </div>
+      <div>
+        <h2>The phone as a live remote for the big screen.</h2>
+        <p class="sub">The optimal version isn't phone-only — it's the phone driving the screen you actually read on.</p>
+        <p>You journal on the laptop; the phone is the controller. Tilt and drag, and the laptop's colorway updates live over a WebSocket at ~24 fps. Phone = instrument, desktop = canvas — and the whole canvas is your preview.</p>
+        <p>Pairing is invisible when it can be: <span class="k">one laptop</span> on the network auto-pairs; <span class="k">zero or two-plus</span> drop to this 3-digit code screen; a stalled socket falls back here instead of hanging. <span class="k">skip</span> uses the phone standalone.</p>
+        <div class="decision">
+          <div class="head"><span class="dot"></span> Why stream, instead of "export a colorway"</div>
+          <div class="body">
+            <p>A picker you can't see results from in context is guesswork. Streaming turns the laptop's real journal into the live preview — you watch your actual writing recolor under your hands, which is the only feedback that matters.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- live-control diagram -->
+    <figure class="diagram">
+      <svg viewBox="0 0 680 230" role="img" aria-label="Phone controller streaming colors to a laptop over the same Wi-Fi via a WebSocket relay">
+        <!-- phone -->
+        <rect x="58" y="46" width="92" height="150" rx="16" fill="#fff" stroke="#1a1a1a" stroke-width="2.5"/>
+        <rect x="68" y="58" width="72" height="112" rx="6" fill="hsl(68,100%,80%)"/>
+        <circle cx="104" cy="100" r="9" fill="#1f7a1f"/>
+        <rect x="74" y="150" width="28" height="14" rx="3" fill="#1f7a1f" opacity=".85"/>
+        <rect x="106" y="150" width="28" height="14" rx="3" fill="#1f7a1f" opacity=".4"/>
+        <text x="104" y="216" text-anchor="middle" class="dlab">phone · controller</text>
+        <!-- laptop -->
+        <rect x="500" y="58" width="132" height="86" rx="7" fill="#fff" stroke="#1a1a1a" stroke-width="2.5"/>
+        <rect x="510" y="68" width="112" height="66" rx="3" fill="hsl(68,100%,80%)"/>
+        <text x="566" y="106" text-anchor="middle" font-size="15" font-weight="800" fill="#1f7a1f" font-family="ui-monospace,Menlo,monospace">good days</text>
+        <path d="M486 150 H646 l12 22 H474 Z" fill="#fff" stroke="#1a1a1a" stroke-width="2.5"/>
+        <text x="566" y="216" text-anchor="middle" class="dlab">laptop · canvas</text>
+        <!-- link -->
+        <line x1="158" y1="118" x2="492" y2="118" stroke="#1fa855" stroke-width="2.5" stroke-dasharray="3 7" stroke-linecap="round"/>
+        <polygon points="492,118 480,112 480,124" fill="#1fa855"/>
+        <polygon points="158,118 170,112 170,124" fill="#1fa855"/>
+        <!-- wifi glyph -->
+        <g stroke="#1fa855" stroke-width="2.5" fill="none" stroke-linecap="round">
+          <path d="M309 96 a30 30 0 0 1 42 0"/>
+          <path d="M318 105 a18 18 0 0 1 24 0"/>
+        </g>
+        <circle cx="330" cy="114" r="3.5" fill="#1fa855"/>
+        <rect x="286" y="58" width="88" height="22" rx="11" fill="#157d3f"/>
+        <text x="330" y="73" text-anchor="middle" class="dpill">WebSocket</text>
+        <text x="330" y="150" text-anchor="middle" class="dsub">same Wi-Fi network</text>
+        <rect x="378" y="106" width="92" height="24" rx="12" fill="#fff" stroke="#1fa855" stroke-width="1.5"/>
+        <text x="424" y="122" text-anchor="middle" class="dchip">~24 fps · 42 ms</text>
+      </svg>
+      <figcaption>Pick up the phone, tilt — the laptop's colorway moves with your wrist. One persistent socket over the local network; no cloud round-trip in the loop.</figcaption>
+    </figure>
+
+    <h2 style="margin-top:8px">Why WebSockets — and where the latency actually was.</h2>
+    <p class="sub">Streaming tilt is a firehose. The wire was the easy part; keeping it smooth on-device was the real fight.</p>
+    <p>Tilting generates dozens of updates a second — a request-per-update would drown in overhead. A <span class="k">WebSocket</span> is the right primitive: one persistent connection, tiny JSON frames at near-zero cost, carrying both the pairing handshake and the color stream. A small relay (Fly.io) matches phone↔laptop on a 3-digit code and forwards frames; it never stores a color.</p>
+    <p><span class="k">Framerate was pure experiment:</span> 48 fps (too chatty) → 30 → 24 → a 12 fps test that felt laggy → settled at <span class="k">24 fps / 42 ms</span>, live without flooding the wire.</p>
+    <div class="commit">
+      <div class="h"><span class="sha">fb14be0</span> · v2.4.125 · feb 13</div>
+      <pre>Settle on 24fps WS throttle (42ms)   (after 48fps → 30fps → 24fps → 12fps tests)</pre>
+    </div>
+    <p>But the wire was never the bottleneck — <span class="k">renders on the laptop were</span>. 24 updates/sec naively meant 24 React re-renders/sec, plus gradient regeneration ~40×/sec — starving the frame budget into a stutter. Three fixes:</p>
+    <div class="commit">
+      <div class="h"><span class="sha">5ffaab9</span> · v2.3.11 · feb 8</div>
+      <pre>rAF-throttle color updates to fix frame drops
+Color-update messages buffer in a ref and apply once per animation
+frame instead of a React render per message — caps renders at the
+display refresh rate.</pre>
+    </div>
+    <div class="commit">
+      <div class="h"><span class="sha">4b848a7</span> · v2.4.6 · feb 10</div>
+      <pre>CSS custom properties for smooth live streaming
+Bypass React entirely during streaming. Inline HSL styles reference
+CSS variables (--h, --s, --l, …) set on :root via rAF — zero React
+state updates per frame.</pre>
+    </div>
+    <p>And the subtle one: the gradient was rebuilding every frame — freezing it during streaming (dots still moving via CSS vars) gave the budget back (<code>v2.5.3</code>). The takeaway: <span class="k">the network made it "live" for free; "smooth" meant getting React and the browser out of the per-frame path.</span></p>
+  </section>
+
+  <hr class="rule">
+
+  <!-- FINAL -->
+  <section class="phase">
+    <p class="eyebrow">where it landed</p>
+    <h2>The final instrument.</h2>
+    <p class="sub">At rest (left) and mid-pick (right) — same colorway, a control surface that never moves, zero modes.</p>
+    <div class="stage duo" style="margin-top:24px">
+      <div class="phone sm"><div class="notch"></div><img src="shots/01-home.png" alt="final home screen"></div>
+      <div class="phone sm"><div class="notch"></div><img src="shots/02-picker.png" alt="final picker screen"></div>
+    </div>
+    <p style="margin-top:28px">One idea ties it together: <span class="k">the phone is a physical instrument, so it behaves like one.</span> The square sits at the same pixel on every screen and never moves (a <code>ResizeObserver</code> + invisible skeleton enforce it) — an instrument's controls don't wander. Same tilt, same color. Pressing a button <em>is</em> entering the picker. Hold the square to set neutral to your grip. Each of these decisions reduces the delay between deciding on a color and getting it.</p>
+
+    <div class="pulls">
+      <div class="pull"><div class="n">~150</div><div class="t">versioned iterations, Feb 2026, all in git</div></div>
+      <div class="pull"><div class="n">3 inputs</div><div class="t">gamma · beta · multitouch — zero new hardware</div></div>
+      <div class="pull"><div class="n">2 colors</div><div class="t">text + background, sculpted at once with two fingers</div></div>
+      <div class="pull"><div class="n">~24 fps</div><div class="t">streamed live to the paired desktop as you tilt</div></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>The point of the piece: take a familiar interface, look at the inputs the device actually has, and redesign the interaction around them. Every screen here is a real screenshot of the shipping app; every milestone is a real commit.</p>
+    <a class="cta" href="https://gdays.day" target="_blank" rel="noopener"><span class="label">Try good days</span> <span class="arrow">→</span></a>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -6,6 +6,7 @@ import Layout from './Layout'
 import Home from './pages/Home'
 import Art from './pages/Art'
 import Design from './pages/Design'
+import Neuralink from './pages/Neuralink'
 import Experience from './pages/Experience'
 
 createRoot(document.getElementById('root')!).render(
@@ -16,6 +17,7 @@ createRoot(document.getElementById('root')!).render(
           <Route index element={<Home />} />
           <Route path="art" element={<Art />} />
           <Route path="projects" element={<Design />} />
+          <Route path="design" element={<Neuralink />} />
           <Route path="experience" element={<Experience />} />
         </Route>
       </Routes>

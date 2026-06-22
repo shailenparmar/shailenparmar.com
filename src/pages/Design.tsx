@@ -8,6 +8,7 @@ type Project = {
   image?: string
   imageFit?: 'cover' | 'contain'
   imagePosition?: string
+  href?: string
   body: string
   links?: { label: string; href: string }[]
 }
@@ -16,10 +17,20 @@ const projects: Project[] = [
   {
     title: 'colorways (mobile only)',
     image: '/design/good-days-color-picker.jpg',
-    body: 'novel interface for selecting background and text colors within design tools. control 3 axes across 2 parameters with 1 hand. an experiment in redesigning a common function from first principles, making full use of the hardware available.',
+    href: '/colorways/',
+    body: 'novel interface for selecting background and text colors. control 3 axes across 2 parameters with 1 hand. an experiment in redesigning a common function from first principles, making full use of the hardware available.',
     links: [
       { label: 'gdays.day (mobile)', href: 'https://gdays.day' },
       { label: 'github', href: 'https://github.com/shailenparmar/good-days' },
+    ],
+  },
+  {
+    title: 'drones',
+    image: '/design/drones.png',
+    imagePosition: 'center 30%',
+    body: "i've been building and flying radio control airplanes and drones for 15 years.\n\ni'm an expert pilot with thousands of hours logged in simulation and actual flying.\n\ni've developed a deep sense for proportional, low-latency control inputs in high-precision robotic systems.",
+    links: [
+      { label: 'flight videos', href: 'https://photos.app.goo.gl/PqFfXuQA5yGj4hxR7' },
     ],
   },
   {
@@ -30,15 +41,6 @@ const projects: Project[] = [
       { label: 'gdays.day (desktop)', href: 'https://gdays.day' },
       { label: 'app store', href: 'https://apps.apple.com/us/app/good-days-pro/id6759430252?mt=12' },
       { label: 'github', href: 'https://github.com/shailenparmar/good-days' },
-    ],
-  },
-  {
-    title: 'drones',
-    image: '/design/drones.png',
-    imagePosition: 'center 30%',
-    body: "i've been building and flying radio control airplanes and drones for 15 years.\n\ni'm an expert pilot with thousands of hours logged in simulation and actual flying.",
-    links: [
-      { label: 'flight videos', href: 'https://photos.app.goo.gl/PqFfXuQA5yGj4hxR7' },
     ],
   },
   {
@@ -113,7 +115,7 @@ export default function Design() {
       </div>
       <div className="design-grid">
         {projects.map((p) => {
-          const primary = p.links?.[0]?.href
+          const primary = p.href ?? p.links?.[0]?.href
           const ImageWrap = ({ children }: { children: React.ReactNode }) =>
             primary ? (
               <a href={primary} target="_blank" rel="noreferrer" className="project-image project-image-link">
