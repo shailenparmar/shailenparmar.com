@@ -198,7 +198,7 @@ export default function Experience() {
           <li><a className="inspiration-link" href="https://www.amazon.com/dp/0465050654" target="_blank" rel="noreferrer">The Design of Everyday Things</a> — Don Norman</li>
           <li><a className="inspiration-link" href="https://www.youtube.com/watch?v=MnrJzXM7a6o" target="_blank" rel="noreferrer">Steve Jobs introducing the iPhone</a></li>
           <li><a className="inspiration-link" href="https://www.sfzc.org/files/daily_sutras_Song_of_the_Jewel_Mirror_Samadhi" target="_blank" rel="noreferrer">Song of the Jewel Mirror Samadhi</a></li>
-          <li><a className="inspiration-link" href="https://www.youtube.com/watch?v=brjQ_mVO0Dc" target="_blank" rel="noreferrer">Dave Powers</a></li>
+          <li><a className="inspiration-link" href="https://www.youtube.com/watch?v=brjQ_mVO0Dc" target="_blank" rel="noreferrer">RCSuperPowers</a></li>
         </ul>
       </div>
 
