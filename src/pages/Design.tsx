@@ -20,6 +20,7 @@ const projects: Project[] = [
     href: '/colorways/',
     body: 'novel interface for selecting background and text colors. control 3 axes across 2 parameters with 1 hand. an experiment in redesigning a common function from first principles, making full use of the hardware available.',
     links: [
+      { label: 'design process', href: '/colorways/' },
       { label: 'gdays.day (mobile)', href: 'https://gdays.day' },
       { label: 'github', href: 'https://github.com/shailenparmar/good-days' },
     ],
