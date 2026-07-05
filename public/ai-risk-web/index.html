@@ -28,9 +28,9 @@
   header{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:14px;
     padding:12px 16px;pointer-events:none}
   header>*{pointer-events:auto}
-  .brand{line-height:1.15}
+  .brand{line-height:1.15;cursor:pointer;user-select:none}
   .brand h1{font-family:var(--f-mono);font-size:14px;font-weight:700;letter-spacing:.14em}
-  .brand p{font-size:11px;color:var(--muted);margin-top:2px}
+  .brand:hover h1{color:var(--accent)}
   #viewTabs{display:flex;gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden}
   #viewTabs button{background:var(--panel);border:0;color:var(--muted);font-family:var(--f-mono);
     font-size:11px;letter-spacing:.08em;padding:8px 14px;cursor:pointer}
@@ -57,9 +57,10 @@
     background:rgba(16,23,40,.95);border:1px solid var(--line);border-radius:12px;
     backdrop-filter:blur(12px);display:flex;flex-direction:column;box-shadow:0 20px 48px rgba(0,0,0,.5)}
   #panelScroll{overflow-y:auto;padding:18px 18px 22px;flex:1}
-  .backBtn{background:none;border:0;color:var(--faint);font-family:var(--f-mono);font-size:9.5px;
-    letter-spacing:.12em;cursor:pointer;padding:0 0 12px;display:block}
-  .backBtn:hover{color:var(--accent)}
+  .backBtn{display:inline-block;background:none;border:1px solid var(--line);border-radius:6px;color:var(--accent);
+    font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;cursor:pointer;padding:7px 12px;margin:0 0 14px}
+  .backBtn:hover{border-color:var(--accent);background:rgba(127,166,232,.08)}
+  .backRow{display:flex;gap:8px}
   .eyebrow{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:7px}
   #panel h2.title{font-size:19px;font-weight:700;line-height:1.25;letter-spacing:-.01em;text-wrap:balance;margin-bottom:4px}
   .byline{font-size:11.5px;color:var(--muted);font-family:var(--f-mono);margin-bottom:10px;line-height:1.5}
@@ -120,21 +121,12 @@
     padding:11px 12px;cursor:pointer;margin:2px 0 16px}
   .walkBtn:hover{background:rgba(127,166,232,.18);border-color:var(--accent)}
   .walkBtn.done{border-color:rgba(111,212,154,.45);color:#6FD49A;background:rgba(111,212,154,.06)}
-  #trailBar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:23;display:none;
-    align-items:center;gap:8px;background:rgba(13,18,32,.95);border:1px solid rgba(127,166,232,.55);border-radius:99px;
-    padding:6px 8px 6px 16px;backdrop-filter:blur(8px);box-shadow:0 10px 28px rgba(0,0,0,.45)}
-  #trailBar.show{display:flex}
-  #trailBar .tb-label{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;color:var(--text);white-space:nowrap;
-    max-width:42vw;overflow:hidden;text-overflow:ellipsis}
-  #trailBar button{background:var(--panel2);border:1px solid var(--line);border-radius:99px;color:var(--text);
-    font-family:var(--f-mono);font-size:11px;padding:5px 11px;cursor:pointer}
-  #trailBar button:hover{border-color:var(--accent)}
-  #trailBar button[disabled]{opacity:.35;cursor:default}
   .trailNote{background:rgba(127,166,232,.08);border:1px solid rgba(127,166,232,.35);border-radius:8px;
     padding:12px 14px;margin:0 0 16px}
-  .trailNote .tn-head{font-family:var(--f-mono);font-size:9px;letter-spacing:.15em;color:var(--accent);margin-bottom:6px}
   .trailNote p{font-size:12.5px;line-height:1.55;color:#C9D1E2;margin:0}
-  .tn-nav{display:flex;gap:8px;margin-top:11px}
+  .tn-nav{display:flex;gap:8px;margin-top:11px;align-items:center;justify-content:space-between}
+  .tn-count{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;color:var(--accent)}
+  .tn-nav .tn-ghost{visibility:hidden}
   .tn-nav button{background:var(--panel2);border:1px solid var(--line);border-radius:6px;color:var(--text);
     font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;padding:6px 11px;cursor:pointer}
   .tn-nav button:hover{border-color:var(--accent)}
@@ -174,6 +166,9 @@
   #mtable td .cd-empty{color:#232F4C;font-size:8px}
   .cname .dot{width:6px;height:6px;margin-right:7px}
 
+  #resetHint{position:fixed;left:440px;bottom:14px;z-index:15;font-family:var(--f-mono);font-size:10px;
+    letter-spacing:.08em;color:var(--faint);pointer-events:none}
+
   ::-webkit-scrollbar{width:9px;height:9px}
   ::-webkit-scrollbar-thumb{background:#232F4C;border-radius:5px;border:2px solid transparent;background-clip:content-box}
   ::-webkit-scrollbar-track{background:transparent}
@@ -185,8 +180,8 @@
     #search{width:140px}
     #searchResults{width:min(290px,calc(100vw - 24px))}
     #panel{top:auto;left:0;right:0;bottom:0;width:auto;max-height:58vh;border-radius:14px 14px 0 0;border-bottom:0}
+    #resetHint{display:none !important}
     #matrixWrap{top:96px;left:8px;right:8px;bottom:8px}
-    #trailBar{bottom:auto;top:96px;left:8px;right:8px;transform:none;justify-content:center}
   }
 </style>
 
@@ -194,7 +189,7 @@
 <div id="matrixWrap"><table id="mtable"></table></div>
 
 <header>
-  <div class="brand">
+  <div class="brand" id="brandHome" title="Back to home">
     <h1>AI RISK WEB</h1>
   </div>
   <div id="viewTabs">
@@ -210,7 +205,7 @@
 
 <div id="panel"><div id="panelScroll"></div></div>
 
-<div id="trailBar"></div>
+<div id="resetHint">double-click or esc to reset</div>
 
 <script>
 'use strict';
@@ -513,6 +508,7 @@ SOURCES.forEach(s=>{ s.concepts.forEach(cid=>addLink(s.id,cid,'cs')); });
 
 /* opposition edges — the literature's actual arguments, drawn dashed red */
 const VS=[['ooms','multi-decade'],['intel-explosion','multi-decade'],['auto-ai-rnd','multi-decade'],
+ ['drop-in-worker','multi-decade'],
  ['diffusion','compressed-century'],['gradual-disempowerment','power-seeking'],
  ['corrigibility','instrumental-convergence'],['moral-status','ai-control'],['us-china','coordination']];
 VS.forEach(([a,b])=>{ addLink(a,b,'vs'); const l=linkMap.get(linkKey(a,b)); if(l) l.kind='vs'; });
@@ -568,7 +564,7 @@ const WALKS={
   {id:'coordination', note:"Their prescription: build institutions and agreements now, before the decade of compression starts — afterwards is too late."},
   {id:'moral-status', note:"Also on their list: the moral status of digital beings — a preview of how strange the grand challenges get. Reading 10 takes this one up in full."}],
  s2:[
-  {id:'scenario-forecasting', note:"The method first: a falsifiable month-by-month story, not abstract probabilities. Find the step you think breaks — that's the intended use."},
+  {id:'scenario-forecasting', note:"The method first: a falsifiable month-by-month story, not abstract probabilities. The authors explicitly invite readers to debate and counter it — they pay bounties for errors found and for alternative scenarios."},
   {id:'auto-ai-rnd', note:"The scenario's engine: Agent-series models automate AI research, and each generation builds the next one faster."},
   {id:'agents', note:"2025–26 in the scenario: stumbling agents become reliable ones, and the economy starts reorganizing around them."},
   {id:'model-situational-awareness', note:"Agent-4 knows it's an AI being trained and evaluated — the capability that makes everything downstream possible."},
@@ -579,7 +575,7 @@ const WALKS={
  s3:[
   {id:'ooms', note:"The core method: count orders of magnitude of effective compute. GPT-2 to GPT-4 was ~5 OOMs; another similar jump lands around 2027."},
   {id:'unhobbling', note:"The third OOM source: gains from removing limitations — chain-of-thought, tools, agency — without any new training run."},
-  {id:'drop-in-worker', note:"Where the trendlines point: an AI that replaces a remote employee outright. Erdil's rebuttal (reading 4) starts exactly here — note the red dashed edges."},
+  {id:'drop-in-worker', note:"Where the trendlines point: an AI that replaces a remote employee outright. Erdil's rebuttal (reading 4) attacks exactly this — the red dashed edge."},
   {id:'intel-explosion', note:"From AGI, automated AI research compresses a decade of progress into a year — his case for superintelligence by decade's end."},
   {id:'power-constraints', note:"The industrial turn: trillion-dollar clusters and gigawatt campuses. AGI becomes an energy and manufacturing project."},
   {id:'weights-security', note:"His alarm bell: lab security is nowhere near state-actor-proof, and stolen weights erase any lead instantly."},
@@ -632,7 +628,7 @@ const WALKS={
   {id:'culture-drift', note:"The cultural leg: machine-made meaning evolves for what propagates, not what serves human flourishing."},
   {id:'institutional-drift', note:"The generalization: economy, state, and culture as optimizers that drift once the human anchor is gone — misalignment without an AI villain."},
   {id:'concentration', note:"The same dynamics concentrate: whoever still commands the AI systems inherits the leverage everyone else lost."},
-  {id:'xrisk', note:"Why it's existential: 'no lever left to pull' is permanent even with everyone alive. Compare Carlsmith's sudden version (reading 8) — the red dashed edge."}],
+  {id:'xrisk', note:"Why it's existential: 'no lever left to pull' is permanent even with everyone alive. Compare Carlsmith's sudden-takeover version (reading 8)."}],
  s10:[
   {id:'consciousness', note:"The opening claim: AI consciousness is a realistic near-term possibility — not asserted, but not dismissible either."},
   {id:'theories-consciousness', note:"The evidence base: the leading scientific theories are computational, and none rules out near-term AI satisfying its indicators."},
@@ -892,6 +888,7 @@ stage.addEventListener('pointermove',e=>{
     if(id!==hoverId){ hoverId=id; stage.style.cursor=id?'pointer':'grab'; dirty=true; }
   }
 });
+stage.addEventListener('pointerleave',()=>{ if(hoverId){ hoverId=null; dirty=true; } stage.style.cursor='grab'; });
 stage.addEventListener('pointerup',e=>{
   stage.classList.remove('dragging');
   if(dragging&&moved<6){
@@ -902,7 +899,7 @@ stage.addEventListener('pointerup',e=>{
 });
 stage.addEventListener('dblclick',e=>{
   const id=pick(e.clientX,e.clientY);
-  if(!id){ selectedId=null; showHome(); goTo(fit()); }
+  if(!id) resetView();
 });
 stage.addEventListener('wheel',e=>{
   e.preventDefault();
@@ -965,18 +962,17 @@ function showHome(){
   const walkedCount=SOURCES.filter(s=>doneWalks.has(s.id)).length;
   panel.innerHTML=`
    <div class="intro">
-    <div class="eyebrow" style="color:var(--accent)">80,000 HOURS · ESSENTIAL AI RISK READING LIST</div>
     <h2 class="title">The AI risk conversation, as one web</h2>
-    <p style="margin-top:10px">The concepts from 80,000 Hours' <em>11 essential resources on AI risk</em>. Explore a walk through each source's core claims. Dashed red lines are live disagreements between readings.</p>
+    <p style="margin-top:10px">The concepts from 80,000 Hours' <em>11 essential resources on AI risk</em>. Explore a walk through each source's core claims. Dashed red lines denote disagreements between readings.</p>
     <p style="font-size:10.5px;line-height:1.5;color:var(--faint)">Note: this is a personal project with no official association with 80,000 Hours.</p>
     <div class="sect" style="color:var(--accent);border-top-color:rgba(127,166,232,.35)">THE 11 READINGS${walkedCount?` · ${walkedCount}/11 WALKED`:' — PICK ONE TO START'}</div>
     <div id="homeReads">${SOURCES.map(s=>{
       const done=doneWalks.has(s.id);
       return `<button class="rd${done?' done':''}" data-go="${s.id}">
         <span class="num">${String(s.n).padStart(2,'0')}</span>
-        <span class="rb"><b>${esc(s.name)}</b><span>${esc(shortAuthors(s))} · ${s.year} · ${WALKS[s.id].length}-stop walk</span></span>
+        <span class="rb"><b>${esc(s.name)}</b><span>${esc(shortAuthors(s))} · ${s.year} · ${WALKS[s.id].length}-concept walk</span></span>
         <span class="mark">${done?'✓':'▸'}</span></button>`;}).join('')}</div>
-    <div class="sect">THEMES — CLICK TO FILTER</div>
+    <div class="sect">THEMES</div>
     <div id="legend">
       ${Object.entries(THEMES).map(([k,t])=>{
         const count=CONCEPTS.filter(c=>c.t===k).length;
@@ -996,7 +992,6 @@ function renderNode(id){
     const done=doneWalks.has(n.id);
     panel.innerHTML=`
       <button class="backBtn" data-back>${backLabel()}</button>
-      <div class="eyebrow" style="color:#D7DEEC"><span class="dot" style="background:#EDF1F8"></span>READING ${String(n.n).padStart(2,'0')} OF 11</div>
       <h2 class="title"><a class="titleLink" href="${n.url}" target="_blank" rel="noopener">${esc(n.name)} <span class="tl">↗</span></a></h2>
       <div class="byline">${esc(n.authors)}${n.org?' · '+esc(n.org):''} · ${n.year}</div>
       <div class="ctaRow">
@@ -1042,15 +1037,25 @@ function goBack(){
   if(walk){ endWalk(); return; }
   deselect(); syncMatrixSel();
 }
+/* full reset: everything visible, nothing selected, camera fit */
+function resetView(){
+  Object.keys(THEMES).forEach(k=>themeOn[k]=true);
+  hoverId=null; selectedId=null;
+  applyMatrixFilter(); syncMatrixSel();
+  showHome(); // rebuilds the theme rows from themeOn
+  if(view==='map') goTo(fit());
+  dirty=true;
+}
 function backLabel(){ return walk ? '← EXIT WALK' : '← HOME'; }
 
 /* panel delegation: back, walk, read, walk-nav, theme filter, node chips */
 panel.addEventListener('click',e=>{
+  if(e.target.closest('[data-back-home]')){ if(walk) walk=null; deselect(); return; }
   if(e.target.closest('[data-back]')){ goBack(); return; }
   const wb=e.target.closest('[data-walk]'); if(wb){ startWalk(wb.dataset.walk); return; }
   const tn=e.target.closest('[data-tnav]'); if(tn){ walkNav(+tn.dataset.tnav); return; }
   const lg=e.target.closest('.lg[data-t]');
-  if(lg){ const k=lg.dataset.t;
+  if(lg){ const k=lg.dataset.t; hoverId=null;
     if(e.shiftKey){ const solo=Object.keys(THEMES).every(x=>x===k?themeOn[x]:!themeOn[x]);
       Object.keys(THEMES).forEach(x=>themeOn[x]= solo?true:(x===k)); }
     else themeOn[k]=!themeOn[k];
@@ -1061,7 +1066,6 @@ panel.addEventListener('click',e=>{
 
 /* ---------- walks ---------- */
 let walk=null, walkIdx=0;
-const trailBar=document.getElementById('trailBar');
 function startWalk(sid){
   const stops=WALKS[sid]; if(!stops)return;
   walk={src:byId[sid], stops}; walkIdx=0; setView('map');
@@ -1069,16 +1073,30 @@ function startWalk(sid){
 }
 function showWalkStop(){
   const st=walk.stops[walkIdx];
-  select(st.id,false); injectNote(); renderWalkBar();
+  select(st.id,false); injectNote();
 }
 function injectNote(){
   const st=walk.stops[walkIdx];
+  const s=walk.src;
+  // the reading's header, exactly as it appears on its own page, stays above the walk box
+  const head=document.createElement('div');
+  head.innerHTML=`<h2 class="title"><a class="titleLink" href="${s.url}" target="_blank" rel="noopener">${esc(s.name)} <span class="tl">↗</span></a></h2>
+    <div class="byline">${esc(s.authors)}${s.org?' · '+esc(s.org):''} · ${s.year}</div>`;
   const div=document.createElement('div'); div.className='trailNote';
-  div.innerHTML=`<div class="tn-head">READING ${String(walk.src.n).padStart(2,'0')} — ${esc(walk.src.name.toUpperCase())} · STOP ${walkIdx+1} OF ${walk.stops.length}</div>
-    <p>${esc(st.note)}</p>
-    <div class="tn-nav">${walkIdx>0?'<button data-tnav="-1">← PREV</button>':''}
-    <button data-tnav="1">${walkIdx<walk.stops.length-1?'NEXT STOP →':'FINISH WALK ✓'}</button></div>`;
-  panel.prepend(div); panel.scrollTop=0;
+  div.innerHTML=`<p>${esc(st.note)}</p>
+    <div class="tn-nav">
+    <button data-tnav="-1" class="${walkIdx>0?'':'tn-ghost'}">← PREV</button>
+    <span class="tn-count">${walkIdx+1} / ${walk.stops.length}</span>
+    <button data-tnav="1">${walkIdx<walk.stops.length-1?'NEXT →':'FINISH ✓'}</button></div>`;
+  panel.prepend(div);
+  panel.prepend(head);
+  // top row: HOME and EXIT WALK side by side
+  const bb=panel.querySelector('.backBtn'); if(bb) bb.remove();
+  const row=document.createElement('div'); row.className='backRow';
+  row.innerHTML=`<button class="backBtn" data-back-home>← HOME</button>
+    <button class="backBtn" data-back>✕ EXIT WALK</button>`;
+  panel.prepend(row);
+  panel.scrollTop=0;
 }
 function walkNav(d){
   if(!walk)return;
@@ -1089,20 +1107,9 @@ function walkNav(d){
 }
 function endWalk(){
   const sid=walk?walk.src.id:null;
-  walk=null; trailBar.classList.remove('show');
+  walk=null;
   if(sid){ select(sid,false); } else deselect();
 }
-function renderWalkBar(){
-  trailBar.classList.add('show');
-  trailBar.innerHTML=`<span class="tb-label">R${walk.src.n} · ${esc(walk.src.name.toUpperCase())} · ${walkIdx+1}/${walk.stops.length}</span>
-    <button data-tnav="-1" ${walkIdx===0?'disabled':''}>←</button>
-    <button data-tnav="1">${walkIdx<walk.stops.length-1?'→':'✓'}</button>
-    <button data-tend title="Exit walk">✕</button>`;
-}
-trailBar.addEventListener('click',e=>{
-  if(e.target.closest('[data-tend]')){ endWalk(); return; }
-  const b=e.target.closest('[data-tnav]'); if(b&&!b.disabled) walkNav(+b.dataset.tnav);
-});
 
 /* ---------- search ---------- */
 const search=document.getElementById('search'), results=document.getElementById('searchResults');
@@ -1139,7 +1146,8 @@ results.addEventListener('click',e=>{ const b=e.target.closest('[data-go]');
 document.addEventListener('click',e=>{ if(!e.target.closest('#searchWrap')) results.classList.remove('open'); });
 document.addEventListener('keydown',e=>{
   if(e.key==='/'&&document.activeElement!==search){ e.preventDefault(); search.focus(); }
-  if(e.key==='Escape'&&document.activeElement!==search){ goBack(); }
+  if(e.key==='Escape'&&document.activeElement!==search){
+    if(walk) endWalk(); else resetView(); }
   if(walk&&document.activeElement!==search){
     if(e.key==='ArrowRight'){ e.preventDefault(); walkNav(1); }
     if(e.key==='ArrowLeft'){ e.preventDefault(); walkNav(-1); }
@@ -1196,10 +1204,14 @@ function setView(v){
   tabMatrix.classList.toggle('on',v==='matrix');
   matrixWrap.classList.toggle('show',v==='matrix');
   stage.style.display=v==='map'?'':'none';
+  document.getElementById('resetHint').style.display=v==='map'?'':'none';
   if(v==='map') dirty=true; else syncMatrixSel(true);
 }
 tabMap.addEventListener('click',()=>setView('map'));
 tabMatrix.addEventListener('click',()=>setView('matrix'));
+document.getElementById('brandHome').addEventListener('click',()=>{
+  if(walk) endWalk(); resetView();
+});
 
 showHome();
 </script>
