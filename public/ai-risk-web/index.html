@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Risk Web — the 80,000 Hours reading list, explorable</title>
-<meta name="description" content="The concepts from 80,000 Hours&#39; 11 essential resources on AI risk. Each reading unfolds as a short guided walk through its core claims.">
+<meta name="description" content="The concepts from 80,000 Hours&#39; 11 essential resources on AI risk. Explore a walk through each source&#39;s core claims.">
 <link rel="icon" href="/favicon.svg">
 </head>
 <body>
@@ -223,10 +223,10 @@ const RING=560;
 const ang=d=>[Math.cos(d*Math.PI/180)*RING, Math.sin(d*Math.PI/180)*RING];
 const THEMES = {
   F:{name:'Foundations',        color:'#D9C179', c:[0,0]},
-  G:{name:'Governance & strategy',color:'#6C9BE8',c:ang(-90)},
+  G:{name:'Governance & strategy',color:'#6C9BE8',c:ang(-90), lp:125},
   T:{name:'Timelines & takeoff',color:'#E8804F', c:ang(-38.6)},
-  S:{name:'Scaling & compute',  color:'#53C2DD', c:ang(12.9)},
-  P:{name:'Positive futures',   color:'#6FD49A', c:ang(64.3), la:28},
+  S:{name:'Scaling & compute',  color:'#53C2DD', c:ang(12.9), lp:130},
+  P:{name:'Positive futures',   color:'#6FD49A', c:ang(64.3), la:38, lp:150},
   W:{name:'Digital minds',      color:'#E87BC4', c:ang(115.7)},
   D:{name:'Disempowerment',     color:'#B08BE8', c:ang(167.1)},
   M:{name:'Misalignment',       color:'#E85D6A', c:ang(218.6)},
@@ -705,8 +705,21 @@ Object.keys(THEMES).forEach(k=>{
   const ns=nodes.filter(n=>n.type==='c'&&n.t===k);
   const mx=ns.reduce((s,n)=>s+n.x,0)/ns.length, my=ns.reduce((s,n)=>s+n.y,0)/ns.length;
   const r=Math.max(...ns.map(n=>Math.hypot(n.x-mx,n.y-my)));
-  clusters[k]={x:mx,y:my,r:r+55};
+  clusters[k]={x:mx,y:my,r:r+55,ns};
 });
+
+/* theme label position: a uniform gap beyond the cluster's outermost
+   node measured along the label's own direction — balanced by construction */
+function themeLabelPos(k){
+  const cl=clusters[k];
+  const d=Math.hypot(cl.x,cl.y);
+  if(d<80) return null; // Foundations: watermark at centroid
+  let ux=cl.x/d, uy=cl.y/d;
+  if(THEMES[k].la!==undefined){ const a=THEMES[k].la*Math.PI/180; ux=Math.cos(a); uy=Math.sin(a); }
+  const extent=Math.max(0,...cl.ns.map(n=>(n.x-cl.x)*ux+(n.y-cl.y)*uy));
+  const pad=THEMES[k].lp!==undefined?THEMES[k].lp:70;
+  return [cl.x+ux*(extent+pad), cl.y+uy*(extent+pad)];
+}
 
 /* ============================================================
    RENDERER — 2D canvas, pan/zoom, fixed geography
@@ -732,11 +745,14 @@ function centerY(){ return (H+58)/2; } // usable area starts below the header
 function toScreen(x,y){ return [(x-cam.x)*cam.z+centerX(), (y-cam.y)*cam.z+centerY()]; }
 function toWorld(sx,sy){ return [(sx-centerX())/cam.z+cam.x, (sy-centerY())/cam.z+cam.y]; }
 
+function labelPoints(){
+  return Object.keys(clusters).filter(k=>themeOn[k]).map(themeLabelPos).filter(Boolean);
+}
 function fit(){
   const vis=nodes.filter(nodeVisible);
   const xs=vis.map(n=>n.x), ys=vis.map(n=>n.y);
-  // pad for the perimeter theme labels
-  const x0=Math.min(...xs)-160,x1=Math.max(...xs)+160,y0=Math.min(...ys)-120,y1=Math.max(...ys)+165;
+  labelPoints().forEach(([lx,ly])=>{ xs.push(lx-160,lx+160); ys.push(ly-45,ly+45); });
+  const x0=Math.min(...xs)-40,x1=Math.max(...xs)+40,y0=Math.min(...ys)-30,y1=Math.max(...ys)+40;
   const availW=(isMobile()?W:W-PANEL_W-16)-70, availH=H-(isMobile()?300:170);
   const z=Math.min(availW/(x1-x0+1),availH/(y1-y0+1),1.15);
   return {x:(x0+x1)/2, y:(y0+y1)/2+20, z};
@@ -778,9 +794,8 @@ function draw(){
       ctx.fillStyle=hexA(THEMES[k].color, act?0.06:0.16);
       ctx.fillText(nm,lx,ly);
     } else {
-      let ux=cl.x/dist, uy=cl.y/dist;
-      if(THEMES[k].la!==undefined){ const a=THEMES[k].la*Math.PI/180; ux=Math.cos(a); uy=Math.sin(a); }
-      const [lx,ly]=toScreen(cl.x+ux*(cl.r+145), cl.y+uy*(cl.r+145));
+      const [wx,wy]=themeLabelPos(k);
+      const [lx,ly]=toScreen(wx,wy);
       const fs=Math.min(Math.max(13,17*cam.z),26);
       ctx.font=`700 ${fs}px ${MONO}`;
       ctx.fillStyle=hexA(THEMES[k].color, act?0.14:0.55);
@@ -953,7 +968,7 @@ function showHome(){
    <div class="intro">
     <div class="eyebrow" style="color:var(--accent)">80,000 HOURS · ESSENTIAL AI RISK READING LIST</div>
     <h2 class="title">The AI risk conversation, as one web</h2>
-    <p style="margin-top:10px">The concepts from 80,000 Hours' <em>11 essential resources on AI risk</em>. Each reading unfolds as a short guided walk through its core claims. Dashed red lines are live disagreements between readings.</p>
+    <p style="margin-top:10px">The concepts from 80,000 Hours' <em>11 essential resources on AI risk</em>. Explore a walk through each source's core claims. Dashed red lines are live disagreements between readings.</p>
     <div class="sect" style="color:var(--accent);border-top-color:rgba(127,166,232,.35)">THE 11 READINGS${walkedCount?` · ${walkedCount}/11 WALKED`:' — PICK ONE TO START'}</div>
     <div id="homeReads">${SOURCES.map(s=>{
       const done=doneWalks.has(s.id);
@@ -969,6 +984,7 @@ function showHome(){
       <div id="legendHint">click to toggle · shift-click to isolate</div>
     </div>
     <a class="linkout" href="https://80000hours.org/articles/11-essential-resources-ai-risk/" target="_blank" rel="noopener">SOURCE LIST — 80000HOURS.ORG ↗</a>
+    <p style="margin-top:12px;font-size:10.5px;line-height:1.5;color:var(--faint)">Note: this is a personal project with no official association with 80,000 Hours.</p>
    </div>`;
 }
 
