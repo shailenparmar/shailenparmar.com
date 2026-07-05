@@ -790,14 +790,14 @@ function draw(){
       const [lx,ly]=toScreen(cl.x,cl.y);
       const fs=Math.min(Math.max(13,16*cam.z),24);
       ctx.font=`700 ${fs}px ${MONO}`;
-      ctx.fillStyle=hexA(THEMES[k].color, act?0.06:0.16);
+      ctx.fillStyle=hexA(THEMES[k].color, act?0.12:0.16);
       ctx.fillText(nm,lx,ly);
     } else {
       const [wx,wy]=themeLabelPos(k);
       const [lx,ly]=toScreen(wx,wy);
       const fs=Math.min(Math.max(13,17*cam.z),26);
       ctx.font=`700 ${fs}px ${MONO}`;
-      ctx.fillStyle=hexA(THEMES[k].color, act?0.14:0.55);
+      ctx.fillStyle=hexA(THEMES[k].color, act?0.42:0.55);
       if(nm.includes(' & ')){
         const [a,b]=nm.split(' & ');
         ctx.fillText(a+' &',lx,ly-fs*0.62);
