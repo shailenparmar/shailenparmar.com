@@ -26,6 +26,16 @@ const projects: Project[] = [
     ],
   },
   {
+    title: 'ai risk web',
+    image: '/design/ai-risk-web.png',
+    href: '/airisk/',
+    body: "the concepts from 80,000 hours' 11 essential resources on ai risk. each reading unfolds as a short guided walk through its core claims. dashed red lines are live disagreements between readings.",
+    links: [
+      { label: 'ai risk web', href: '/airisk/' },
+      { label: "80k's reading list", href: 'https://80000hours.org/articles/11-essential-resources-ai-risk/' },
+    ],
+  },
+  {
     title: 'drones',
     image: '/design/drones.png',
     imagePosition: 'center 30%',
