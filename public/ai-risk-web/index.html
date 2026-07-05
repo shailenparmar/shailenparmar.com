@@ -962,8 +962,8 @@ function showHome(){
   const walkedCount=SOURCES.filter(s=>doneWalks.has(s.id)).length;
   panel.innerHTML=`
    <div class="intro">
-    <h2 class="title">The AI risk conversation, as one web</h2>
-    <p style="margin-top:10px">The concepts from 80,000 Hours' <em>11 essential resources on AI risk</em>. Explore a walk through each source's core claims. Dashed red lines denote disagreements between readings.</p>
+    <p>80,000 Hours recommends reading these 11 resources to get up to speed on the most influential ideas shaping the AGI risk debate. I built this site to visualize the shared themes and concepts between these sources.</p>
+    <p>Click one of the titles below to walk through its core claims, or one of the nodes in the matrix to learn about a particular concept.</p>
     <p style="font-size:10.5px;line-height:1.5;color:var(--faint)">Note: this is a personal project with no official association with 80,000 Hours.</p>
     <div class="sect" style="color:var(--accent);border-top-color:rgba(127,166,232,.35)">THE 11 READINGS${walkedCount?` · ${walkedCount}/11 WALKED`:' — PICK ONE TO START'}</div>
     <div id="homeReads">${SOURCES.map(s=>{
