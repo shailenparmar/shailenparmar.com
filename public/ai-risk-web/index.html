@@ -196,7 +196,6 @@
 <header>
   <div class="brand">
     <h1>AI RISK WEB</h1>
-    <p>the 80,000 Hours essential reading list, explorable</p>
   </div>
   <div id="viewTabs">
     <button id="tabMap" class="on">MAP</button>
@@ -969,6 +968,7 @@ function showHome(){
     <div class="eyebrow" style="color:var(--accent)">80,000 HOURS · ESSENTIAL AI RISK READING LIST</div>
     <h2 class="title">The AI risk conversation, as one web</h2>
     <p style="margin-top:10px">The concepts from 80,000 Hours' <em>11 essential resources on AI risk</em>. Explore a walk through each source's core claims. Dashed red lines are live disagreements between readings.</p>
+    <p style="font-size:10.5px;line-height:1.5;color:var(--faint)">Note: this is a personal project with no official association with 80,000 Hours.</p>
     <div class="sect" style="color:var(--accent);border-top-color:rgba(127,166,232,.35)">THE 11 READINGS${walkedCount?` · ${walkedCount}/11 WALKED`:' — PICK ONE TO START'}</div>
     <div id="homeReads">${SOURCES.map(s=>{
       const done=doneWalks.has(s.id);
@@ -984,7 +984,6 @@ function showHome(){
       <div id="legendHint">click to toggle · shift-click to isolate</div>
     </div>
     <a class="linkout" href="https://80000hours.org/articles/11-essential-resources-ai-risk/" target="_blank" rel="noopener">SOURCE LIST — 80000HOURS.ORG ↗</a>
-    <p style="margin-top:12px;font-size:10.5px;line-height:1.5;color:var(--faint)">Note: this is a personal project with no official association with 80,000 Hours.</p>
    </div>`;
 }
 
