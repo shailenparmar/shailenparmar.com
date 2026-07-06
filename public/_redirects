@@ -1,2 +1,4 @@
-/airisk/* /ai-risk-web/:splat 301
-/airisk /ai-risk-web/ 301
+/airisk/* /airiskweb/:splat 301
+/airisk /airiskweb/ 301
+/ai-risk-web/* /airiskweb/:splat 301
+/ai-risk-web /airiskweb/ 301
