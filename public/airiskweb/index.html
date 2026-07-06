@@ -1096,6 +1096,7 @@ function navRowHTML(bottom){
   return `<div class="backRow"${bottom?' style="margin-top:18px;padding-top:14px;border-top:1px solid var(--line)"':''}><button class="backBtn" data-back-home>← HOME</button>${navStack.length?'<button class="backBtn" data-back-prev>← BACK</button>':''}</div>`;
 }
 function selectTheme(k,push=true){
+  if(push&&!walk&&k===selTheme&&!selectedId) return; // re-clicking the theme you're already on isn't a new nav
   if(walk) walk=null;
   if(push) pushNav();
   selectedId=null; selTheme=k; hoverTheme=null; dirty=true;
@@ -1125,6 +1126,7 @@ function renderTheme(k){
   panel.scrollTop=0;
 }
 function select(id,push=true){
+  if(push&&!walk&&id===selectedId) return; // re-clicking the concept you're already on isn't a new nav
   if(push) pushNav();
   selectedId=id; selTheme=null; dirty=true;
   renderNode(id);
@@ -1134,7 +1136,7 @@ function select(id,push=true){
     goTo({x:n.x,y:n.y,z});
   } else syncMatrixSel(true);
 }
-function deselect(){ selectedId=null; selTheme=null; dirty=true; showHome(); if(view==='map') goTo(fit()); }
+function deselect(){ selectedId=null; selTheme=null; navStack.length=0; dirty=true; showHome(); if(view==='map') goTo(fit()); }
 function goBack(){
   if(walk){ endWalk(); return; }
   const fromTheme=!!selTheme;
