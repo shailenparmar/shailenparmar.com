@@ -29,7 +29,7 @@ const projects: Project[] = [
     title: 'ai risk web',
     image: '/design/ai-risk-web.png',
     href: '/ai-risk-web/',
-    body: "the concepts from 80,000 hours' 11 essential resources on ai risk. explore a walk through each source's key concepts. dashed red lines denote disagreements between readings.\n\nnote: this is a personal project with no official association with 80,000 hours.",
+    body: "i built this site to visualize the themes and shared concepts from the resources 80,000 hours recommends to get up to speed on the most influential ideas shaping the agi risk debate.\n\nnote: this is a personal project with no official association with 80,000 hours.",
     links: [
       { label: 'ai risk web', href: '/ai-risk-web/' },
       { label: "80k's reading list", href: 'https://80000hours.org/articles/11-essential-resources-ai-risk/' },
