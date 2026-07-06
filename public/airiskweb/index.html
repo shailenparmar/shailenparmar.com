@@ -119,7 +119,7 @@
 
   /* walk */
   .walkBtn{display:block;width:100%;text-align:center;background:rgba(59,99,196,.06);border:1px solid rgba(59,99,196,.4);
-    border-radius:8px;color:var(--accent);font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;
+    border-radius:8px;color:var(--accent);font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:.08em;
     padding:11px 12px;cursor:pointer;margin:2px 0 16px}
   .walkBtn:hover{background:rgba(59,99,196,.12);border-color:var(--accent)}
   .walkBtn.done{border-color:rgba(35,139,83,.45);color:#238B53;background:rgba(35,139,83,.06)}
@@ -1051,7 +1051,7 @@ function renderNode(id){
       <h2 class="title"><a class="titleLink" href="${n.url}" target="_blank" rel="noopener">${esc(n.name)} <span class="tl">↗</span></a></h2>
       <div class="byline">${esc(n.authors)}${n.org?' · '+esc(n.org):''} · ${n.year}</div>
       <div class="ctaRow">
-        <button class="walkBtn${done?' done':''}" data-walk="${n.id}">${done?'<span class="glyph">✓</span> WALKED — AGAIN <span class="glyph">▸</span>':`WALK ITS ${stops.length} KEY CONCEPTS <span class="glyph">▸</span>`}</button>
+        <button class="walkBtn${done?' done':''}" data-walk="${n.id}">${done?`WALK ITS ${stops.length} KEY CONCEPTS <span class="glyph">✓</span>`:`WALK ITS ${stops.length} KEY CONCEPTS <span class="glyph">▸</span>`}</button>
         <a class="linkout" href="${n.url}" target="_blank" rel="noopener">READ ↗</a>
       </div>
       <p class="blurb">${esc(n.blurb)}</p>
