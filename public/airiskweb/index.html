@@ -188,18 +188,21 @@
 
   /* ---------- mobile ---------- */
   @media (max-width:860px){
-    header{flex-wrap:wrap;gap:8px;padding:10px 12px}
-    #search{width:140px}
+    header{flex-wrap:nowrap;gap:6px;padding:10px 12px}
+    .brand h1{font-size:15px;letter-spacing:.1em} /* trim wordmark so the row fits one line on phones */
+    #viewTabs button{padding:6px 11px}
+    #search{width:60px;padding:7px 8px} /* just wide enough for the word "search" — keeps the header on one line */
     #searchResults{width:min(290px,calc(100vw - 24px))}
     /* bottom sheet: slides down to reveal the full map, pulls back up for the reading */
     #panel{top:auto;left:0;right:0;bottom:0;width:auto;max-height:62vh;border-radius:16px 16px 0 0;border-bottom:0;
       transition:transform .28s cubic-bezier(.32,.72,0,1);will-change:transform}
     #panel.collapsed{transform:translateY(calc(100% - 40px))}
-    #panelHandle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
-      height:40px;flex:0 0 auto;cursor:pointer;touch-action:none;user-select:none;position:relative}
-    #panelHandle .grip{width:38px;height:5px;border-radius:99px;background:#CDD3DE}
-    #panelHandle .hint{font-family:var(--f-mono);font-size:8.5px;letter-spacing:.1em;color:var(--faint);text-transform:uppercase}
-    #panel.collapsed #panelHandle .hint::after{content:" — map"}
+    #panelHandle{display:flex;align-items:center;justify-content:center;
+      height:38px;flex:0 0 auto;cursor:pointer;touch-action:none;user-select:none;position:relative}
+    /* chevron: points DOWN when the sheet is up (tap to hide), flips UP when hidden (tap to show) */
+    #panelHandle .caret{width:11px;height:11px;border-right:2.5px solid #AAB2BF;border-bottom:2.5px solid #AAB2BF;
+      transform:translateY(-2px) rotate(45deg);transition:transform .22s}
+    #panel.collapsed #panelHandle .caret{transform:translateY(2px) rotate(225deg)}
     #panelScroll{padding-top:4px}
     #resetHint{display:none !important}
     #matrixWrap{top:96px;left:8px;right:8px;bottom:8px}
@@ -242,7 +245,7 @@
   </div>
 </header>
 
-<div id="panel"><div id="panelHandle" title="Drag to show/hide the map"><span class="grip"></span><span class="hint">tap or drag ↑↓</span></div><div id="panelScroll"></div></div>
+<div id="panel"><div id="panelHandle" title="Show/hide the map"><span class="caret"></span></div><div id="panelScroll"></div></div>
 
 <div id="resetHint">double-click or esc to reset</div>
 
@@ -1238,8 +1241,9 @@ function setPanelCollapsed(v){
     if(!drag) return;
     const moved=drag.moved; drag=null;
     panelEl().style.transition=''; panelEl().style.transform='';
-    if(Math.abs(moved)<6){ setPanelCollapsed(!panelCollapsed); return; }
-    setPanelCollapsed(((panelCollapsed?collapsedT():0)+moved) > collapsedT()/2);
+    // very sensitive & biased toward the new action: a tiny nudge down hides, a tiny nudge up shows, a tap toggles
+    if(Math.abs(moved)<=6) setPanelCollapsed(!panelCollapsed);
+    else setPanelCollapsed(moved>0);
   };
   h.addEventListener('pointerup',end);
   h.addEventListener('pointercancel',end);
