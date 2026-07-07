@@ -961,7 +961,7 @@ function draw(){
 }
 
 /* ---------- interaction ---------- */
-let dragging=false,px=0,py=0,moved=0,pinchD=0,pinching=false;
+let dragging=false,px=0,py=0,moved=0,pinchD=0,pinching=false,pinchMX=0,pinchMY=0;
 stage.addEventListener('pointerdown',e=>{
   if(e.button!==0&&e.pointerType==='mouse')return;
   if(pinching)return; // a two-finger pinch owns the gesture — don't also start a pan
@@ -1011,22 +1011,27 @@ stage.addEventListener('wheel',e=>{
   cam.y=wy-(e.clientY-centerY())/z2;
   cam.z=z2; camT=null; dirty=true;
 },{passive:false});
+function pinchMid(e){ return [(e.touches[0].clientX+e.touches[1].clientX)/2,(e.touches[0].clientY+e.touches[1].clientY)/2]; }
+function pinchDist(e){ return Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY); }
+function pinchBaseline(e){ pinchD=pinchDist(e); [pinchMX,pinchMY]=pinchMid(e); } // reset the frame-to-frame reference
 stage.addEventListener('touchstart',e=>{ if(e.touches.length>=2){
-  pinching=true; dragging=false; stage.classList.remove('dragging');
-  pinchD=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY); }},{passive:true});
+  pinching=true; dragging=false; stage.classList.remove('dragging'); camT=null; pinchBaseline(e); }},{passive:true});
 stage.addEventListener('touchmove',e=>{ if(e.touches.length>=2){
-  const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
-  const mx=(e.touches[0].clientX+e.touches[1].clientX)/2, my=(e.touches[0].clientY+e.touches[1].clientY)/2;
+  const d=pinchDist(e), [mx,my]=pinchMid(e);
   if(pinchD>0){
     const z2=Math.max(minZoom(),Math.min(4,cam.z*(d/pinchD)));
-    const [wx,wy]=toWorld(mx,my);            // world point under the fingers BEFORE zoom
-    cam.x=wx-(mx-centerX())/z2;               // keep that point under the fingers after zoom (anchor)
+    // anchor the world point under the PREVIOUS midpoint, then drop it under the CURRENT midpoint:
+    // distance change -> zoom about the fingers, midpoint movement -> pan. both at once, freely.
+    const [wx,wy]=toWorld(pinchMX,pinchMY);
+    cam.z=z2;
+    cam.x=wx-(mx-centerX())/z2;
     cam.y=wy-(my-centerY())/z2;
-    cam.z=z2; camT=null; dirty=true;
+    camT=null; dirty=true;
   }
-  pinchD=d; e.preventDefault(); }},{passive:false});
-stage.addEventListener('touchend',e=>{ if(e.touches.length<2){ pinchD=0; pinching=false; } },{passive:true});
-stage.addEventListener('touchcancel',e=>{ if(e.touches.length<2){ pinchD=0; pinching=false; } },{passive:true});
+  pinchD=d; pinchMX=mx; pinchMY=my; e.preventDefault(); }},{passive:false});
+// finger lifted: end the pinch if <2 remain, otherwise re-baseline so the surviving fingers don't jump
+stage.addEventListener('touchend',e=>{ if(e.touches.length<2){ pinchD=0; pinching=false; } else pinchBaseline(e); },{passive:true});
+stage.addEventListener('touchcancel',e=>{ if(e.touches.length<2){ pinchD=0; pinching=false; } else pinchBaseline(e); },{passive:true});
 
 function pick(mx,my){
   let best=null,bd=1e9;
