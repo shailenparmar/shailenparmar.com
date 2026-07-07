@@ -955,7 +955,7 @@ stage.addEventListener('dblclick',e=>{
 });
 stage.addEventListener('wheel',e=>{
   e.preventDefault();
-  const f=Math.exp(-e.deltaY*0.0007); // proportional to scroll amount — gentle on trackpads and wheels
+  const f=Math.exp(-e.deltaY*0.000805); // proportional to scroll amount — gentle on trackpads and wheels (sensitivity +15%)
   const z2=Math.max(0.22,Math.min(4,cam.z*f));
   const [wx,wy]=toWorld(e.clientX,e.clientY);
   cam.x=wx-(e.clientX-centerX())/z2;
