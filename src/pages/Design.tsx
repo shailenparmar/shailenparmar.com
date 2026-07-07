@@ -29,7 +29,7 @@ const projects: Project[] = [
     title: 'ai risk web',
     image: '/design/ai-risk-web.png',
     href: '/airiskweb/',
-    body: "i built this site to visualize the themes and shared concepts from the resources 80,000 hours recommends to get up to speed on the most influential ideas shaping the agi risk debate.\n\nnote: this is a personal project with no official association with 80,000 hours.",
+    body: "an interactive concept map pulled from the 11 sources 80,000 hours recommends to get up to speed on the agi risk debate.\n\nnote: this is a personal project with no official association with 80,000 hours.",
     links: [
       { label: 'ai risk web', href: '/airiskweb/' },
       { label: 'github', href: 'https://github.com/shailenparmar/ai-risk-web' },
