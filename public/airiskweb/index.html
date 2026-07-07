@@ -20,9 +20,10 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
   body{background:var(--bg);color:var(--text);font-family:var(--f-sans);overflow:hidden}
-  #stage{position:fixed;inset:0;cursor:grab}
+  /* touch-action:none = the map owns all touch gestures; the browser never page-zooms/scrolls over it */
+  #stage{position:fixed;inset:0;cursor:grab;touch-action:none}
   #stage.dragging{cursor:grabbing}
-  canvas{display:block}
+  canvas{display:block;touch-action:none}
 
   /* ---------- header ---------- */
   header{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:14px;
