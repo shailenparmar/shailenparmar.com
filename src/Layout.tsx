@@ -5,7 +5,7 @@ import './Layout.css'
 const navItems = [
   { to: '/art', label: 'art' },
   { to: '/projects', label: 'projects' },
-  { to: '/experience', label: 'connect' },
+  { to: '/connect', label: 'connect' },
 ]
 
 export default function Layout() {
@@ -28,7 +28,7 @@ export default function Layout() {
       '/': 'page-home',
       '/art': 'page-art',
       '/projects': 'page-projects',
-      '/experience': 'page-connect',
+      '/connect': 'page-connect',
     }
     const cls = map[location.pathname]
     const el = document.documentElement

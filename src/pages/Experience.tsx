@@ -191,11 +191,13 @@ export default function Experience() {
       </figure>
       <div className="hero-text">
       <div className="design-statement">
-        <p>i'm mesmerized by immersive, low-latency control systems. in middle school, i built radio control airplanes and fpv drones. at duke, i studied neuroscience and visual design. since then, i've worked in big tech, taught neurodivergent middle schoolers, and lived in a zen monastery. now i want to build novel bci design paradigms to make full use of high-dimensional inputs.</p>
+        <p>in middle school, i built radio control airplanes and fpv drones. at duke, i studied neuroscience and visual media. since then, i've worked in big tech, taught neurodivergent middle schoolers, and lived in a zen monastery. now, i'm interested in discovering my role in how to make sure transformative ai goes well.</p>
         <p className="inspired-intro">things that have inspired me:</p>
         <ul className="inspirations">
+          <li><a className="inspiration-link" href="https://www.amazon.com/dp/189200528X" target="_blank" rel="noreferrer">Nonviolent Communication</a> — Marshall B. Rosenberg</li>
+          <li><a className="inspiration-link" href="https://hermesamara.org/seeing-that-frees" target="_blank" rel="noreferrer">Seeing That Frees</a> — Rob Burbea</li>
+          <li><a className="inspiration-link" href="https://80000hours.org/book/" target="_blank" rel="noreferrer">80,000 Hours: How to Have a Fulfilling Career That Does Good</a></li>
           <li><a className="inspiration-link" href="https://www.amazon.com/dp/0061339202" target="_blank" rel="noreferrer">Flow: The Psychology of Optimal Experience</a> — Mihály Csíkszentmihályi</li>
-          <li><a className="inspiration-link" href="https://www.amazon.com/dp/0465050654" target="_blank" rel="noreferrer">The Design of Everyday Things</a> — Don Norman</li>
           <li><a className="inspiration-link" href="https://www.youtube.com/watch?v=MnrJzXM7a6o" target="_blank" rel="noreferrer">Steve Jobs introducing the iPhone</a></li>
           <li><a className="inspiration-link" href="https://www.sfzc.org/files/daily_sutras_Song_of_the_Jewel_Mirror_Samadhi" target="_blank" rel="noreferrer">Song of the Jewel Mirror Samadhi</a></li>
           <li><a className="inspiration-link" href="https://www.youtube.com/watch?v=TwqfZOwpWZ8" target="_blank" rel="noreferrer">Alex Vanover's flying style</a></li>

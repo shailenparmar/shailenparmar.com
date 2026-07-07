@@ -18,7 +18,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="art" element={<Art />} />
           <Route path="projects" element={<Design />} />
           <Route path="design" element={<Neuralink />} />
-          <Route path="experience" element={<Experience />} />
+          <Route path="connect" element={<Experience />} />
         </Route>
       </Routes>
     </BrowserRouter>
