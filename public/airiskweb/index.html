@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Risk Web — the 80,000 Hours reading list, explorable</title>
+<title>AI Risk Web — an interactive concept map for AI risk</title>
 <meta name="description" content="The concepts from 80,000 Hours&#39; 11 essential resources on AI risk. Explore a walk through each source&#39;s key concepts.">
 <link rel="icon" href="/favicon.svg">
 </head>
 <body>
-<title>AI Risk Web — the 80k reading list, explorable</title>
+<title>AI Risk Web — an interactive concept map for AI risk</title>
 <style>
   :root{
     --bg:#FFFFFF; --bg2:#F7F8FA; --panel:#FFFFFF; --panel2:#F1F3F7;
@@ -531,6 +531,7 @@ const VS=[['ooms','multi-decade'],['intel-explosion','multi-decade'],['auto-ai-r
  ['diffusion','compressed-century'],['gradual-disempowerment','power-seeking'],
  ['corrigibility','instrumental-convergence'],['moral-status','ai-control'],['us-china','coordination'],
  ['diffusion','race-dynamics'],           // Narayanan's "normal technology" rejects the winner-take-all race framing
+ ['diffusion','intel-explosion'],         // adoption-gated impact (normal tech) vs capability that converts to fast transformation
  ['the-project','coordination'],          // a nationalized race-to-superintelligence vs arms-control / treaties
  ['compressed-century','gradual-disempowerment']]; // the same automated economy as Amodei's utopia vs Kulveit's quiet catastrophe
 VS.forEach(([a,b])=>{ addLink(a,b,'vs'); const l=linkMap.get(linkKey(a,b)); if(l) l.kind='vs'; });
