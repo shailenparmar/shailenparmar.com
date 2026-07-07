@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Risk Web — an interactive concept map for AI risk</title>
 <meta name="description" content="The concepts from 80,000 Hours&#39; 11 essential resources on AI risk. Explore a walk through each source&#39;s key concepts.">
-<link rel="icon" href="/favicon.svg">
+<link rel="icon" href="favicon.svg">
 </head>
 <body>
 <title>AI Risk Web — an interactive concept map for AI risk</title>
@@ -58,6 +58,7 @@
     background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:12px;
     backdrop-filter:blur(12px);display:flex;flex-direction:column;box-shadow:0 16px 40px rgba(30,40,60,.10)}
   #panelScroll{overflow-y:auto;padding:18px 18px 22px;flex:1}
+  #panelHandle{display:none} /* mobile-only drag grabber; hidden on desktop */
   .backBtn{display:inline-block;background:none;border:1px solid var(--line);border-radius:6px;color:var(--accent);
     font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;cursor:pointer;padding:7px 12px}
   .backBtn:hover{border-color:var(--accent);background:rgba(127,166,232,.08)}
@@ -190,10 +191,37 @@
     header{flex-wrap:wrap;gap:8px;padding:10px 12px}
     #search{width:140px}
     #searchResults{width:min(290px,calc(100vw - 24px))}
-    #panel{top:auto;left:0;right:0;bottom:0;width:auto;max-height:58vh;border-radius:14px 14px 0 0;border-bottom:0}
+    /* bottom sheet: slides down to reveal the full map, pulls back up for the reading */
+    #panel{top:auto;left:0;right:0;bottom:0;width:auto;max-height:62vh;border-radius:16px 16px 0 0;border-bottom:0;
+      transition:transform .28s cubic-bezier(.32,.72,0,1);will-change:transform}
+    #panel.collapsed{transform:translateY(calc(100% - 40px))}
+    #panelHandle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+      height:40px;flex:0 0 auto;cursor:pointer;touch-action:none;user-select:none;position:relative}
+    #panelHandle .grip{width:38px;height:5px;border-radius:99px;background:#CDD3DE}
+    #panelHandle .hint{font-family:var(--f-mono);font-size:8.5px;letter-spacing:.1em;color:var(--faint);text-transform:uppercase}
+    #panel.collapsed #panelHandle .hint::after{content:" — map"}
+    #panelScroll{padding-top:4px}
     #resetHint{display:none !important}
     #matrixWrap{top:96px;left:8px;right:8px;bottom:8px}
   }
+  /* ===== 2026-07-06 redesign: docked sidebar, matrix cleanup, saturated theme tints ===== */
+  @media (min-width:861px){
+    #panel{top:0;left:0;bottom:0;width:376px;border-radius:0;border:0;border-right:1px solid var(--line);box-shadow:none;background:#fff;backdrop-filter:none}
+    .brand{display:none}
+    #panelScroll{padding:16px 12px 20px}
+    /* wordmark = first scrolling line of the column body */
+    #panelScroll::before{content:"AI RISK WEB";display:block;font-family:var(--f-mono);font-size:18px;font-weight:700;letter-spacing:.2em;color:var(--text);margin:0 0 15px 1px}
+    #matrixWrap{left:392px}
+  }
+  #matrixWrap{border-radius:6px;overscroll-behavior:none}
+  #mtable tbody td,#mtable tbody td.cname{background:color-mix(in srgb, var(--tc,#5b6472) 10%, #fff)}
+  #mtable tr:hover td,#mtable tr:hover td.cname{background:color-mix(in srgb, var(--tc,#5b6472) 22%, #fff)}
+  #mtable tr.sel td,#mtable tr.sel td.cname{background:color-mix(in srgb, var(--tc,#5b6472) 34%, #fff)}
+  #mtable .mh b{display:none}
+  #mtable .mh{font-size:11.5px;line-height:1.32;color:#3A4150;letter-spacing:.01em}
+  #mtable td.cname{font-size:13.5px}
+  .rd .num{display:flex;align-items:center;justify-content:center;width:20px;height:20px;flex:0 0 20px;border-radius:50%;border:1.5px solid #232833;color:#232833;background:#fff;font-family:var(--f-mono);font-size:10.5px;font-weight:700;box-sizing:border-box;margin-top:1px}
+  .backBtn{font-weight:700;font-size:11.5px;letter-spacing:.07em}
 </style>
 
 <div id="stage"><canvas id="cv"></canvas></div>
@@ -214,7 +242,7 @@
   </div>
 </header>
 
-<div id="panel"><div id="panelScroll"></div></div>
+<div id="panel"><div id="panelHandle" title="Drag to show/hide the map"><span class="grip"></span><span class="hint">tap or drag ↑↓</span></div><div id="panelScroll"></div></div>
 
 <div id="resetHint">double-click or esc to reset</div>
 
@@ -752,14 +780,24 @@ let hoverId=null, selectedId=null, hoverTheme=null, selTheme=null;
 let view='map';
 const themeOn={}; Object.keys(THEMES).forEach(k=>themeOn[k]=true);
 const isMobile=()=>innerWidth<=860;
-const PANEL_W=424; // panel width + margins
+const PANEL_W=388; // panel width + margins (docked sidebar)
+const PANEL_PEEK=40; // px of the bottom sheet left showing when collapsed (the drag handle)
+let panelCollapsed=false; // mobile bottom-sheet state
+const panelEl=()=>document.getElementById('panel');
+// how many px the bottom sheet covers at the bottom of the screen (0 on desktop)
+function botOccupied(){
+  if(!isMobile()) return 0;
+  if(panelCollapsed) return PANEL_PEEK;
+  return Math.min(panelEl().offsetHeight, Math.round(H*0.62));
+}
 
 function resize(){ DPR=Math.min(devicePixelRatio||1,2); W=innerWidth; H=innerHeight;
   cv.width=W*DPR; cv.height=H*DPR; cv.style.width=W+'px'; cv.style.height=H+'px'; dirty=true; }
 addEventListener('resize',resize); resize();
 
 function centerX(){ return isMobile()? W/2 : PANEL_W+(W-PANEL_W-16)/2; }
-function centerY(){ return (H+58)/2; } // usable area starts below the header
+// desktop: below the header. mobile: centered in the strip between header and the bottom sheet.
+function centerY(){ return isMobile()? (58+(H-botOccupied()))/2 : (H+58)/2; }
 function toScreen(x,y){ return [(x-cam.x)*cam.z+centerX(), (y-cam.y)*cam.z+centerY()]; }
 function toWorld(sx,sy){ return [(sx-centerX())/cam.z+cam.x, (sy-centerY())/cam.z+cam.y]; }
 
@@ -771,7 +809,7 @@ function fit(){
   const xs=vis.map(n=>n.x), ys=vis.map(n=>n.y);
   labelPoints().forEach(([lx,ly])=>{ xs.push(lx-160,lx+160); ys.push(ly-45,ly+45); });
   const x0=Math.min(...xs)-40,x1=Math.max(...xs)+40,y0=Math.min(...ys)-30,y1=Math.max(...ys)+40;
-  const availW=(isMobile()?W:W-PANEL_W-16)-70, availH=H-(isMobile()?300:170);
+  const availW=(isMobile()?W:W-PANEL_W-16)-70, availH=isMobile()? (H-botOccupied()-58-40) : (H-170);
   const z=Math.min(availW/(x1-x0+1),availH/(y1-y0+1),1.15);
   return {x:(x0+x1)/2, y:(y0+y1)/2+20, z};
 }
@@ -1035,7 +1073,7 @@ function showHome(){
     <div id="homeReads">${SOURCES.map(s=>{
       const done=doneWalks.has(s.id);
       return `<button class="rd${done?' done':''}" data-go="${s.id}">
-        <span class="num">${String(s.n).padStart(2,'0')}</span>
+        <span class="num">${s.n}</span>
         <span class="rb"><b>${esc(s.name)}</b><span>${esc(shortAuthors(s))} · ${s.year}</span></span>
         <span class="mark">${done?'✓':'▸'}</span></button>`;}).join('')}</div>
     <div class="sect">THEMES</div>
@@ -1102,7 +1140,7 @@ function navBack(){
   if(e.n) select(e.n,false); else selectTheme(e.t,false);
 }
 function navRowHTML(bottom){
-  return `<div class="backRow"${bottom?' style="margin-top:18px;padding-top:14px;border-top:1px solid var(--line)"':''}><button class="backBtn" data-back-home>← HOME</button>${navStack.length?'<button class="backBtn" data-back-prev>← BACK</button>':''}</div>`;
+  return `<div class="backRow"${bottom?' style="margin-top:18px;padding-top:14px;border-top:1px solid var(--line)"':''}><button class="backBtn" data-back-home>◀ HOME</button>${navStack.length?'<button class="backBtn" data-back-prev>◀ BACK</button>':''}</div>`;
 }
 function selectTheme(k,push=true){
   if(push&&!walk&&k===selTheme&&!selectedId) return; // re-clicking the theme you're already on isn't a new nav
@@ -1110,6 +1148,7 @@ function selectTheme(k,push=true){
   if(push) pushNav();
   selectedId=null; selTheme=k; hoverTheme=null; dirty=true;
   renderTheme(k);
+  if(isMobile()&&panelCollapsed){ panelCollapsed=false; panelEl().classList.remove('collapsed'); }
   const cl=clusters[k];
   const avail=Math.min((isMobile()?W:W-PANEL_W-16),H)-170;
   if(view==='map') goTo({x:cl.x,y:cl.y,z:Math.max(0.45,Math.min(1.1,avail/(2*(cl.r+90))))});
@@ -1139,6 +1178,7 @@ function select(id,push=true){
   if(push) pushNav();
   selectedId=id; selTheme=null; dirty=true;
   renderNode(id);
+  if(isMobile()&&panelCollapsed){ panelCollapsed=false; panelEl().classList.remove('collapsed'); }
   const n=byId[id];
   if(view==='map'){
     const z=Math.max(cam.z,0.85);
@@ -1165,7 +1205,46 @@ function resetView(){
   if(view==='map') goTo(fit());
   dirty=true;
 }
-function backLabel(){ return walk ? '← EXIT WALK' : '← HOME'; }
+/* ---------- mobile bottom-sheet: collapse to reveal the map, expand to read ---------- */
+function reframe(){ // re-fit the camera to the current focus for the current visible area
+  if(view!=='map') return;
+  if(selectedId&&byId[selectedId]){ const n=byId[selectedId]; goTo({x:n.x,y:n.y,z:Math.max(cam.z,0.85)}); }
+  else if(selTheme&&clusters[selTheme]){ const cl=clusters[selTheme]; goTo({x:cl.x,y:cl.y,z:cam.z}); }
+  else goTo(fit());
+}
+function setPanelCollapsed(v){
+  if(!isMobile()) return;
+  panelCollapsed=v;
+  panelEl().classList.toggle('collapsed',v);
+  reframe();
+}
+(function wirePanelHandle(){
+  const h=document.getElementById('panelHandle'); if(!h) return;
+  let drag=null;
+  const collapsedT=()=>panelEl().offsetHeight-PANEL_PEEK;
+  h.addEventListener('pointerdown',e=>{
+    if(!isMobile()) return;
+    drag={y:e.clientY,moved:0}; h.setPointerCapture(e.pointerId);
+    panelEl().style.transition='none';
+  });
+  h.addEventListener('pointermove',e=>{
+    if(!drag) return;
+    drag.moved=e.clientY-drag.y;
+    const ct=collapsedT();
+    const t=Math.max(0,Math.min(ct,(panelCollapsed?ct:0)+drag.moved));
+    panelEl().style.transform='translateY('+t+'px)';
+  });
+  const end=e=>{
+    if(!drag) return;
+    const moved=drag.moved; drag=null;
+    panelEl().style.transition=''; panelEl().style.transform='';
+    if(Math.abs(moved)<6){ setPanelCollapsed(!panelCollapsed); return; }
+    setPanelCollapsed(((panelCollapsed?collapsedT():0)+moved) > collapsedT()/2);
+  };
+  h.addEventListener('pointerup',end);
+  h.addEventListener('pointercancel',end);
+})();
+function backLabel(){ return walk ? '◀ EXIT WALK' : '◀ HOME'; }
 
 /* panel delegation: back, walk, read, walk-nav, theme filter, node chips */
 panel.addEventListener('click',e=>{
@@ -1223,7 +1302,7 @@ function injectNote(){
   // top row: HOME and EXIT WALK side by side
   const bb=panel.querySelector('.backBtn'); if(bb) bb.remove();
   const row=document.createElement('div'); row.className='backRow';
-  row.innerHTML=`<button class="backBtn" data-back-home>← HOME</button>
+  row.innerHTML=`<button class="backBtn" data-back-home>◀ HOME</button>
     <button class="backBtn" data-back>✕ EXIT WALK</button>`;
   panel.prepend(row);
   panel.scrollTop=0;
@@ -1350,7 +1429,14 @@ document.getElementById('brandHome').addEventListener('click',()=>{
 });
 
 showHome();
+/* ===== 2026-07-06 redesign: saturated theme tints + matrix cleanup ===== */
+tintStyle=function(hex){return `background:${hexA(hex,0.26)};border-color:${hexA(hex,0.85)};color:${shade(hex,0.60)}`;};
+buildMatrix();
+document.querySelectorAll('#mtable tbody[data-t]').forEach(tb=>{ if(THEMES[tb.dataset.t]) tb.style.setProperty('--tc',THEMES[tb.dataset.t].color); });
+{ const hc=document.querySelector('#mtable thead th.cname'); if(hc) hc.textContent=''; }
+showHome();
 </script>
+
 
 </body>
 </html>
