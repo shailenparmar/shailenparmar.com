@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <style>
-    .n{fill:#232833}
-    @media (prefers-color-scheme:dark){ .n{fill:#e9e6df} }
-  </style>
-  <line x1="8" y1="21" x2="24" y2="11" stroke="#C7364C" stroke-width="2.4" stroke-dasharray="3 2.4" stroke-linecap="round"/>
-  <circle class="n" cx="8" cy="21" r="3.8"/>
-  <circle class="n" cx="24" cy="11" r="3.8"/>
-</svg>

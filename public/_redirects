@@ -1,4 +1,6 @@
-/airisk/* /airiskweb/:splat 301
-/airisk /airiskweb/ 301
-/ai-risk-web/* /airiskweb/:splat 301
-/ai-risk-web /airiskweb/ 301
+/airiskweb/* https://airiskweb.com/ 301
+/airiskweb https://airiskweb.com/ 301
+/airisk/* https://airiskweb.com/ 301
+/airisk https://airiskweb.com/ 301
+/ai-risk-web/* https://airiskweb.com/ 301
+/ai-risk-web https://airiskweb.com/ 301
