@@ -196,7 +196,7 @@ export default function Experience() {
         <ul className="inspirations">
           <li><a className="inspiration-link" href="https://www.amazon.com/dp/189200528X" target="_blank" rel="noreferrer">Nonviolent Communication</a> — Marshall B. Rosenberg</li>
           <li><a className="inspiration-link" href="https://hermesamara.org/seeing-that-frees" target="_blank" rel="noreferrer">Seeing That Frees</a> — Rob Burbea</li>
-          <li><a className="inspiration-link" href="https://80000hours.org/book/" target="_blank" rel="noreferrer">80,000 Hours: How to Have a Fulfilling Career That Does Good</a></li>
+          <li><a className="inspiration-link" href="https://80000hours.org/book/" target="_blank" rel="noreferrer">80,000 Hours: How to Have a Fulfilling Career That Does Good</a> — Benjamin Todd</li>
           <li><a className="inspiration-link" href="https://www.amazon.com/dp/0061339202" target="_blank" rel="noreferrer">Flow: The Psychology of Optimal Experience</a> — Mihály Csíkszentmihályi</li>
           <li><a className="inspiration-link" href="https://www.youtube.com/watch?v=MnrJzXM7a6o" target="_blank" rel="noreferrer">Steve Jobs introducing the iPhone</a></li>
           <li><a className="inspiration-link" href="https://www.sfzc.org/files/daily_sutras_Song_of_the_Jewel_Mirror_Samadhi" target="_blank" rel="noreferrer">Song of the Jewel Mirror Samadhi</a></li>
