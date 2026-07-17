@@ -32,6 +32,7 @@ const projects: Project[] = [
     body: "an interactive concept map pulled from the 11 sources 80,000 hours recommends to get up to speed on the agi risk debate.\n\nnote: this is a personal project with no official association with 80,000 hours.",
     links: [
       { label: 'airiskweb.com', href: 'https://airiskweb.com' },
+      { label: 'style guide', href: 'https://airiskweb.com/style-guide' },
       { label: 'github', href: 'https://github.com/shailenparmar/ai-risk-web' },
       { label: "80k's reading list", href: 'https://80000hours.org/articles/11-essential-resources-ai-risk/' },
     ],
