@@ -3,138 +3,83 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SwitchUp</title>
-<meta name="description" content="SwitchUp turns a Nintendo Switch Pro Controller into a mouse, scroll wheel and remote for a Mac.">
+<title>switchup</title>
+<meta name="description" content="switchup: control a mac with a nintendo switch controller.">
 <link rel="icon" href="icon.png">
+<script>
+  // Same colorway as the rest of the site (set on the projects page).
+  (function () {
+    try {
+      var c = JSON.parse(localStorage.getItem('siteColors') || 'null');
+      if (c && c.text && c.bg) {
+        var d = document.documentElement.style;
+        d.setProperty('--fg', 'hsl(' + c.text.h + ', ' + c.text.s + '%, ' + c.text.l + '%)');
+        d.setProperty('--bg', 'hsl(' + c.bg.h + ', ' + c.bg.s + '%, ' + c.bg.l + '%)');
+      }
+    } catch (e) {}
+  })();
+</script>
 <style>
   :root{
-    --bg:#FFFFFF; --bg2:#F7F8FA; --panel2:#F1F3F7; --line:#E2E5EB; --ctrl:rgba(35,40,51,.45);
-    --text:#16181D; --muted:#5A6472; --faint:#9AA2AE; --body:#3A4150; --accent:#3B63C4;
-    --f-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
-    --f-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --bg:#000000; --fg:#ffffff;
+    --muted:color-mix(in srgb, var(--fg) 58%, transparent);
+    --line:color-mix(in srgb, var(--fg) 14%, transparent);
+    --mono:'Menlo','Monaco','Courier New',monospace;
   }
   *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-sans);
-    -webkit-font-smoothing:antialiased}
-  .wrap{max-width:680px;margin:0 auto;padding:36px 16px 88px}
+  html{zoom:.9}
+  html,body{margin:0;background:var(--bg);color:var(--fg)}
+  body{font-family:var(--mono);font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:var(--fg);text-decoration:none}
+  .layout{max-width:760px;margin:0 auto;padding:32px 16px 96px}
+  @media (min-width:720px){.layout{padding:56px 40px 112px}}
 
-  .wordmark{font-family:var(--f-mono);font-size:12px;font-weight:700;letter-spacing:.2em;
-    text-transform:uppercase;color:var(--text);text-decoration:none}
-  .wordmark:hover{text-decoration:underline}
+  .wordmark{font-size:24px;font-weight:600;letter-spacing:-.5px;line-height:1}
+  h1{display:flex;align-items:center;gap:14px;font-size:18px;font-weight:600;letter-spacing:-.2px;margin:56px 0 20px}
+  h1 img{width:44px;height:44px}
+  p{margin:0 0 28px}
 
-  .hero{display:flex;gap:20px;align-items:center;margin:40px 0 18px}
-  .hero img{width:88px;height:88px;flex:none}
-  .eyebrow{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
-  h1{font-size:30px;line-height:1.15;font-weight:700;letter-spacing:-.015em;margin:4px 0 6px}
-  .lede{font-size:15px;line-height:1.55;color:var(--body);margin:0}
+  .controls{border-top:1px solid var(--line);margin:0 0 36px}
+  .row{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:8px 0;
+    border-bottom:1px solid var(--line);font-size:14px}
+  .row span:first-child{color:var(--muted)}
+  @media (max-width:480px){.row{grid-template-columns:110px 1fr}}
 
-  .actions{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin:26px 0 8px}
-  .btn{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--accent);text-decoration:none;display:inline-block;
-    border:1px solid rgba(59,99,196,.4);background:rgba(59,99,196,.06);
-    border-radius:6px;padding:10px 16px}
-  .btn:hover{border-width:2px;padding:9px 15px}
-  .meta{font-family:var(--f-mono);font-size:11px;letter-spacing:.04em;color:var(--faint);line-height:1.6}
-
-  section{margin-top:38px}
-  .sh{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--faint);border-top:1px solid var(--line);padding-top:12px;margin:0 0 14px}
-  p{font-size:14px;line-height:1.6;color:var(--body);margin:0 0 12px}
-  a{color:var(--accent)}
-
-  ol.steps{list-style:none;margin:0;padding:0;counter-reset:s}
-  ol.steps li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:0 10px;
-    padding:12px 0;border-bottom:1px solid var(--line)}
-  ol.steps li:last-child{border-bottom:0}
-  ol.steps li::before{content:counter(s);font-family:var(--f-mono);font-size:11px;font-weight:700;
-    width:22px;height:22px;border:1.5px solid var(--text);border-radius:50%;
-    display:grid;place-items:center;margin-top:1px}
-  ol.steps b{display:block;font-size:14px;color:var(--text);margin-bottom:2px}
-  ol.steps span{font-size:13.5px;line-height:1.55;color:var(--body)}
-
-  table{width:100%;border-collapse:collapse;font-size:13.5px}
-  td{padding:8px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--body)}
-  tr:last-child td{border-bottom:0}
-  td.k{width:34%;padding-right:12px}
-  kbd{font-family:var(--f-mono);font-size:11.5px;color:var(--text);background:var(--panel2);
-    border:1px solid var(--line);border-radius:4px;padding:1px 6px;white-space:nowrap}
-  .group td{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--faint);padding-top:18px}
-
-  .note{background:rgba(59,99,196,.05);border:1px solid rgba(59,99,196,.28);border-radius:8px;
-    padding:12px 14px;font-size:13.5px;line-height:1.55;color:var(--body)}
-  footer{margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+  .buttons{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{border:1px solid var(--fg);padding:9px 20px;font-size:14px}
+  .btn:hover{background:var(--fg);color:var(--bg)}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <a class="wordmark" href="/">◀ Shailen Parmar</a>
+<div class="layout">
+  <a class="wordmark" href="/">shailen parmar</a>
 
-  <div class="hero">
-    <img src="icon.png" alt="SwitchUp icon">
-    <div>
-      <div class="eyebrow">Mac app · menu bar</div>
-      <h1>SwitchUp</h1>
-      <p class="lede">A Nintendo Switch Pro Controller as a mouse, trackpad and remote for the Mac. Built for YouTube from the couch.</p>
-    </div>
+  <h1><img src="icon.png" alt="">switchup</h1>
+
+  <p>this app lives on your menu bar and lets you control your computer with a nintendo switch controller. setup time is less than 2 minutes. i spent a lot of time dialing in the optimal controls. dictation, backspace, and switching desktops are all supported. with practice, it's possible to fully replace mouse and keyboard. check out the default controls:</p>
+
+  <div class="controls">
+    <div class="row"><span>left stick</span><span>move cursor</span></div>
+    <div class="row"><span>right stick</span><span>scroll (two-finger, swipe notifications away)</span></div>
+    <div class="row"><span>a / b</span><span>left click / right click</span></div>
+    <div class="row"><span>x</span><span>close tab</span></div>
+    <div class="row"><span>y</span><span>spotlight</span></div>
+    <div class="row"><span>l / r</span><span>previous / next tab</span></div>
+    <div class="row"><span>zl / zr</span><span>previous / next desktop</span></div>
+    <div class="row"><span>+</span><span>dictation (hold to talk)</span></div>
+    <div class="row"><span>−</span><span>backspace a word</span></div>
+    <div class="row"><span>home</span><span>return</span></div>
+    <div class="row"><span>capture</span><span>esc</span></div>
+    <div class="row"><span>d-pad ← / →</span><span>switch apps (⌘⇥)</span></div>
+    <div class="row"><span>d-pad ↑ / ↓</span><span>mission control / show desktop</span></div>
+    <div class="row"><span>l3 / r3</span><span>precision mode / address bar</span></div>
   </div>
 
-  <div class="actions">
-    <a class="btn" href="SwitchUp.zip" download>Download SwitchUp</a>
-    <span class="meta">v1.0 · macOS 14 or later · Apple Silicon &amp; Intel · notarized by Apple</span>
+  <div class="buttons">
+    <a class="btn" href="SwitchUp.zip" download>download</a>
+    <a class="btn" href="https://github.com/shailenparmar/switchup">github</a>
   </div>
-
-  <section>
-    <div class="sh">Setup</div>
-    <ol class="steps">
-      <li><div><b>Install</b><span>Unzip the download and drag SwitchUp into Applications, then open it. It lives in the menu bar as a controller icon.</span></div></li>
-      <li><div><b>Pair the controller</b><span>Hold the small sync button on top of the Pro Controller until the lights run, then select it in System Settings › Bluetooth.</span></div></li>
-      <li><div><b>Allow Accessibility</b><span>System Settings › Privacy &amp; Security › Accessibility › switch SwitchUp on. This lets it move the pointer, click and press keys.</span></div></li>
-      <li><div><b>Free up the Home button</b><span>System Settings › Game Controllers › Controller Shortcuts › turn off “Enable controller shortcuts”. Otherwise Home also opens Apple’s Games app.</span></div></li>
-    </ol>
-    <p class="meta" style="margin-top:6px">SwitchUp opens a setup window on first launch with a button for each step.</p>
-  </section>
-
-  <section>
-    <div class="sh">Controls</div>
-    <table>
-      <tr class="group"><td colspan="2">Pointer</td></tr>
-      <tr><td class="k"><kbd>Left stick</kbd></td><td>Move the pointer</td></tr>
-      <tr><td class="k"><kbd>Right stick</kbd></td><td>Two-finger scroll with momentum. Push left over a notification to dismiss it.</td></tr>
-      <tr><td class="k"><kbd>A</kbd></td><td>Click (hold to drag)</td></tr>
-      <tr><td class="k"><kbd>B</kbd></td><td>Right click</td></tr>
-      <tr><td class="k"><kbd>L3</kbd> stick press</td><td>Precision mode on / off</td></tr>
-
-      <tr class="group"><td colspan="2">Browser</td></tr>
-      <tr><td class="k"><kbd>L</kbd> <kbd>R</kbd></td><td>Previous / next tab</td></tr>
-      <tr><td class="k"><kbd>X</kbd></td><td>Close tab</td></tr>
-      <tr><td class="k"><kbd>R3</kbd> stick press</td><td>Address bar</td></tr>
-
-      <tr class="group"><td colspan="2">Keys</td></tr>
-      <tr><td class="k"><kbd>Home</kbd></td><td>Return</td></tr>
-      <tr><td class="k"><kbd>Capture</kbd></td><td>Esc</td></tr>
-      <tr><td class="k"><kbd>−</kbd></td><td>Delete a word (hold to repeat)</td></tr>
-      <tr><td class="k"><kbd>+</kbd></td><td>Dictation — hold to talk, tap to toggle</td></tr>
-
-      <tr class="group"><td colspan="2">System</td></tr>
-      <tr><td class="k"><kbd>Y</kbd></td><td>Spotlight</td></tr>
-      <tr><td class="k"><kbd>ZL</kbd> <kbd>ZR</kbd></td><td>Previous / next desktop</td></tr>
-      <tr><td class="k"><kbd>D-pad ←</kbd> <kbd>→</kbd></td><td>App switcher (⌘⇥); lands when you stop pressing</td></tr>
-      <tr><td class="k"><kbd>D-pad ↑</kbd></td><td>Mission Control</td></tr>
-      <tr><td class="k"><kbd>D-pad ↓</kbd></td><td>Show Desktop</td></tr>
-    </table>
-  </section>
-
-  <section>
-    <div class="sh">Tuning</div>
-    <p>Every button can be remapped, and the pointer and scroll response curves are adjustable to the hundredth: speed, exponent, dead zones, smoothing, momentum. Open the menu-bar icon › Settings. The menu itself lists the current layout.</p>
-    <div class="note">Dictation needs to be switched on in System Settings › Keyboard › Dictation. Other controllers that macOS recognizes also work; the Home button is read directly only on the Switch Pro Controller.</div>
-  </section>
-
-  <footer>
-    <span class="meta">Made by <a href="/">Shailen Parmar</a>.</span>
-  </footer>
 </div>
 </body>
 </html>
