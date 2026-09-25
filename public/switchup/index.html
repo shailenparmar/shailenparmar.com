@@ -36,15 +36,17 @@
   @media (min-width:720px){.layout{padding:56px 40px 112px}}
 
   .wordmark{font-size:24px;font-weight:600;letter-spacing:-.5px;line-height:1}
-  h1{display:flex;align-items:center;gap:14px;font-size:18px;font-weight:600;letter-spacing:-.2px;margin:56px 0 20px}
+  .title{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:56px 0 24px}
+  h1{display:flex;align-items:center;gap:14px;font-size:18px;font-weight:600;letter-spacing:-.2px;margin:0}
   h1 img{width:44px;height:44px}
-  p{margin:0 0 28px}
+  p{margin:0 0 20px}
 
-  .controls{border-top:1px solid var(--line);margin:0 0 36px}
-  .row{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:8px 0;
+  .controls{border-top:1px solid var(--line);margin:0 0 28px}
+  p + .controls{margin-top:36px}
+  .row{display:grid;grid-template-columns:210px 1fr;gap:16px;padding:8px 0;
     border-bottom:1px solid var(--line);font-size:14px}
   .row span:first-child{color:var(--muted)}
-  @media (max-width:480px){.row{grid-template-columns:110px 1fr}}
+  @media (max-width:480px){.row{grid-template-columns:130px 1fr}}
 
   .buttons{display:flex;gap:14px;flex-wrap:wrap}
   .btn{border:1px solid var(--fg);padding:9px 20px;font-size:14px}
@@ -55,30 +57,43 @@
 <div class="layout">
   <a class="wordmark" href="/">shailen parmar</a>
 
-  <h1><img src="icon.png" alt="">switchup</h1>
+  <div class="title">
+    <h1><img src="icon.png" alt="">switchup</h1>
+    <div class="buttons">
+      <a class="btn" href="SwitchUp.zip" download>download</a>
+      <a class="btn" href="https://github.com/shailenparmar/switchup">github</a>
+    </div>
+  </div>
 
-  <p>this app lives on your menu bar and lets you control your computer with a nintendo switch controller. setup time is less than 2 minutes. i spent a lot of time dialing in the optimal controls. dictation, backspace, and switching desktops are all supported. with practice, it's possible to fully replace mouse and keyboard. check out the default controls:</p>
+  <p>this app lives on your menu bar and lets you control your computer with a nintendo switch controller. setup time is less than 2 minutes. i spent around 4 hours dialing in the optimal controls. dictation, backspace, and switching desktops are all supported. with practice, it's possible to fully replace mouse and keyboard.</p>
+
+  <p>it's super lightweight, just ~1,400 lines of code. notarized by apple via my developer id, so it's been scanned for malware.</p>
+
+  <p>click into the left joystick to toggle precision mode (very useful). the d-pad is also very useful. honestly, all of these controls are pretty dialed in. however, you may remap as you please!</p>
 
   <div class="controls">
     <div class="row"><span>left stick</span><span>move cursor</span></div>
+    <div class="row"><span>click into left stick</span><span>precision mode</span></div>
     <div class="row"><span>right stick</span><span>scroll (two-finger, swipe notifications away)</span></div>
-    <div class="row"><span>a / b</span><span>left click / right click</span></div>
+    <div class="row"><span>click into right stick</span><span>address bar (chrome)</span></div>
+    <div class="row"><span>a</span><span>left click</span></div>
+    <div class="row"><span>b</span><span>right click</span></div>
+  </div>
+
+  <div class="controls">
+    <div class="row"><span>+</span><span>dictation (hold to talk)</span></div>
+    <div class="row"><span>−</span><span>backspace a word</span></div>
     <div class="row"><span>x</span><span>close tab</span></div>
     <div class="row"><span>y</span><span>spotlight</span></div>
     <div class="row"><span>l / r</span><span>previous / next tab</span></div>
     <div class="row"><span>zl / zr</span><span>previous / next desktop</span></div>
-    <div class="row"><span>+</span><span>dictation (hold to talk)</span></div>
-    <div class="row"><span>−</span><span>backspace a word</span></div>
-    <div class="row"><span>home</span><span>return</span></div>
-    <div class="row"><span>capture</span><span>esc</span></div>
-    <div class="row"><span>d-pad ← / →</span><span>switch apps (⌘⇥)</span></div>
-    <div class="row"><span>d-pad ↑ / ↓</span><span>mission control / show desktop</span></div>
-    <div class="row"><span>l3 / r3</span><span>precision mode / address bar</span></div>
   </div>
 
-  <div class="buttons">
-    <a class="btn" href="SwitchUp.zip" download>download</a>
-    <a class="btn" href="https://github.com/shailenparmar/switchup">github</a>
+  <div class="controls">
+    <div class="row"><span>home</span><span>return (enter)</span></div>
+    <div class="row"><span>capture</span><span>esc</span></div>
+    <div class="row"><span>d-pad ← / →</span><span>switch apps (command + tab)</span></div>
+    <div class="row"><span>d-pad ↑ / ↓</span><span>mission control / show desktop</span></div>
   </div>
 </div>
 </body>
