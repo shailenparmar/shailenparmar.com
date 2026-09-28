@@ -38,6 +38,15 @@ const projects: Project[] = [
     ],
   },
   {
+    title: 'super grandmasters',
+    image: '/design/super-grandmasters.jpg',
+    href: 'https://imeanwhereelse.com',
+    body: "melee in the browser, played by wooden chess pieces on a chessboard. melee's frame data and physics, 10 fighters, 8 boards, and online rollback netplay. plug in a controller.\n\na non-commercial fan project, not affiliated with nintendo or hal laboratory.",
+    links: [
+      { label: 'imeanwhereelse.com', href: 'https://imeanwhereelse.com' },
+    ],
+  },
+  {
     title: 'drones',
     image: '/design/drones.png',
     imagePosition: 'center 30%',
