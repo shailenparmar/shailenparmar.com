@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halo in the Browser</title>
+<meta name="description" content="Play Halo: Combat Evolved in your browser with a Switch Pro Controller. Setup guide and controller test.">
+<style>
+  :root { --bg:#fafaf7; --fg:#1b1b1a; --muted:#6b6b66; --line:#dcdcd5; --accent:#1a56db; --ok:#1f7a3d; --card:#fff; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#141413; --fg:#ecece6; --muted:#9a9a92; --line:#2e2e2b; --accent:#7aa2ff; --ok:#5ccf86; --card:#1b1b1a; } }
+  * { box-sizing:border-box } [hidden] { display:none !important }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif }
+  main { max-width:680px; margin:0 auto; padding:48px 16px 96px }
+  h1 { font-size:28px; margin:0 0 4px; letter-spacing:-.01em }
+  .sub { color:var(--muted); margin:0 0 32px }
+  section { border:1px solid var(--line); background:var(--card); border-radius:6px; padding:20px; margin:0 0 16px }
+  .step-n { font:12px ui-monospace,Menlo,monospace; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; margin:0 0 6px }
+  h2 { font-size:18px; margin:0 0 8px } p { margin:0 0 12px } p:last-child { margin-bottom:0 }
+  a { color:var(--accent) }
+  a.btn { display:inline-block; font:14px ui-monospace,Menlo,monospace; padding:10px 16px; border:1px solid var(--accent); color:var(--accent); border-radius:4px; text-decoration:none }
+  a.btn:hover { background:color-mix(in srgb,var(--accent) 10%,transparent) }
+  a.btn.primary { background:var(--accent); color:#fff } a.btn.primary:hover { filter:brightness(1.1) }
+  .status { font-size:14px; color:var(--muted) } .ok { color:var(--ok) }
+  details { margin-top:12px; font-size:15px } summary { cursor:pointer; font:13px ui-monospace,Menlo,monospace; color:var(--accent) }
+  details ul { margin:8px 0 0; padding-left:22px } details li { margin-bottom:6px }
+  .pad { display:grid; grid-template-columns:repeat(auto-fill,minmax(54px,1fr)); gap:6px; margin-top:12px }
+  .pad span { font:12px ui-monospace,Menlo,monospace; text-align:center; padding:6px 0; border:1px solid var(--line); border-radius:4px; color:var(--muted) }
+  .pad span.on { background:var(--accent); color:#fff; border-color:var(--accent) }
+  table { border-collapse:collapse; width:100%; font-size:14px; margin-top:8px }
+  td { padding:4px 8px 4px 0; border-bottom:1px solid var(--line) } td:first-child { font-family:ui-monospace,Menlo,monospace; color:var(--muted); white-space:nowrap }
+  .fine { font-size:13px; color:var(--muted); margin-top:32px }
+</style>
+</head>
+<body>
+<main>
+  <h1>Halo in the browser</h1>
+  <p class="sub">Halo: Combat Evolved, running in WebAssembly from the open-source Xbox decompilation. Free to play, no disc needed, with split-screen and online multiplayer.</p>
+
+  <section>
+    <p class="step-n">Step 1 · Controller</p>
+    <h2>Connect your Switch Pro Controller</h2>
+    <p>Pair it, then press any button. It should light up below. Mouse and keyboard also work (WASD, mouse, click to fire).</p>
+    <div class="status" id="pad-status">No controller detected yet. Press a button on it.</div>
+    <div class="pad" id="pad-buttons"></div>
+    <details>
+      <summary>How to connect (USB-C or Bluetooth)</summary>
+      <ul>
+        <li><b>Easiest, for Switch 1 and Switch 2 Pro Controllers:</b> plug it into the Mac with a USB-C cable and press a button. No pairing needed.</li>
+        <li><b>Bluetooth, Switch 1 Pro Controller:</b> hold the small round sync button on top (next to the USB-C port) until the four lights run back and forth. On the Mac: System Settings → Bluetooth → <i>Pro Controller</i> → Connect.</li>
+        <li><b>Bluetooth, Switch 2 Pro Controller:</b> hold the sync button until the lights pulse, then connect from System Settings → Bluetooth. If it pairs but doesn't show up above, use the USB-C cable.</li>
+        <li>Browsers hide controllers until the first button press, so press one, then reload this page if nothing appears.</li>
+        <li>Still nothing? Remove the controller in Bluetooth settings and pair it again. Keep it connected to one device at a time (turn your Switch off).</li>
+        <li>Chrome and Safari both read the controller through the standard Gamepad API; no drivers or apps needed.</li>
+      </ul>
+    </details>
+    <details>
+      <summary>Button map</summary>
+      <table>
+        <tr><td>Left stick</td><td>Move</td></tr>
+        <tr><td>Right stick</td><td>Look</td></tr>
+        <tr><td>ZR / ZL</td><td>Fire / throw grenade</td></tr>
+        <tr><td>Bottom button</td><td>Jump</td></tr>
+        <tr><td>Right button</td><td>Melee</td></tr>
+        <tr><td>Left button</td><td>Action / reload</td></tr>
+        <tr><td>Top button</td><td>Switch weapon</td></tr>
+        <tr><td>Click L / R</td><td>Crouch / zoom</td></tr>
+        <tr><td>+</td><td>Pause</td></tr>
+      </table>
+      <p class="status" style="margin-top:8px">Buttons are mapped by position, Xbox-style: the bottom face button is "A" in the game, which is Nintendo's B.</p>
+    </details>
+  </section>
+
+  <section>
+    <p class="step-n">Step 2 · Play</p>
+    <h2>Launch Halo</h2>
+    <p>The game is hosted by its developer, Mitchell Hynes. Use a current desktop <b>Chrome</b> (recommended); Safari may work but isn't officially supported.</p>
+    <p>
+      <a class="btn primary" href="https://halo-web.otherness-bugs.workers.dev/" target="_blank" rel="noopener">Launch Halo ↗</a>
+      <a class="btn" href="https://mitchellhynes.com/halo" target="_blank" rel="noopener">Mirror ↗</a>
+    </p>
+    <details open>
+      <summary>Playing with a friend</summary>
+      <ul>
+        <li>In the game choose <b>Play online</b>, pick a map and mode, and create a private lobby.</li>
+        <li>Copy the invite link and send it to your friend. They open it and join automatically; you start when everyone is ready.</li>
+        <li>For couch co-op on one Mac, plug in a second controller for split-screen.</li>
+        <li>Audio starts muted. Use the sound toggle in the game page.</li>
+      </ul>
+    </details>
+  </section>
+
+  <p class="fine">Fan project; not affiliated with Microsoft, Xbox Game Studios or Halo Studios. Halo is a trademark of Microsoft. Game hosting and engine port by <a href="https://x.com/mitchellhynes">Mitchell Hynes</a> (<a href="https://github.com/ecumene/web-halo">web-halo</a>, CC0). It's a legal grey area and could be taken down at any time.</p>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const NAMES = ["B","A","Y","X","L","R","ZL","ZR","−","+","LS","RS","↑","↓","←","→","Home"];
+const box = $("pad-buttons");
+NAMES.forEach((n) => { const s = document.createElement("span"); s.textContent = n; box.appendChild(s); });
+function poll() {
+  const p = (navigator.getGamepads ? Array.from(navigator.getGamepads()) : []).find(Boolean);
+  if (!p) { $("pad-status").textContent = "No controller detected yet. Press a button on it."; box.style.opacity = .35; }
+  else {
+    box.style.opacity = 1;
+    const id = document.createTextNode(" — " + p.id + " (" + (p.mapping || "non-standard mapping") + ")");
+    const ok = document.createElement("span"); ok.className = "ok"; ok.textContent = "Connected";
+    $("pad-status").replaceChildren(ok, id);
+    [...box.children].forEach((el, i) => el.classList.toggle("on", !!(p.buttons[i] && p.buttons[i].pressed)));
+  }
+  requestAnimationFrame(poll);
+}
+poll();
+</script>
+</body>
+</html>
