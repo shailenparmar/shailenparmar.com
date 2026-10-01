@@ -3,33 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Halo in the Browser</title>
-<meta name="description" content="Play Halo: Combat Evolved in your browser with a Switch Pro Controller. Setup guide and controller test.">
+<title>Halo</title>
 <style>
-  :root { --bg:#fafaf7; --fg:#1b1b1a; --muted:#6b6b66; --line:#dcdcd5; --accent:#1a56db; --ok:#1f7a3d; --card:#fff; }
-  @media (prefers-color-scheme: dark) { :root { --bg:#141413; --fg:#ecece6; --muted:#9a9a92; --line:#2e2e2b; --accent:#7aa2ff; --ok:#5ccf86; --card:#1b1b1a; } }
-  * { box-sizing:border-box } [hidden] { display:none !important }
-  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif }
-  main { max-width:680px; margin:0 auto; padding:48px 16px 96px }
-  h1 { font-size:28px; margin:0 0 4px; letter-spacing:-.01em }
-  .sub { color:var(--muted); margin:0 0 32px }
-  section { border:1px solid var(--line); background:var(--card); border-radius:6px; padding:20px; margin:0 0 16px }
-  .step-n { font:12px ui-monospace,Menlo,monospace; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; margin:0 0 6px }
-  h2 { font-size:18px; margin:0 0 8px } p { margin:0 0 12px } p:last-child { margin-bottom:0 }
-  a { color:var(--accent) }
-  a.btn { display:inline-block; font:14px ui-monospace,Menlo,monospace; padding:10px 16px; border:1px solid var(--accent); color:var(--accent); border-radius:4px; text-decoration:none }
-  a.btn:hover { background:color-mix(in srgb,var(--accent) 10%,transparent) }
-  a.btn.primary { background:var(--accent); color:#fff } a.btn.primary:hover { filter:brightness(1.1) }
-  .status { font-size:14px; color:var(--muted) } .ok { color:var(--ok) }
-  details { margin-top:12px; font-size:15px } summary { cursor:pointer; font:13px ui-monospace,Menlo,monospace; color:var(--accent) }
-  details ul { margin:8px 0 0; padding-left:22px } details li { margin-bottom:6px }
-  .pad { display:grid; grid-template-columns:repeat(auto-fill,minmax(54px,1fr)); gap:6px; margin-top:12px }
-  .pad span { font:12px ui-monospace,Menlo,monospace; text-align:center; padding:6px 0; border:1px solid var(--line); border-radius:4px; color:var(--muted) }
-  .pad span.on { background:var(--accent); color:#fff; border-color:var(--accent) }
-  table { border-collapse:collapse; width:100%; font-size:14px; margin-top:8px }
-  td { padding:4px 8px 4px 0; border-bottom:1px solid var(--line) } td:first-child { font-family:ui-monospace,Menlo,monospace; color:var(--muted); white-space:nowrap }
-  .fine { font-size:13px; color:var(--muted); margin-top:32px }
-  svg#ctl { display:block; width:100%; max-width:460px; margin:14px auto 4px }
+  :root { --bg:#fafaf7; --fg:#1b1b1a; --line:#dcdcd5; --accent:#1a56db; --card:#fff; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#141413; --fg:#ecece6; --line:#2e2e2b; --accent:#7aa2ff; --card:#1b1b1a; } }
+  * { box-sizing:border-box }
+  body { margin:0; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; padding:24px 16px; background:var(--bg); color:var(--fg); font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif }
+  h1 { font-size:28px; margin:0; letter-spacing:-.01em }
+  a.btn { display:inline-block; font:15px ui-monospace,SFMono-Regular,Menlo,monospace; padding:11px 28px; background:var(--accent); color:#fff; border-radius:4px; text-decoration:none }
+  a.btn:hover { filter:brightness(1.1) }
+  svg#ctl { display:block; width:100%; max-width:460px }
   #ctl .shell { fill:color-mix(in srgb,var(--fg) 7%,var(--card)); stroke:var(--line); stroke-width:1.5 }
   #ctl .well { fill:color-mix(in srgb,var(--fg) 14%,var(--card)); stroke:var(--line) }
   #ctl .cap { fill:color-mix(in srgb,var(--fg) 30%,var(--card)) } #ctl .cap2 { fill:color-mix(in srgb,var(--fg) 18%,var(--card)) }
@@ -37,174 +20,51 @@
   #ctl .key { fill:color-mix(in srgb,var(--fg) 20%,var(--card)); transition:fill .05s } #ctl .on.key, #ctl g.on .key { fill:var(--accent) }
   #ctl .fill { fill:var(--accent) }
   #ctl .t { font:700 12px ui-monospace,Menlo,monospace; text-anchor:middle; fill:var(--bg); pointer-events:none }
-  #ctl .wm { font:700 11px ui-monospace,Menlo,monospace; letter-spacing:.3em; text-anchor:middle; fill:var(--line) }
-  #ctl .act { font:11px ui-monospace,Menlo,monospace; fill:var(--muted) } #ctl .act.on { fill:var(--accent); font-weight:700 }
-  #ctl { opacity:.45 } #ctl.live { opacity:1 }
-  .readout { display:flex; flex-wrap:wrap; gap:6px 18px; justify-content:center; font:12px ui-monospace,Menlo,monospace; color:var(--muted); margin-bottom:6px } .readout b { color:var(--fg); font-weight:600; display:inline-block; min-width:72px }
-  .presets { display:flex; flex-wrap:wrap; gap:8px } .presets button { font:13px ui-monospace,Menlo,monospace; padding:7px 10px; border:1px solid var(--line); color:var(--fg); background:transparent; border-radius:4px; cursor:pointer } .presets button.sel { border-color:var(--accent); color:var(--accent) }
-  #map tr.on td { color:var(--accent); font-weight:600 }
-  ol.steps { padding-left:22px; margin:0 0 12px } ol.steps li { margin-bottom:6px }
+  #ctl { opacity:.45; transition:opacity .2s } #ctl.live { opacity:1 }
 </style>
 </head>
 <body>
-<main>
-  <h1>Halo in the browser</h1>
-  <p class="sub">Halo: Combat Evolved, running in WebAssembly from the open-source Xbox decompilation. Free to play, no disc needed, with split-screen and online multiplayer.</p>
-
-  <section>
-    <p class="step-n">Step 1 · Controller</p>
-    <h2>Connect your Switch Pro Controller</h2>
-    <p>Pair it, then press any button. It should light up below. Mouse and keyboard also work (WASD, mouse, click to fire).</p>
-    <div class="status" id="pad-status">No controller detected yet. Press a button on it.</div>
-    <svg id="ctl" viewBox="0 0 460 300" role="img" aria-label="Live Switch Pro Controller">
-      <g id="ctl-body">
-        <rect id="zl" x="66" y="8" width="84" height="18" rx="9" class="shell"/><rect id="zl-fill" x="66" y="8" width="84" height="18" rx="9" class="fill" style="clip-path:inset(0 100% 0 0)"/>
-        <rect id="zr" x="310" y="8" width="84" height="18" rx="9" class="shell"/><rect id="zr-fill" x="310" y="8" width="84" height="18" rx="9" class="fill" style="clip-path:inset(0 100% 0 0)"/>
-        <rect id="b4" x="60" y="28" width="96" height="16" rx="8" class="key"/>
-        <rect id="b5" x="304" y="28" width="96" height="16" rx="8" class="key"/>
-        <path class="shell" d="M74 66C94 46 152 44 230 44s136 2 156 22c32 30 52 134 34 184-10 28-52 28-68-2-14-26-30-34-56-34H164c-26 0-42 8-56 34-16 30-58 30-68 2-18-50 2-154 34-184z"/>
-        <text x="230" y="150" class="wm">PRO</text>
-      </g>
-      <g transform="translate(112 106)"><circle r="27" class="well"/><g id="stickL"><circle r="20" class="cap"/><circle r="11" class="cap2"/></g><circle id="b10" r="20" class="ring"/></g>
-      <g transform="translate(300 178)"><circle r="27" class="well"/><g id="stickR"><circle r="20" class="cap"/><circle r="11" class="cap2"/></g><circle id="b11" r="20" class="ring"/></g>
-      <g transform="translate(166 176)">
-        <rect id="b12" x="-8" y="-30" width="16" height="22" rx="3" class="key"/><rect id="b13" x="-8" y="8" width="16" height="22" rx="3" class="key"/>
-        <rect id="b14" x="-30" y="-8" width="22" height="16" rx="3" class="key"/><rect id="b15" x="8" y="-8" width="22" height="16" rx="3" class="key"/>
-      </g>
-      <g transform="translate(350 108)" class="face">
-        <circle id="b3" cx="0" cy="-26" r="14" class="key"/><text x="0" y="-21" class="t">X</text>
-        <circle id="b1" cx="26" cy="0" r="14" class="key"/><text x="26" y="5" class="t">A</text>
-        <circle id="b0" cx="0" cy="26" r="14" class="key"/><text x="0" y="31" class="t">B</text>
-        <circle id="b2" cx="-26" cy="0" r="14" class="key"/><text x="-26" y="5" class="t">Y</text>
-      </g>
-      <rect id="b8" x="190" y="78" width="22" height="8" rx="4" class="key"/>
-      <g id="b9"><rect x="250" y="78" width="22" height="8" rx="4" class="key"/><rect x="257" y="73" width="8" height="18" rx="4" class="key"/></g>
-      <circle id="b16" cx="246" cy="124" r="8" class="key"/><rect x="202" y="118" width="14" height="12" rx="3" class="key" opacity=".5"/>
-    </svg>
-    <div class="readout">
-      <div>L stick <b id="lv">0.00, 0.00</b></div><div>R stick <b id="rv">0.00, 0.00</b></div><div>ZL <b id="zlv">0%</b></div><div>ZR <b id="zrv">0%</b></div>
-    </div>
-    <details>
-      <summary>How to connect (USB-C or Bluetooth)</summary>
-      <ul>
-        <li><b>Easiest, for Switch 1 and Switch 2 Pro Controllers:</b> plug it into the Mac with a USB-C cable and press a button. No pairing needed.</li>
-        <li><b>Bluetooth, Switch 1 Pro Controller:</b> hold the small round sync button on top (next to the USB-C port) until the four lights run back and forth. On the Mac: System Settings → Bluetooth → <i>Pro Controller</i> → Connect.</li>
-        <li><b>Bluetooth, Switch 2 Pro Controller:</b> hold the sync button until the lights pulse, then connect from System Settings → Bluetooth. If it pairs but doesn't show up above, use the USB-C cable.</li>
-        <li>Browsers hide controllers until the first button press, so press one, then reload this page if nothing appears.</li>
-        <li>Still nothing? Remove the controller in Bluetooth settings and pair it again. Keep it connected to one device at a time (turn your Switch off).</li>
-        <li>Chrome and Safari both read the controller through the standard Gamepad API; no drivers or apps needed.</li>
-      </ul>
-    </details>
-    <details open>
-      <summary>Button layout &amp; swap A/B</summary>
-      <p class="status" style="margin:8px 0">Pick a layout. The face buttons light up with what each one does in Halo.</p>
-      <div class="presets" id="presets">
-        <button data-p="xbox">Xbox positions (game default)</button>
-        <button data-p="nintendo">Nintendo style (swap A/B and X/Y)</button>
-        <button data-p="ab">Swap A/B only</button>
-        <button data-p="xy">Swap X/Y only</button>
-      </div>
-      <table id="map"></table>
-      <p class="status" style="margin-top:8px"><b>Heads up:</b> the game runs on another site, so this page can't rewire its controls. The layout above is a guide, and the lit buttons show what you're really pressing. If the game's own settings offer a button layout, set it there.</p>
-    </details>
-  </section>
-
-  <section>
-    <p class="step-n">Step 2 · Play</p>
-    <h2>Play</h2>
-    <p><a class="btn primary" href="https://halo-web.otherness-bugs.workers.dev/" target="_blank" rel="noopener">Play ↗</a></p>
-    <p class="status">Hosted by the game's developer. Works best in desktop Chrome; Safari may work. Not working? <a href="https://mitchellhynes.com/halo" target="_blank" rel="noopener">try the backup link</a>.</p>
-  </section>
-
-  <section>
-    <p class="step-n">With a friend</p>
-    <h2>Send one link</h2>
-    <ol class="steps">
-      <li>Click <b>Play</b>, then <b>Play online</b>, pick a map and mode, and create a private lobby.</li>
-      <li>Tap <b>Copy invite link</b> and text it to your friend.</li>
-      <li>They open that link. They're dropped into your lobby automatically, with nothing to install or sign up for. Start when they appear.</li>
-    </ol>
-    <p class="status">The invite link is made by the game itself, so it can't be created here ahead of time. Your friend doesn't need this page, only your link. Same Mac for two? Plug in a second controller for split-screen. Audio starts muted.</p>
-  </section>
-  </section>
-
-  <p class="fine">Fan project; not affiliated with Microsoft, Xbox Game Studios or Halo Studios. Halo is a trademark of Microsoft. Game hosting and engine port by <a href="https://x.com/mitchellhynes">Mitchell Hynes</a> (<a href="https://github.com/ecumene/web-halo">web-halo</a>, CC0). It's a legal grey area and could be taken down at any time.</p>
-</main>
+  <h1>Halo</h1>
+  <svg id="ctl" viewBox="0 0 460 230" role="img" aria-label="Controller">
+    <rect x="66" y="8" width="84" height="18" rx="9" class="shell"/><rect id="zl-fill" x="66" y="8" width="84" height="18" rx="9" class="fill" style="clip-path:inset(0 100% 0 0)"/>
+    <rect x="310" y="8" width="84" height="18" rx="9" class="shell"/><rect id="zr-fill" x="310" y="8" width="84" height="18" rx="9" class="fill" style="clip-path:inset(0 100% 0 0)"/>
+    <rect id="b4" x="60" y="28" width="96" height="16" rx="8" class="key"/>
+    <rect id="b5" x="304" y="28" width="96" height="16" rx="8" class="key"/>
+    <path class="shell" d="M74 66C94 46 152 44 230 44s136 2 156 22c32 30 52 134 34 184-10 28-52 28-68-2-14-26-30-34-56-34H164c-26 0-42 8-56 34-16 30-58 30-68 2-18-50 2-154 34-184z" transform="translate(0 -20) scale(1 .9)"/>
+    <g transform="translate(112 86)"><circle r="27" class="well"/><g id="stickL"><circle r="20" class="cap"/><circle r="11" class="cap2"/></g><circle id="b10" r="20" class="ring"/></g>
+    <g transform="translate(300 148)"><circle r="27" class="well"/><g id="stickR"><circle r="20" class="cap"/><circle r="11" class="cap2"/></g><circle id="b11" r="20" class="ring"/></g>
+    <g transform="translate(166 146)">
+      <rect id="b12" x="-8" y="-30" width="16" height="22" rx="3" class="key"/><rect id="b13" x="-8" y="8" width="16" height="22" rx="3" class="key"/>
+      <rect id="b14" x="-30" y="-8" width="22" height="16" rx="3" class="key"/><rect id="b15" x="8" y="-8" width="22" height="16" rx="3" class="key"/>
+    </g>
+    <g transform="translate(350 88)">
+      <circle id="b3" cx="0" cy="-26" r="14" class="key"/><text x="0" y="-21" class="t">X</text>
+      <circle id="b1" cx="26" cy="0" r="14" class="key"/><text x="26" y="5" class="t">A</text>
+      <circle id="b0" cx="0" cy="26" r="14" class="key"/><text x="0" y="31" class="t">B</text>
+      <circle id="b2" cx="-26" cy="0" r="14" class="key"/><text x="-26" y="5" class="t">Y</text>
+    </g>
+    <rect id="b8" x="190" y="60" width="22" height="8" rx="4" class="key"/>
+    <g id="b9"><rect x="250" y="60" width="22" height="8" rx="4" class="key"/><rect x="257" y="55" width="8" height="18" rx="4" class="key"/></g>
+    <circle id="b16" cx="246" cy="104" r="8" class="key"/><rect x="202" y="98" width="14" height="12" rx="3" class="key" opacity=".5"/>
+  </svg>
+  <a class="btn" href="https://halo-web.otherness-bugs.workers.dev/" target="_blank" rel="noopener">Play</a>
 
 <script>
-const $ = (id) => document.getElementById(id);
-const SK = "halo-layout";
-// physical face button (standard-mapping index) -> position name
-const POS = { 0: "bottom", 1: "right", 2: "left", 3: "top" };
-const PRESETS = {
-  xbox:     { bottom: "Jump", right: "Melee", left: "Action / reload", top: "Switch weapon" },
-  nintendo: { right: "Jump", bottom: "Melee", top: "Action / reload", left: "Switch weapon" },
-  ab:       { right: "Jump", bottom: "Melee", left: "Action / reload", top: "Switch weapon" },
-  xy:       { bottom: "Jump", right: "Melee", top: "Action / reload", left: "Switch weapon" },
-};
-const SHORT = { "Jump": "jump", "Melee": "melee", "Action / reload": "reload", "Switch weapon": "weapon" };
-let layout = "xbox";
-try { const v = localStorage.getItem(SK); if (PRESETS[v]) layout = v; } catch (e) {}
-
-// action labels beside the face buttons
-const NS = "http://www.w3.org/2000/svg";
-const ACT = {};
-[["top", 350, 62, "middle"], ["right", 394, 112, "start"], ["bottom", 350, 160, "middle"], ["left", 306, 112, "end"]].forEach(([k, x, y, anchor]) => {
-  const t = document.createElementNS(NS, "text");
-  t.setAttribute("x", x); t.setAttribute("y", y); t.setAttribute("text-anchor", anchor); t.setAttribute("class", "act");
-  $("ctl").appendChild(t); ACT[k] = t;
-});
-const ROWS = [["Left stick", "Move"], ["Right stick", "Look"], ["ZR", "Fire"], ["ZL", "Throw grenade"], ["__bottom", ""], ["__right", ""], ["__left", ""], ["__top", ""], ["Click L stick", "Crouch"], ["Click R stick", "Zoom"], ["+", "Pause"]];
-const ROWNAME = { bottom: "Bottom button", right: "Right button", left: "Left button", top: "Top button" };
-function applyLayout() {
-  const m = PRESETS[layout];
-  for (const k in ACT) ACT[k].textContent = SHORT[m[k]];
-  $("map").replaceChildren(...ROWS.map(([a, b]) => {
-    const tr = document.createElement("tr");
-    const k = a.startsWith("__") ? a.slice(2) : null;
-    tr.dataset.k = k || "";
-    const c1 = document.createElement("td"), c2 = document.createElement("td");
-    c1.textContent = k ? ROWNAME[k] : a; c2.textContent = k ? m[k] : b;
-    tr.append(c1, c2); return tr;
-  }));
-  document.querySelectorAll("#presets button").forEach((b) => b.classList.toggle("sel", b.dataset.p === layout));
-}
-document.querySelectorAll("#presets button").forEach((b) => b.onclick = () => {
-  layout = b.dataset.p; try { localStorage.setItem(SK, layout); } catch (e) {} applyLayout();
-});
-applyLayout();
-
-const f2 = (n) => (n < 0 ? "" : " ") + n.toFixed(2);
-const R = 13; // stick cap travel in SVG units
+const $ = (id) => document.getElementById(id), R = 13;
 function stick(el, x, y) {
-  // clamp to the unit circle so a diagonal doesn't overshoot the well
   const m = Math.hypot(x, y); if (m > 1) { x /= m; y /= m; }
   el.setAttribute("transform", `translate(${(x * R).toFixed(2)} ${(y * R).toFixed(2)})`);
 }
 function poll() {
   const p = (navigator.getGamepads ? Array.from(navigator.getGamepads()) : []).find(Boolean);
   const svg = $("ctl");
-  if (!p) {
-    svg.classList.remove("live");
-    $("pad-status").textContent = "No controller detected yet. Press a button on it.";
-  } else {
-    svg.classList.add("live");
-    const ok = document.createElement("span"); ok.className = "ok"; ok.textContent = "Connected";
-    $("pad-status").replaceChildren(ok, document.createTextNode(" — " + p.id + " (" + (p.mapping || "non-standard mapping") + ")"));
-    for (let i = 0; i <= 16; i++) {
-      const el = $("b" + i); if (!el) continue;
-      el.classList.toggle("on", !!(p.buttons[i] && p.buttons[i].pressed));
-    }
-    const ax = (i) => p.axes[i] || 0;
-    stick($("stickL"), ax(0), ax(1)); stick($("stickR"), ax(2), ax(3));
-    $("lv").textContent = f2(ax(0)) + ", " + f2(ax(1)); $("rv").textContent = f2(ax(2)) + ", " + f2(ax(3));
-    // analog triggers fill left-to-right (ZL) / right-to-left (ZR)
+  svg.classList.toggle("live", !!p);
+  if (p) {
+    for (let i = 0; i <= 16; i++) { const el = $("b" + i); if (el) el.classList.toggle("on", !!(p.buttons[i] && p.buttons[i].pressed)); }
+    stick($("stickL"), p.axes[0] || 0, p.axes[1] || 0); stick($("stickR"), p.axes[2] || 0, p.axes[3] || 0);
     const zl = (p.buttons[6] && p.buttons[6].value) || 0, zr = (p.buttons[7] && p.buttons[7].value) || 0;
     $("zl-fill").style.clipPath = `inset(0 ${(100 - zl * 100).toFixed(0)}% 0 0)`;
     $("zr-fill").style.clipPath = `inset(0 0 0 ${(100 - zr * 100).toFixed(0)}%)`;
-    $("zlv").textContent = Math.round(zl * 100) + "%"; $("zrv").textContent = Math.round(zr * 100) + "%";
-    // light up the action label + table row for the face buttons / triggers
-    for (const i in POS) { const k = POS[i], on = !!(p.buttons[i] && p.buttons[i].pressed); ACT[k].classList.toggle("on", on); const r = document.querySelector(`#map tr[data-k="${k}"]`); if (r) r.classList.toggle("on", on); }
   }
   requestAnimationFrame(poll);
 }
