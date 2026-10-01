@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Switch 2 Pro Controller on a Mac</title>
+<meta name="description" content="Wake a Nintendo Switch 2 Pro Controller over USB-C so Chrome can use it, then play Super Grandmasters with it. Nothing to install.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+  :root{
+    --ink:#1a1a1a; --muted:#6b6b6b; --line:#e7e7e4; --bg:#fbfbfa; --card:#ffffff;
+    --accent:#1fa855; --accent-ink:#157d3f; --warn:#b3261e; --warn-bg:#fdf0ee;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:40px 16px 96px}
+  h1{font-size:34px;line-height:1.12;font-weight:700;letter-spacing:-0.02em;margin:8px 0 14px}
+  .lede{font-size:18px;color:#333;margin:0 0 10px;max-width:60ch}
+  h2{font-size:22px;font-weight:680;letter-spacing:-0.01em;margin:46px 0 10px}
+  p{margin:10px 0}
+  code{font-family:var(--mono);font-size:.88em;background:#f0f0ee;padding:1px 5px;border-radius:4px}
+  a{color:var(--accent-ink)}
+  .need{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0 0;padding:0;list-style:none}
+  .need li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:15px}
+  .need b{display:block;margin-bottom:2px}
+  ol.steps{list-style:none;counter-reset:s;padding:0;margin:16px 0 0}
+  ol.steps>li{counter-increment:s;position:relative;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px 16px 60px;margin:0 0 12px}
+  ol.steps>li::before{content:counter(s);position:absolute;left:18px;top:16px;width:28px;height:28px;border-radius:50%;
+    background:var(--accent);color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center}
+  ol.steps h3{font-size:17px;margin:0 0 4px}
+  ol.steps p{margin:4px 0 0;font-size:15.5px;color:#2c2c2c}
+  button,.btn{font:inherit;font-weight:650;font-size:16px;border:0;border-radius:10px;padding:12px 20px;cursor:pointer;
+    background:var(--accent);color:#fff;text-decoration:none;display:inline-block;margin-top:12px}
+  button:hover,.btn:hover{background:var(--accent-ink)}
+  button:focus-visible,.btn:focus-visible,a:focus-visible{outline:3px solid #0a66ff;outline-offset:2px}
+  button[disabled]{opacity:.55;cursor:default}
+  .btn.ghost{background:#fff;color:var(--ink);border:1px solid #cfcfcb}
+  .btn.ghost:hover{background:#f3f3f1}
+  .status{margin-top:14px;padding:12px 14px;border-radius:9px;border:1px solid var(--line);background:#fff;font-size:15px}
+  .status.ok{border-color:#bfe6cc;background:#f1fbf4;color:#14532d}
+  .status.bad{border-color:#f0c4be;background:var(--warn-bg);color:var(--warn)}
+  .status[hidden]{display:none}
+  .unsupported{margin:18px 0 0;padding:14px 16px;border:1px solid #f0c4be;background:var(--warn-bg);color:var(--warn);border-radius:10px}
+  .unsupported[hidden]{display:none}
+
+  /* live tester */
+  .tester{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px}
+  .tester h3{margin:0 0 4px;font-size:16px}
+  .tester .hint{margin:0 0 14px;font-size:14.5px;color:var(--muted)}
+  .pad{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media (max-width:560px){.pad{grid-template-columns:1fr}}
+  .keys{display:flex;flex-wrap:wrap;gap:8px}
+  .key{min-width:44px;text-align:center;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:#f6f6f4;
+    font-weight:650;font-size:14px;color:#777;transition:none}
+  .key.on{background:var(--accent);border-color:var(--accent-ink);color:#fff}
+  .sticks{display:flex;gap:18px;justify-content:center;align-items:center}
+  .stick{width:112px;text-align:center;font-size:12.5px;color:var(--muted)}
+  .stick svg{display:block;margin:0 auto 4px}
+  .raw{margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--muted);word-break:break-all}
+  .play{margin-top:18px;padding:18px 20px;background:#f1fbf4;border:1px solid #bfe6cc;border-radius:12px}
+  .play h3{margin:0 0 2px;font-size:18px}
+  .play p{margin:4px 0 0;font-size:15.5px}
+  details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:2px 16px;margin:0 0 10px}
+  summary{cursor:pointer;font-weight:650;padding:12px 0}
+  details p{margin:0 0 12px;font-size:15.5px}
+  footer{margin-top:56px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);padding-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Play with a Switch 2 Pro Controller</h1>
+    <p class="lede">A Mac can't use the Switch 2 Pro Controller by itself. It doesn't appear in Bluetooth, and plugged in over USB it stays silent. This page wakes it up so Chrome can read it, and then you can play <a href="https://imeanwhereelse.com/">Super Grandmasters</a> with it. Nothing to install.</p>
+  </header>
+
+  <h2>What you need</h2>
+  <ul class="need">
+    <li><b>Chrome</b>Safari and Firefox can't talk to the controller over USB.</li>
+    <li><b>A USB-C data cable</b>The one that came with the controller works. Some charge-only cables don't.</li>
+    <li><b>The controller, plugged in</b>Straight into the computer, not through a hub, to start.</li>
+  </ul>
+  <div class="unsupported" id="unsupported" hidden>This browser can't use the controller over USB. Open this page in Chrome.</div>
+
+  <h2>Set it up</h2>
+  <ol class="steps">
+    <li>
+      <h3>Plug the controller in</h3>
+      <p>Use the USB-C cable, controller to computer.</p>
+    </li>
+    <li>
+      <h3>Wake it up</h3>
+      <p>Click the button, choose <b>Pro Controller</b> in Chrome's list, and press Connect. Chrome only asks the first time.</p>
+      <button id="connect" type="button">Connect controller</button>
+      <div class="status" id="status" role="status" aria-live="polite" hidden></div>
+    </li>
+    <li>
+      <h3>Check it works</h3>
+      <p>Press any button. The buttons below light up as you press them, and the dots follow the sticks.</p>
+      <div class="tester" aria-label="Controller tester">
+        <h3 id="seen">Waiting for the controller…</h3>
+        <p class="hint" id="hint">If nothing appears, press a button on it.</p>
+        <div class="pad">
+          <div class="keys" id="keys"></div>
+          <div class="sticks">
+            <div class="stick"><svg id="ls" width="96" height="96" viewBox="-48 -48 96 96" aria-hidden="true"><circle r="44" fill="#f6f6f4" stroke="#d8d8d4"/><circle r="3" fill="#bbb"/><circle id="lsd" r="9" fill="var(--accent)"/></svg>Left stick</div>
+            <div class="stick"><svg id="rs" width="96" height="96" viewBox="-48 -48 96 96" aria-hidden="true"><circle r="44" fill="#f6f6f4" stroke="#d8d8d4"/><circle r="3" fill="#bbb"/><circle id="rsd" r="9" fill="var(--accent)"/></svg>Right stick</div>
+          </div>
+        </div>
+        <div class="raw" id="raw"></div>
+      </div>
+    </li>
+    <li>
+      <h3>Play</h3>
+      <p>Open the game in a new tab, then press <b>+</b> on the controller. It joins as Player 1. You can change what each button does under Controls.</p>
+      <div class="play">
+        <h3>Super Grandmasters</h3>
+        <p>A chess-set take on Melee, in your browser.</p>
+        <a class="btn" href="https://imeanwhereelse.com/" target="_blank" rel="noopener">Open the game</a>
+      </div>
+    </li>
+  </ol>
+
+  <h2>If something's off</h2>
+  <details><summary>Chrome's list is empty</summary>
+    <p>Chrome can't see the controller. Try the cable that came with it, another port, and unplugging and plugging it back in. A cable that only charges won't work.</p></details>
+  <details><summary>"Access denied" or "Unable to claim interface"</summary>
+    <p>Another app is holding the controller. Quit Steam, emulators and any controller utility, unplug the controller, plug it back in, and try again.</p></details>
+  <details><summary>It stopped working after I unplugged it</summary>
+    <p>The controller forgets the wake-up when it's unplugged. Plug it back in and this page (or the game's Controls screen) wakes it again, without asking Chrome's list a second time.</p></details>
+  <details><summary>Buttons feel mixed up</summary>
+    <p>In the game, open Controls and set each button to what you want. Your choices are saved in that browser.</p></details>
+  <details><summary>Windows or Linux</summary>
+    <p>This is made for Chrome on a Mac. On other systems Chrome may need a USB driver for the controller before this works.</p></details>
+
+  <footer>
+    Nintendo Switch is a trademark of Nintendo. This page isn't affiliated with Nintendo. It talks to the controller only from your own browser, and nothing is sent anywhere.
+  </footer>
+</div>
+
+<script>
+/* Wakes the Switch 2 Pro Controller over WebUSB. The same startup sequence as the game's Controls screen
+   (melee-web game/src/input/switch2usb.js). */
+(function () {
+  var VENDOR = 0x057e, PRODUCT = 0x2069, IFACE = 1;
+  var HEX = [
+    "03 91 00 0d 00 08 00 00 01 00 ff ff ff ff ff ff", "07 91 00 01 00 00 00 00", "16 91 00 01 00 00 00 00",
+    "15 91 00 01 00 0e 00 00 00 02 ff ff ff ff ff ff ff ff ff ff ff ff", "15 91 00 02 00 11 00 00 00 ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff",
+    "15 91 00 03 00 01 00 00 00", "09 91 00 07 00 08 00 00 00 00 00 00 00 00 00 00", "0c 91 00 02 00 04 00 00 27 00 00 00",
+    "11 91 00 03 00 00 00 00", "0a 91 00 08 00 14 00 00 01 ff ff ff ff ff ff ff ff 35 00 46 00 00 00 00 00 00 00 00",
+    "0c 91 00 04 00 04 00 00 27 00 00 00", "03 91 00 0a 00 04 00 00 09 00 00 00", "10 91 00 01 00 00 00 00", "01 91 00 0c 00 00 00 00",
+    "03 91 00 01 00 00 00", "0a 91 00 02 00 04 00 00 03 00 00", "09 91 00 07 00 08 00 00 01 00 00 00 00 00 00 00"
+  ];
+  var COMMANDS = HEX.map(function (h) { return Uint8Array.from(h.split(" ").map(function (b) { return parseInt(b, 16); })); });
+  var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+  var statusEl = document.getElementById("status"), btn = document.getElementById("connect");
+  function say(text, kind) { statusEl.hidden = !text; statusEl.textContent = text; statusEl.className = "status" + (kind ? " " + kind : ""); }
+  var isOurs = function (d) { return d && d.vendorId === VENDOR && d.productId === PRODUCT; };
+
+  async function handshake(device) {
+    var claimed = false;
+    try {
+      await device.open();
+      if (device.configuration === null) { await device.selectConfiguration(1); }
+      var iface = device.configuration.interfaces.find(function (i) { return i.interfaceNumber === IFACE; });
+      if (!iface) { throw new Error("USB interface " + IFACE + " not found"); }
+      var eps = (iface.alternates[0] && iface.alternates[0].endpoints) || [];
+      var out = eps.find(function (e) { return e.type === "bulk" && e.direction === "out"; });
+      var inn = eps.find(function (e) { return e.type === "bulk" && e.direction === "in"; });
+      if (!out) { throw new Error("USB interface " + IFACE + " has no bulk OUT endpoint"); }
+      await device.claimInterface(IFACE); claimed = true;
+      for (var n = 0; n < COMMANDS.length; n++) {
+        var res = await device.transferOut(out.endpointNumber, COMMANDS[n]);
+        if (res.status !== "ok") { await device.clearHalt("out", out.endpointNumber).catch(function () {}); throw new Error("startup command " + (n + 1) + " of " + COMMANDS.length + ": " + res.status); }
+        if (inn) { await Promise.race([device.transferIn(inn.endpointNumber, 64).catch(function () {}), sleep(100)]); }
+        await sleep(50);
+      }
+    } finally {
+      if (claimed) { await device.releaseInterface(IFACE).catch(function () {}); }
+      await device.close().catch(function () {});
+    }
+  }
+  var busy = false;
+  async function wake(device) {
+    if (busy) { return; } busy = true; btn.disabled = true;
+    say("Waking the controller…");
+    try { await handshake(device); say("The controller is awake. Press any button on it.", "ok"); }
+    catch (e) {
+      var claim = ["SecurityError", "NetworkError", "InvalidStateError"].indexOf(e.name) >= 0;
+      say("Couldn't wake it: " + (e.name || "Error") + ": " + e.message + (claim ? " Another app may be using the controller. Quit it, unplug the controller, and plug it back in." : ""), "bad");
+    }
+    busy = false; btn.disabled = false;
+  }
+  window.__sw2wake = wake;
+
+  if (!navigator.usb) {
+    document.getElementById("unsupported").hidden = false; btn.disabled = true;
+  } else {
+    btn.addEventListener("click", async function () {
+      try { await wake(await navigator.usb.requestDevice({ filters: [{ vendorId: VENDOR, productId: PRODUCT }] })); }
+      catch (e) { say(e && e.name === "NotFoundError" ? "No controller was chosen. Plug it in with a USB-C data cable and try again." : "Couldn't connect: " + ((e && e.name) || "Error") + ": " + ((e && e.message) || e), e && e.name === "NotFoundError" ? "" : "bad"); }
+    });
+    // Already allowed before: wake it now and on every replug.
+    navigator.usb.getDevices().then(function (list) { list.filter(isOurs).forEach(wake); }).catch(function () {});
+    navigator.usb.addEventListener("connect", function (ev) { if (isOurs(ev.device)) { wake(ev.device); } });
+    navigator.usb.addEventListener("disconnect", function (ev) { if (isOurs(ev.device)) { say("The controller was unplugged. Plug it back in and it wakes again."); } });
+  }
+})();
+
+/* Live tester: reads the controller as Chrome shows it once it's awake (raw HID: buttons in HID order, +Y up on both sticks). */
+(function () {
+  var KEYS = [["ZL", 13], ["L", 12], ["ZR", 5], ["R", 4], ["X", 3], ["Y", 2], ["A", 1], ["B", 0], ["+", 6], ["−", 7], ["↑", 11], ["↓", 8], ["←", 10], ["→", 9]];
+  var keysEl = document.getElementById("keys"), els = {};
+  KEYS.forEach(function (k) { var d = document.createElement("div"); d.className = "key"; d.textContent = k[0]; keysEl.appendChild(d); els[k[1]] = d; });
+  var seenEl = document.getElementById("seen"), hintEl = document.getElementById("hint"), rawEl = document.getElementById("raw");
+  var lsd = document.getElementById("lsd"), rsd = document.getElementById("rsd");
+  var isOurPad = function (g) { return g && /\b0?57e\b/i.test(g.id) && /\b2069\b/.test(g.id); };
+  function dot(el, x, y) { var r = 40 / 0.8, dx = x * r, dy = -y * r, len = Math.sqrt(dx * dx + dy * dy); if (len > 38) { dx *= 38 / len; dy *= 38 / len; } el.setAttribute("cx", dx); el.setAttribute("cy", dy); }
+  window.__sw2 = { pressed: function () { var g = Array.from(navigator.getGamepads ? navigator.getGamepads() : []).find(isOurPad); return g ? g.buttons.map(function (b, i) { return b.pressed ? i : -1; }).filter(function (i) { return i >= 0; }) : null; },
+                   axes: function () { var g = Array.from(navigator.getGamepads ? navigator.getGamepads() : []).find(isOurPad); return g ? Array.from(g.axes) : null; },
+                   count: function () { var g = Array.from(navigator.getGamepads ? navigator.getGamepads() : []).find(isOurPad); return g ? g.buttons.length : 0; } };
+  function frame() {
+    var pads = Array.from(navigator.getGamepads ? navigator.getGamepads() : []).filter(Boolean);
+    var g = pads.find(isOurPad);
+    if (g) {
+      seenEl.textContent = "Switch 2 Pro Controller is working"; hintEl.textContent = "Press buttons and move the sticks to try them.";
+      var down = [];
+      g.buttons.forEach(function (b, i) { if (b.pressed) { down.push(i); } if (els[i]) { els[i].classList.toggle("on", b.pressed); } });
+      dot(lsd, g.axes[0] || 0, g.axes[1] || 0); dot(rsd, g.axes[3] || 0, g.axes[5] || 0);
+      rawEl.textContent = "Chrome sees " + g.buttons.length + " buttons, " + g.axes.length + " axes. Pressed: " + (down.length ? down.join(", ") : "none");
+    } else {
+      seenEl.textContent = "Waiting for the controller…";
+      hintEl.textContent = pads.length ? "Chrome sees a different controller (" + pads[0].id.replace(/\s*\(.*$/, "") + "). Unplug it, or press a button on the Switch 2 Pro." : "If nothing appears, wake it up above, then press a button on it.";
+      rawEl.textContent = "";
+      Object.keys(els).forEach(function (i) { els[i].classList.remove("on"); });
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
