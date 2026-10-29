@@ -38,6 +38,15 @@ const projects: Project[] = [
     ],
   },
   {
+    title: 'drones',
+    image: '/design/drones.png',
+    imagePosition: 'center 30%',
+    body: "i've been building and flying radio control airplanes and drones for 15 years.\n\ni'm an expert pilot with thousands of hours logged in simulation and actual flying.\n\ni've developed a deep sense for proportional, low-latency control inputs in high-precision robotic systems.",
+    links: [
+      { label: 'flight videos', href: 'https://photos.app.goo.gl/PqFfXuQA5yGj4hxR7' },
+    ],
+  },
+  {
     title: 'reveal',
     image: '/design/reveal.jpg',
     href: '/reveal/',
@@ -53,15 +62,6 @@ const projects: Project[] = [
     body: "melee in the browser, played by wooden chess pieces on a chessboard. melee's frame data and physics, 10 fighters, 8 boards, and online rollback netplay. plug in a controller.\n\na non-commercial fan project, not affiliated with nintendo or hal laboratory.",
     links: [
       { label: 'imeanwhereelse.com', href: 'https://imeanwhereelse.com' },
-    ],
-  },
-  {
-    title: 'drones',
-    image: '/design/drones.png',
-    imagePosition: 'center 30%',
-    body: "i've been building and flying radio control airplanes and drones for 15 years.\n\ni'm an expert pilot with thousands of hours logged in simulation and actual flying.\n\ni've developed a deep sense for proportional, low-latency control inputs in high-precision robotic systems.",
-    links: [
-      { label: 'flight videos', href: 'https://photos.app.goo.gl/PqFfXuQA5yGj4hxR7' },
     ],
   },
   {
