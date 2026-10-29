@@ -38,6 +38,15 @@ const projects: Project[] = [
     ],
   },
   {
+    title: 'reveal',
+    image: '/design/reveal.jpg',
+    href: '/reveal/',
+    body: "i created an immersive horror video game depicting a factory farm from a cow's perspective.",
+    links: [
+      { label: 'play reveal', href: '/reveal/' },
+    ],
+  },
+  {
     title: 'super grandmasters',
     image: '/design/super-grandmasters.jpg',
     href: 'https://imeanwhereelse.com',
