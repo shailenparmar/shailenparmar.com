@@ -41,7 +41,7 @@ const projects: Project[] = [
     title: 'reveal',
     image: '/design/reveal.jpg',
     href: '/reveal/',
-    body: "i created an immersive horror video game depicting a factory farm from a cow's perspective.",
+    body: "i created an interactive immersive experience (aka a horror video game) depicting a factory farm from a cow's perspective, in collaboration with tori lawton, a veterinary assistant.\n\nthe sequences depicted are based on actual factory farming practices. the thesis is that the reality of how we treat our fellow conscious, feeling animals is more horrific than the fictional stories we depict in traditional media.",
     links: [
       { label: 'play reveal', href: '/reveal/' },
     ],
